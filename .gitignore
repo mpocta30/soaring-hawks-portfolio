@@ -72,4 +72,4 @@ yarn-error.log
 .idea/
 
 # Do not upload videos to github
-videos/
+*.mp4
