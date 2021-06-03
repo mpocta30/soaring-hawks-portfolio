@@ -73,3 +73,4 @@ yarn-error.log
 
 # Do not upload videos to github
 *.mp4
+*.mov
