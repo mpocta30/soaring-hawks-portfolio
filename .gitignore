@@ -70,3 +70,6 @@ yarn-error.log
 
 # JetBrains
 .idea/
+
+# Do not upload videos to github
+videos/
