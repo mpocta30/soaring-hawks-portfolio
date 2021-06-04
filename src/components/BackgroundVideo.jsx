@@ -1,5 +1,5 @@
 import React from "react";
-import VideoBG from "../../content/assets/videos/header-bg.mp4";
+import VideoBG from "../../content/assets/videos/header-bg-1080.mp4";
 
 import "./BackgroundVideo.scss";
 
