@@ -72,9 +72,9 @@ yarn-error.log
 .idea/
 
 # Do not upload videos to github
-*.mp4
-*.mov
-content/assets/videos
+# *.mp4
+# *.mov
+# content/assets/videos
 
 # Ignore vscode settings
 .vscode/
