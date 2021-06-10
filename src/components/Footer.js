@@ -1,6 +1,6 @@
-import { Link } from "gatsby"
-import React from "react"
-import styled from "styled-components"
+import { Link } from "gatsby";
+import React from "react";
+import styled from "styled-components";
 
 const Footer = () => {
   return (
@@ -35,10 +35,10 @@ const Footer = () => {
         </FooterLinkItems>
       </FooterLinksWrapper>
     </FooterContainer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
 
 const FooterContainer = styled.div`
   padding: 5rem calc((100vw - 1100px) / 2);
@@ -46,20 +46,20 @@ const FooterContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   color: #000;
   background: #fafafb;
-`
+`;
 
 const FooterDesc = styled.div`
   padding: 0 2rem;
 
   h1 {
     margin-bottom: 3rem;
-    color: #f26a2e;
+    color: #263b46;
   }
 
   @media screen and (max-width: 400px) {
     padding: 1rem;
   }
-`
+`;
 
 const FooterLinksWrapper = styled.div`
   display: grid;
@@ -68,7 +68,7 @@ const FooterLinksWrapper = styled.div`
   @media screen and (max-width: 820px) {
     grid-template-columns: 1fr;
   }
-`
+`;
 
 const FooterLinkItems = styled.div`
   display: flex;
@@ -79,12 +79,12 @@ const FooterLinkItems = styled.div`
   @media screen and (max-width: 400px) {
     padding: 1rem;
   }
-`
+`;
 
 const FooterLinkTitle = styled.h2`
   font-size: 14px;
   margin-bottom: 16px;
-`
+`;
 
 const FooterLink = styled(Link)`
   text-decoration: none;
@@ -96,4 +96,4 @@ const FooterLink = styled(Link)`
     color: #f26a2e;
     transition: 0.3s ease-out;
   }
-`
+`;

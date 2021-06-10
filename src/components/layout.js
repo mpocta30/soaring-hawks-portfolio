@@ -5,10 +5,15 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import * as React from "react"
-import Footer from "./Footer"
-import Header from "./Header"
-import { GlobalStyle } from "./styles/GlobalStyles"
+import * as React from "react";
+import Footer from "./Footer";
+import Header from "./Header";
+import { GlobalStyle } from "./styles/GlobalStyles";
+
+if (typeof window !== "undefined") {
+  // eslint-disable-next-line global-require
+  require("smooth-scroll")('a[href*="#"]');
+}
 
 const Layout = ({ children }) => {
   return (
@@ -18,7 +23,7 @@ const Layout = ({ children }) => {
       <main>{children}</main>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

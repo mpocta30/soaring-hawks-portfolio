@@ -1,7 +1,7 @@
-import React from "react"
-import styled from "styled-components"
-import { Button } from "./Button"
-import Video from "../assets/videos/drone-bg.mp4"
+import React from "react";
+import styled from "styled-components";
+import Video from "../assets/videos/drone-bg.mp4";
+import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 const Hero = () => {
   return (
@@ -11,18 +11,19 @@ const Hero = () => {
       </HeroBg>
       <HeroConetent>
         <HeroItems>
-          <HeroH1>Unreal Destinations</HeroH1>
-          <HeroP>Out of this world</HeroP>
-          <Button primary="true" big="true" round="true" to="/#services">
-            Travel Now
-          </Button>
+          <HeroH1>Soaring Hawk</HeroH1>
+          <HeroP>Aerial Photography and Video</HeroP>
+          <HeroButton to="/#services">Learn More</HeroButton>
+          {/* <Button big="true" to="/#services">
+            Learn More
+          </Button> */}
         </HeroItems>
       </HeroConetent>
     </HeroContainer>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
 
 const HeroContainer = styled.div`
   background: #0c0c0c;
@@ -43,14 +44,10 @@ const HeroContainer = styled.div`
     right: 0;
     left: 0;
     z-index: 2;
-    background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.2) 0%,
-        rgba(0, 0, 0, 0.6) 100%
-      ),
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%),
       linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
   }
-`
+`;
 
 const HeroBg = styled.div`
   position: absolute;
@@ -61,21 +58,21 @@ const HeroBg = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-`
+`;
 
 const VideoBg = styled.video`
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
-`
+`;
 
 const HeroConetent = styled.div`
   z-index: 3;
   height: calc(100vh - 80px);
   max-height: 100%;
   padding: 0rem calc((100vw - 1300px) / 2);
-`
+`;
 
 const HeroItems = styled.div`
   display: flex;
@@ -89,17 +86,68 @@ const HeroItems = styled.div`
   color: white;
   line-height: 1.1;
   font-weight: bold;
-`
+`;
 
 const HeroH1 = styled.h1`
   font-size: clamp(1.5rem, 6vw, 4rem);
   margin-bottom: 1.5rem;
   letter-spacing: 3px;
   padding: 0 1rem;
-`
+`;
 
 const HeroP = styled.p`
-  font-size: clamp(1rem, 3vw, 3rem);
+  font-size: clamp(1rem, 2vw, 2rem);
   margin-bottom: 2rem;
   font-weight: 400;
-`
+`;
+
+const HeroButton = styled(AnchorLink)`
+  position: relative;
+  overflow: hidden;
+  background: none;
+  border: 2px solid #ffffff;
+  border-radius: 0rem;
+  color: #ffffff;
+  padding: 16px 40px;
+  font-size: 20px;
+  min-width: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.08s ease-in;
+  -o-transition: 0.08s ease-in;
+  -ms-transition: 0.08s ease-in;
+  -moz-transition: 0.08s ease-in;
+  -webkit-transition: 0.08s ease-in;
+  /* border-radius: "50px"; */
+
+  /* &::before {
+    border-radius: 0;
+  }
+  &:hover::before {
+    box-shadow: inset 0 100/2 0 0 #263b46, inset 0 100/-2 0 0 #263b46;
+  }
+  &::after {
+    box-shadow: inset 0 0 0 1px #263b46;
+  } */
+
+  &:hover {
+    color: #263b46;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    background: #ffffff;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    z-index: -1;
+    -webkit-transition: bottom 0.25s ease-in;
+  }
+
+  &:hover:before {
+    bottom: 0;
+  }
+`;
