@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Soaring Hawk | Aerial Photography and Video`,
+    description: `The landing page for the Soaring Hawk drone company. Provide documentation and content as well as give customers the opportunity to
+    reach out for a new project.`,
+    author: `michaelpocta30@gmail.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
