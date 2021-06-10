@@ -1,3 +1,0 @@
-[build]
-  command = "yarn && yarn testbuild"
-  publish = "public"

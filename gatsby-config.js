@@ -1,96 +1,48 @@
-const path = require("path");
-const { title, keywords, description, author, defaultLang, trackingId } = require("./config/site");
-
 module.exports = {
   siteMetadata: {
-    title,
-    keywords,
-    description,
-    author,
+    title: `Gatsby Default Starter`,
+    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-styled-components`,
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        trackingId,
-      },
-    },
-    "gatsby-plugin-image",
-    {
-      resolve: "gatsby-plugin-manifest",
-      options: {
-        name: title,
-        short_name: "Agency",
-        start_url: "/",
-        background_color: "#ffffff",
-        theme_color: "#fed136",
-        display: "minimal-ui",
-        icon: "content/assets/drone-icon.png",
-      },
-    },
-    "gatsby-transformer-remark",
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "markdown",
-        path: `${__dirname}/content`,
+        name: `images`,
+        path: `${__dirname}/src/assets/images`,
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: "images",
-        path: `${__dirname}/content/assets/images`,
+        name: `videos`,
+        path: `${__dirname}/src/assets/videos`,
       },
     },
-    "gatsby-plugin-eslint",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sharp",
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
-      resolve: "gatsby-transformer-sharp",
+      resolve: `gatsby-plugin-manifest`,
       options: {
-        checkSupportedExtensions: false,
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
+        start_url: `/`,
+        background_color: `#663399`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    "gatsby-plugin-offline",
+    `gatsby-transformer-json`,
     {
-      resolve: "gatsby-plugin-sass",
+      resolve: `gatsby-source-filesystem`,
       options: {
-        data: `@import "core.scss";`,
-        includePaths: [path.resolve(__dirname, "src/style")],
+        path: `./src/data/`,
       },
     },
-    {
-      resolve: "gatsby-omni-font-loader",
-      options: {
-        preconnect: ["https://fonts.gstatic.com"],
-        web: [
-          {
-            name: "Droid Sans",
-            file: "https://fonts.googleapis.com/css2?family=Droid+Sans&display=swap",
-          },
-          {
-            name: "Montserrat",
-            file: "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap",
-          },
-          {
-            name: "Kaushan Script",
-            file: "https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap",
-          },
-          {
-            name: "Roboto Slab",
-            file: "https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap",
-          },
-        ],
-      },
-    },
-    {
-      resolve: "gatsby-plugin-i18n",
-      options: {
-        langKeyDefault: defaultLang,
-        useLangKeyLayout: false,
-        pagesPaths: ["/content/"],
-      },
-    },
+    `gatsby-plugin-anchor-links`,
   ],
 };

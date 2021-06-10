@@ -1,0 +1,26 @@
+[
+  {
+    "img": "../assets/images/real-estate.jpg",
+    "alt": "Real Estate",
+    "name": "Real Estate",
+    "button": "View Service"
+  },
+  {
+    "img": "../assets/images/construction.jpg",
+    "alt": "Construction",
+    "name": "Construction",
+    "button": "View Service"
+  },
+  {
+    "img": "../assets/images/aerial-imaging.jpg",
+    "alt": "Aerial Imaging",
+    "name": "Aerial Imaging",
+    "button": "View Service"
+  },
+  {
+    "img": "../assets/images/cool-drone-filler.jpg",
+    "alt": "Title Heading 1",
+    "name": "Title Heading 1",
+    "button": "View Service"
+  }
+]
