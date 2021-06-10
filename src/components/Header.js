@@ -54,7 +54,7 @@ const Header = () => {
 export default Header;
 
 const Nav = styled.nav`
-  background: ${({ isScrolling }) => (isScrolling ? "#42667a" : "transparent")};
+  background: ${({ isScrolling }) => (isScrolling ? "#3b5b6d" : "transparent")};
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -78,7 +78,7 @@ const NavContent = styled.div`
     top: 0;
     left: auto;
     right: ${({ expanded }) => (expanded ? "0" : "-100%")};
-    background-color: #263b46;
+    background-color: #3b5b6d;
     overflow-x: hidden;
     transition: 0.5s;
   }
@@ -104,9 +104,12 @@ const NavLink = styled(AnchorLink)`
   text-decoration: none;
   padding: 0 1rem;
   cursor: pointer;
+  height: 100%;
 
-  @media screen and (min-width: 769px) {
-    height: 100%;
+  &:hover,
+  &:focus {
+    color: #f1f1f1;
+    text-decoration: underline;
   }
 
   @media screen and (max-width: 768px) {
@@ -115,11 +118,6 @@ const NavLink = styled(AnchorLink)`
     font-size: 36px;
     display: block;
     transition: 0.3s;
-
-    &:hover,
-    &:focus {
-      color: #f1f1f1;
-    }
   }
 `;
 
