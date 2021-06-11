@@ -5,6 +5,7 @@ module.exports = {
     reach out for a new project.`,
     author: `michaelpocta30@gmail.com`,
   },
+  pathPrefix: "/soaring-hawks-portfolio",
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
@@ -44,6 +45,5 @@ module.exports = {
         path: `./src/data/`,
       },
     },
-    `gatsby-plugin-anchor-links`,
   ],
 };

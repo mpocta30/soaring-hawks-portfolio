@@ -1,16 +1,20 @@
 import * as React from "react";
-import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { Link } from "react-scroll";
 import styled from "styled-components";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { menuData } from "../data/MenuData";
-import { Button, PhoneButton } from "./Button";
+import { PhoneButton } from "./Button";
 import NavImage from "../assets/images/logo.png";
 
 const Header = () => {
   const [isScrolling, setScrolling] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
 
-  const toggleExpanded = () => setExpanded(!expanded);
+  const toggleExpanded = () => {
+    if (window.outerWidth <= 768) {
+      setExpanded(!expanded);
+    }
+  };
 
   const changeBackground = () => {
     if (window.scrollY >= window.outerHeight / 8) {
@@ -28,15 +32,23 @@ const Header = () => {
 
   return (
     <Nav isScrolling={isScrolling}>
-      <NavLink to="/">
+      <NavLogo href="#">
         <NavImg src={NavImage} alt="logo" />
-      </NavLink>
+      </NavLogo>
       <Bars onClick={toggleExpanded} />
       <NavContent expanded={expanded}>
         <NavCloseBtn onClick={toggleExpanded} />
         <NavMenu>
           {menuData.map((item, index) => (
-            <NavLink key={index} to={item.link}>
+            <NavLink
+              key={index}
+              to={item.link}
+              smooth={true}
+              spy={true}
+              offset={-80}
+              duration={1000}
+              onClick={toggleExpanded}
+            >
               {item.title}
             </NavLink>
           ))}
@@ -97,7 +109,16 @@ const NavCloseBtn = styled(FaTimes)`
   }
 `;
 
-const NavLink = styled(AnchorLink)`
+const NavLogo = styled.a`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  cursor: pointer;
+  height: 100%;
+`;
+
+const NavLink = styled(Link)`
   color: white;
   display: flex;
   align-items: center;

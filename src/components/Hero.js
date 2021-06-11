@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Video from "../assets/videos/drone-bg.mp4";
-import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { Link } from "react-scroll";
 
 const Hero = () => {
   return (
@@ -13,7 +13,9 @@ const Hero = () => {
         <HeroItems>
           <HeroH1>Soaring Hawk</HeroH1>
           <HeroP>Aerial Photography and Video</HeroP>
-          <HeroButton to="/#services">Learn More</HeroButton>
+          <HeroButton to="services" smooth={true} spy={true} offset={-80} duration={1000}>
+            Learn More
+          </HeroButton>
           {/* <Button big="true" to="/#services">
             Learn More
           </Button> */}
@@ -101,16 +103,16 @@ const HeroP = styled.p`
   font-weight: 400;
 `;
 
-const HeroButton = styled(AnchorLink)`
+const HeroButton = styled(Link)`
   position: relative;
   overflow: hidden;
   background: none;
   border: 2px solid #ffffff;
   border-radius: 0rem;
   color: #ffffff;
-  padding: 16px 40px;
-  font-size: 20px;
-  min-width: 100px;
+  padding: clamp(8px, 3vw, 16px) clamp(32px, 3vw, 40px);
+  font-size: clamp(12px, 3vw, 20px);
+  /* min-width: 100px; */
   cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
@@ -119,17 +121,6 @@ const HeroButton = styled(AnchorLink)`
   -ms-transition: 0.08s ease-in;
   -moz-transition: 0.08s ease-in;
   -webkit-transition: 0.08s ease-in;
-  /* border-radius: "50px"; */
-
-  /* &::before {
-    border-radius: 0;
-  }
-  &:hover::before {
-    box-shadow: inset 0 100/2 0 0 #263b46, inset 0 100/-2 0 0 #263b46;
-  }
-  &::after {
-    box-shadow: inset 0 0 0 1px #263b46;
-  } */
 
   &:hover {
     color: #263b46;

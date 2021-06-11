@@ -7,8 +7,8 @@ const Footer = () => {
     <FooterContainer>
       <FooterLinksWrapper>
         <FooterDesc>
-          <h1>Soaring Hawks Aerial Photography</h1>
-          <p>We strive to create the best content for our customers</p>
+          <h1>Soaring Hawk</h1>
+          <p>Aerial Photography and Video</p>
         </FooterDesc>
         <FooterLinkItems>
           <FooterLinkTitle>Contact Us</FooterLinkTitle>
@@ -41,7 +41,7 @@ const Footer = () => {
 export default Footer;
 
 const FooterContainer = styled.div`
-  padding: 5rem calc((100vw - 1100px) / 2);
+  padding: 5rem calc((100vw - 1300px) / 2);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   color: #000;

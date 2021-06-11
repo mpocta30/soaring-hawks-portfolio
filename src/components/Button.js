@@ -1,7 +1,7 @@
+import { Link } from "gatsby";
 import styled from "styled-components";
-import { AnchorLink } from "gatsby-plugin-anchor-links";
 
-export const Button = styled(AnchorLink)`
+export const Button = styled(Link)`
   background: ${({ primary }) => (primary ? "#263b46" : "#077BF1")};
   white-space: nowrap;
   padding: ${({ big }) => (big ? "16px 40px" : "10px 32px")};
