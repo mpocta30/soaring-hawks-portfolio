@@ -143,7 +143,7 @@ const NavLink = styled(Link)`
   @media screen and (max-width: 768px) {
     padding: 8px;
     text-decoration: none;
-    font-size: 36px;
+    font-size: 25px;
     display: block;
     transition: 0.3s;
   }
