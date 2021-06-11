@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Link } from "react-scroll";
+import { Link, animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaAngleUp } from "react-icons/fa";
 import { menuData } from "../data/MenuData";
 import { PhoneButton } from "./Button";
 import NavImage from "../assets/images/logo.png";
@@ -29,6 +29,10 @@ const Header = () => {
     // adding the event when scroll change background
     window.addEventListener("scroll", changeBackground);
   });
+
+  const scrollToTop = () => {
+    scroll.scrollToTop();
+  };
 
   return (
     <Nav isScrolling={isScrolling}>
@@ -59,6 +63,9 @@ const Header = () => {
           +1 (123) 456-7890
         </PhoneButton>
       </NavBtn>
+      <ToTopButon isScrolling={isScrolling} onClick={scrollToTop}>
+        <FaAngleUp />
+      </ToTopButon>
     </Nav>
   );
 };
@@ -148,10 +155,6 @@ const NavImg = styled.img`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* @media screen and (max-width: 768px) {
-    height: 40px;
-  } */
 `;
 
 const Bars = styled(FaBars)`
@@ -192,4 +195,23 @@ const NavBtn = styled.div`
   @media screen and (max-width: 768px) {
     display: none;
   }
+`;
+
+const ToTopButon = styled(Link)`
+  display: ${({ isScrolling }) => (isScrolling ? "flex" : "none")};
+  background-color: #263b46;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border-radius: 50%;
+  font-size: 50px;
+  line-height: 50px;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
 `;
