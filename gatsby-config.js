@@ -1,11 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: `Soaring Hawk | Aerial Photography and Video`,
+    title: `Soaring Hawk`,
     description: `The landing page for the Soaring Hawk drone company. Provide documentation and content as well as give customers the opportunity to
     reach out for a new project.`,
     author: `michaelpocta30@gmail.com`,
   },
   pathPrefix: "/soaring-hawks-portfolio",
+  flags: {
+    DEV_SSR: false,
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
