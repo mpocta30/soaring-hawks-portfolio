@@ -37,26 +37,9 @@ const Contact = ({ sectionBg, title, subtitle }) => {
               required
             />
             <textarea id="message" placeholder="Enter Message" name="message" required />
-            <Button
-              as="button"
-              type="submit"
-              primary="true"
-              css={`
-                height: 48px;
-
-                @media screen and (max-width: 768px) {
-                  width: 100%;
-                  min-width: 350px;
-                }
-
-                @media screen and (max-width: 400px) {
-                  width: 100%;
-                  min-width: 250px;
-                }
-              `}
-            >
+            <FormButton as="button" primary="true" type="submit">
               Sign Up
-            </Button>
+            </FormButton>
           </FormWrap>
         </form>
       </ContactContent>
@@ -145,5 +128,19 @@ const FormName = styled.div`
     display: flex;
     flex-direction: column;
     grid-gap: 0;
+  }
+`;
+
+const FormButton = styled(Button)`
+  height: 48px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    min-width: 350px;
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 100%;
+    min-width: 250px;
   }
 `;
