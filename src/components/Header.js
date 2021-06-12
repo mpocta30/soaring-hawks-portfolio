@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
 import { FaBars, FaTimes, FaAngleUp } from "react-icons/fa";
 import { menuData } from "../data/MenuData";
 import { PhoneButton } from "./Button";
 import NavImage from "../assets/images/logo.png";
+import { Link } from "gatsby";
 
 const Header = () => {
   const [isScrolling, setScrolling] = React.useState(false);
@@ -35,24 +36,16 @@ const Header = () => {
   };
 
   return (
-    <Nav isScrolling={isScrolling}>
-      <NavLogo href="#">
+    <Nav isscrolling={isScrolling ? 1 : 0}>
+      <NavLink to="/">
         <NavImg src={NavImage} alt="logo" />
-      </NavLogo>
+      </NavLink>
       <Bars onClick={toggleExpanded} />
       <NavContent expanded={expanded}>
         <NavCloseBtn onClick={toggleExpanded} />
         <NavMenu>
           {menuData.map((item, index) => (
-            <NavLink
-              key={index}
-              to={item.link}
-              smooth={true}
-              spy={true}
-              offset={-80}
-              duration={1000}
-              onClick={toggleExpanded}
-            >
+            <NavLink key={index} to={item.link}>
               {item.title}
             </NavLink>
           ))}
@@ -63,7 +56,7 @@ const Header = () => {
           +1 (123) 456-7890
         </PhoneButton>
       </NavBtn>
-      <ToTopButon isScrolling={isScrolling} onClick={scrollToTop}>
+      <ToTopButon isscrolling={isScrolling ? 1 : 0} onClick={scrollToTop}>
         <FaAngleUp />
       </ToTopButon>
     </Nav>
@@ -73,7 +66,7 @@ const Header = () => {
 export default Header;
 
 const Nav = styled.nav`
-  background: ${({ isScrolling }) => (isScrolling ? "#3b5b6d" : "transparent")};
+  background: ${(props) => (props.isscrolling ? "#3b5b6d" : "transparent")};
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -96,7 +89,7 @@ const NavContent = styled.div`
     z-index: 1;
     top: 0;
     left: auto;
-    right: ${({ expanded }) => (expanded ? "0" : "-100%")};
+    right: ${(props) => (props.expanded ? "0" : "-100%")};
     background-color: #3b5b6d;
     overflow-x: hidden;
     transition: 0.5s;
@@ -114,15 +107,6 @@ const NavCloseBtn = styled(FaTimes)`
     top: 20px;
     right: 45px;
   }
-`;
-
-const NavLogo = styled.a`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 0 1rem;
-  cursor: pointer;
-  height: 100%;
 `;
 
 const NavLink = styled(Link)`
@@ -197,8 +181,8 @@ const NavBtn = styled.div`
   }
 `;
 
-const ToTopButon = styled(Link)`
-  display: ${({ isScrolling }) => (isScrolling ? "flex" : "none")};
+const ToTopButon = styled.a`
+  display: ${(props) => (props.isscrolling ? "flex" : "none")};
   background-color: #263b46;
   border: none;
   border-radius: 50%;

@@ -3,13 +3,13 @@ import styled from "styled-components";
 import Video from "../assets/videos/drone-bg.mp4";
 import { Link } from "react-scroll";
 
-const Hero = () => {
+const VideoHero = () => {
   return (
     <HeroContainer>
       <HeroBg>
         <VideoBg src={Video} type="video/mp4" autoPlay loop muted playsInline />
       </HeroBg>
-      <HeroConetent>
+      <HeroContent>
         <HeroItems>
           <HeroH1>Soaring Hawk</HeroH1>
           <HeroP>Aerial Photography and Video</HeroP>
@@ -20,12 +20,12 @@ const Hero = () => {
             Learn More
           </Button> */}
         </HeroItems>
-      </HeroConetent>
+      </HeroContent>
     </HeroContainer>
   );
 };
 
-export default Hero;
+export default VideoHero;
 
 const HeroContainer = styled.div`
   background: #0c0c0c;
@@ -69,7 +69,7 @@ const VideoBg = styled.video`
   object-fit: cover;
 `;
 
-const HeroConetent = styled.div`
+const HeroContent = styled.div`
   z-index: 3;
   height: calc(100vh - 80px);
   max-height: 100%;

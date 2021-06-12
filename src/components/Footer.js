@@ -45,7 +45,7 @@ const FooterContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   color: #000;
-  background: #fafafb;
+  background: #ececef;
 `;
 
 const FooterDesc = styled.div`
@@ -93,7 +93,7 @@ const FooterLink = styled(Link)`
   color: #3d3d4e;
 
   &:hover {
-    color: #f26a2e;
+    color: #3b5b6d;
     transition: 0.3s ease-out;
   }
 `;
