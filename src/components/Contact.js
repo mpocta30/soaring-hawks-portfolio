@@ -141,7 +141,7 @@ const FormName = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
     grid-gap: 0;
