@@ -18,8 +18,8 @@ const IndexPage = () => (
     <Stats />
     <Contact
       sectionBg={ContactBg}
-      title="Get Access to Exclusive Offers"
-      subtitle="Sign up for your newsletter below to get $100 off your first trip!"
+      title="Get a Quote"
+      subtitle="Inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur."
     />
   </Layout>
 );
