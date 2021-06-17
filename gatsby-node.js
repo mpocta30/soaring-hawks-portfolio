@@ -65,39 +65,28 @@
 // /**
 //  * generate i18n top pages
 //  */
-// exports.createPages = ({ graphql, actions: { createPage } }) => {
-//   const topIndex = path.resolve("./src/templates/top-index.jsx");
+exports.createPages = async ({ graphql, actions }) => {
+  const { data } = await graphql(`
+    query ProjectsQuery {
+      allProjectsJson {
+        edges {
+          node {
+            slug
+            title
+            subtitle
+            name
+          }
+        }
+      }
+    }
+  `);
 
-//   return new Promise((resolve, reject) => {
-//     resolve(
-//       graphql(
-//         `
-//           {
-//             allMarkdownRemark {
-//               distinct(field: fields___langKey)
-//             }
-//           }
-//         `,
-//       ).then(({ errors, data }) => {
-//         if (errors) {
-//           console.log(errors);
-//           reject(errors);
-//         }
-
-//         data.allMarkdownRemark.distinct.forEach((langKey) => {
-//           createPage({
-//             path: getBaseUrl(defaultLang, langKey),
-//             component: topIndex,
-//             context: {
-//               langKey,
-//               defaultLang,
-//               langTextMap,
-//             },
-//           });
-//         });
-
-//         return null;
-//       }),
-//     );
-//   });
-// };
+  data.allProjectsJson.edges.forEach((edge) => {
+    const node = edge.node;
+    actions.createPage({
+      path: node.slug,
+      component: require.resolve(`./src/templates/photo-gallery.js`),
+      context: { project: node },
+    });
+  });
+};

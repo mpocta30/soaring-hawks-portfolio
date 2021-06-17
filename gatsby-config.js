@@ -3,6 +3,8 @@ module.exports = {
     title: `Soaring Hawk`,
     description: `The landing page for the Soaring Hawk drone company. Provide documentation and content as well as give customers the opportunity to
     reach out for a new project.`,
+    url: "https://soaringhawkdrones.netlify.com",
+    image: "real-estate.jpg",
     author: `michaelpocta30@gmail.com`,
   },
   pathPrefix: "/soaring-hawks-portfolio",
