@@ -3,18 +3,24 @@ import { graphql, useStaticQuery } from "gatsby";
 
 import Layout from "../components/layout";
 import Gallery from "@browniebroke/gatsby-image-gallery";
+import styled from "styled-components";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const PhotoGallery = ({ pageContext }) => {
   const project = pageContext.project;
   const data = useStaticQuery(graphql`
     query ImagesForGallery {
-      allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+      allProjectsJson {
         edges {
           node {
-            relativePath
-            childImageSharp {
-              thumb: gatsbyImageData(width: 270, height: 270, placeholder: BLURRED)
-              full: gatsbyImageData(layout: FULL_WIDTH)
+            title
+            images {
+              alt
+              img {
+                childrenImageSharp {
+                  gatsbyImageData(layout: CONSTRAINED)
+                }
+              }
             }
           }
         }
@@ -22,22 +28,78 @@ const PhotoGallery = ({ pageContext }) => {
     }
   `);
 
-  function getGallery(data, name) {
-    console.log(name);
-    const reg = RegExp(project.name);
-    const edges = data.allFile.edges.filter((image) => reg.test(image.node.relativePath));
-    const images = edges.map(({ node }) => node.childImageSharp);
+  function getGallery(data, title) {
+    console.log(title, data.allProjectsJson.edges);
+    const reg = RegExp(title);
+    const edges = data.allProjectsJson.edges.filter((project) => title == project.node.title);
 
-    return <Gallery images={images} />;
+    // const images = edges.map(({ node }) => node.img.childImageSharp);
+
+    const GalleryImg = styled(GatsbyImage)`
+      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+
+      &:hover {
+        filter: blur(4px);
+        transition: all ease 0.5s;
+        cursor: pointer;
+      }
+
+      &:nth-child(6n + 3) {
+        grid-column: span 1;
+        grid-row: span 2;
+      }
+
+      &:nth-child(6n + 2),
+      &:nth-child(6n + 5),
+      &:nth-child(6n + 6) {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+    `
+
+    const galleryArray = []
+    edges[0].node.images.forEach((item, index) => {
+      galleryArray.push(
+        <GalleryImg
+          key={index}
+          image={item.img.childrenImageSharp[0].gatsbyImageData}
+          alt={item.alt}
+        />
+      )
+    })
+    
+    console.log(galleryArray);
+    return galleryArray;
   }
 
   return (
     <Layout>
       <h1>{project.title}</h1>
       <p>{project.subtitle}</p>
-      {getGallery(data, project.name)}
+      <GalleryContainer>
+        {getGallery(data, project.title)}
+      </GalleryContainer>
     </Layout>
   );
 };
 
 export default PhotoGallery;
+
+const GalleryContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 16vw;
+  grid-gap: 0.5em;
+  min-height: 100vh;
+  padding: 5rem calc((100vw - 1600px) / 2);
+  margin: 0 2rem;
+  color: white;
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 868px) {
+    grid-template-columns: 1fr;
+  }
+`

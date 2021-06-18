@@ -8,14 +8,16 @@ import Seo from "../components/seo";
 import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonials";
 import ContactBg from "../assets/images/email.jpg";
+import Projects from "../components/Projects";
 
 const IndexPage = () => (
   <Layout>
     <Seo title="Aerial Photography and Video" />
     <VideoHero />
-    <Services heading="Services" />
+    <Projects heading="Projects" />
     <Testimonials />
     <Stats />
+    <Services heading="Services" />
     <Contact
       sectionBg={ContactBg}
       title="Get a Quote"

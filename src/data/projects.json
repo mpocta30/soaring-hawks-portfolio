@@ -4,17 +4,30 @@
     "subtitle": "This is the first project from Soaring Hawk Videography",
     "name": "project1",
     "slug": "/projects/project-1",
+    "button": "View Project",
     "images": [
       {
-        "img": "../assets/images/aerial-imaging.jpg",
+        "img": "../assets/images/project1/photo1.jpg",
         "alt": "Aerial Imaging"
       },
       {
-        "img": "../assets/images/aerial-imaging.jpg",
+        "img": "../assets/images/project1/photo2.jpg",
         "alt": "Aerial Imaging"
       },
       {
-        "img": "../assets/images/aerial-imaging.jpg",
+        "img": "../assets/images/project1/photo3.jpg",
+        "alt": "Aerial Imaging"
+      },
+      {
+        "img": "../assets/images/project1/photo4.jpg",
+        "alt": "Aerial Imaging"
+      },
+      {
+        "img": "../assets/images/project1/photo5.jpg",
+        "alt": "Aerial Imaging"
+      },
+      {
+        "img": "../assets/images/project1/photo6.jpg",
         "alt": "Aerial Imaging"
       }
     ]
@@ -23,18 +36,26 @@
     "title": "Project 2",
     "subtitle": "This is the second project from Soaring Hawk Videography",
     "name": "project2",
-    "slug": "/projects/project-2"
+    "slug": "/projects/project-2",
+    "button": "View Project",
+    "images": [
+      {
+        "img": "../assets/images/project1/photo4.jpg",
+        "alt": "Aerial Imaging"
+      }
+    ]
   },
   {
     "title": "Project 3",
     "subtitle": "This is the third project from Soaring Hawk Videography",
     "name": "project3",
-    "slug": "/projects/project-3"
-  },
-  {
-    "title": "Project 4",
-    "subtitle": "This is the fourth project from Soaring Hawk Videography",
-    "name": "project5",
-    "slug": "/projects/project-4"
+    "slug": "/projects/project-3",
+    "button": "View Project",
+    "images": [
+      {
+        "img": "../assets/images/project1/photo2.jpg",
+        "alt": "Aerial Imaging"
+      }
+    ]
   }
 ]
