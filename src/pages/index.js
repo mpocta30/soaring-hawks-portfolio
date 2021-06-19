@@ -8,20 +8,54 @@ import Seo from "../components/seo";
 import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonials";
 import ContactBg from "../assets/images/email.jpg";
+import Projects from "../components/Projects";
+import { useStaticQuery, graphql } from "gatsby";
 
-const IndexPage = () => (
-  <Layout>
-    <Seo title="Aerial Photography and Video" />
-    <VideoHero />
-    <Services heading="Services" />
-    <Testimonials />
-    <Stats />
-    <Contact
-      sectionBg={ContactBg}
-      title="Get a Quote"
-      subtitle="Inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur."
-    />
-  </Layout>
-);
+const IndexPage = () => {
+  const { allContentfulVideoHero } = useStaticQuery(
+    graphql`
+      query {
+        allContentfulVideoHero(filter: { title: { regex: "/Home Page/" } }) {
+          edges {
+            node {
+              headerBg {
+                file {
+                  url
+                }
+              }
+              buttonSlug
+              buttonText
+              heading
+              subHeading
+            }
+          }
+        }
+      }
+    `,
+  );
+  const node = allContentfulVideoHero.edges[0].node;
+
+  return (
+    <Layout>
+      <Seo title="Aerial Photography and Video" />
+      <VideoHero
+        videoBg={node.headerBg.file.url}
+        heading={node.heading}
+        subHeading={node.subHeading}
+        buttonText={node.buttonText}
+        buttonSlug={node.buttonSlug}
+      />
+      <Projects />
+      <Testimonials background="#efeff2" />
+      <Stats />
+      <Services background="#efeff2" />
+      <Contact
+        sectionBg={ContactBg}
+        title="Get a Quote"
+        subtitle="Inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur."
+      />
+    </Layout>
+  );
+};
 
 export default IndexPage;
