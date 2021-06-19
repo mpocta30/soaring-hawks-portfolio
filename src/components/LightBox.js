@@ -142,12 +142,9 @@ const Gallery = styled.div`
   color: white;
 
   @media screen and (max-width: 1200px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2 1fr);
   }
 
-  @media screen and (max-width: 868px) {
-    grid-template-columns: 1fr;
-  }
   .gatsby-image-outer-wrapper {
     height: 100%;
   }
@@ -176,14 +173,12 @@ const GalleryItem = styled.div`
   }
 `;
 
-const Button = styled.button``;
-
 const CloseButton = styled(FaTimes)`
   color: white;
   position: absolute;
-  top: 10px;
-  right: 25px;
-  font-size: 35px;
+  top: 2rem;
+  right: 2rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: bold;
 
   &:hover {
@@ -197,9 +192,9 @@ const NavRight = styled(FaAngleRight)`
   color: #cccccc;
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 45%;
   width: auto;
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: bold;
   transition: 0.6s ease;
   border-radius: 3px 0 0 3px;
@@ -216,9 +211,9 @@ const NavLeft = styled(FaAngleLeft)`
   color: #cccccc;
   position: absolute;
   left: 0;
-  top: 50%;
+  top: 45%;
   width: auto;
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: bold;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;

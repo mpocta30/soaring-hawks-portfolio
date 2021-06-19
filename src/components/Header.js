@@ -49,6 +49,11 @@ const Header = () => {
               {item.title}
             </NavLink>
           ))}
+          <SideButtonWrapper>
+            <SmallPhoneButton primary="true" href="tel:123-456-7890">
+              +1 (123) 456-7890
+            </SmallPhoneButton>
+          </SideButtonWrapper>
         </NavMenu>
       </NavContent>
       <NavBtn>
@@ -106,6 +111,23 @@ const NavCloseBtn = styled(FaTimes)`
     position: absolute;
     top: 20px;
     right: 45px;
+  }
+`;
+
+const SideButtonWrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 4rem;
+`;
+
+const SmallPhoneButton = styled(PhoneButton)`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    position: absolute;
   }
 `;
 
@@ -193,10 +215,10 @@ const ToTopButon = styled.a`
   right: 30px;
   z-index: 99;
   border-radius: 50%;
-  font-size: 35px;
-  line-height: 50px;
-  width: 50px;
-  height: 50px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: clamp(2.5rem, 6vw, 3rem);
+  width: clamp(2.5rem, 6vw, 3rem);
+  height: clamp(2.5rem, 6vw, 3rem);
   justify-content: center;
   align-items: center;
 

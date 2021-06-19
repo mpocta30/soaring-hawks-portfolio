@@ -24,13 +24,18 @@ const ContentWrapper = styled.div`
 `;
 
 const ColumnContainer = styled.div`
-  margin: 2rem;
+  margin: 2rem 0;
   position: relative;
   padding-top: 1rem;
   padding-right: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    text-align: center;
+    padding: 0;
+  }
 `;
 
 export const TextWrapper = styled.div`

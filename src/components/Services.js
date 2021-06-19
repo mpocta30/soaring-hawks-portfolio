@@ -39,7 +39,7 @@ const Services = ({ background }) => {
               to={item.node.slug}
               primary="true"
               round="true"
-              css={`position: absolute; top: 420px; font-size=14px;`}
+              css={`position: absolute; top: 325px; font-size=14px;`}
             >
               View Service
             </Button>
@@ -95,7 +95,7 @@ const ProductsWrapper = styled.div`
 const ProductCard = styled.div`
   line-height: 2;
   width: 100%;
-  height: 500px;
+  height: 400px;
   position: relative;
   border-radius: 10px;
   transition: 0.2s ease;
@@ -129,7 +129,7 @@ const TextWrap = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  top: 375px;
+  top: 290px;
 `;
 
 const ProductTitle = styled.div`
