@@ -5,11 +5,12 @@ import Seo from "../components/seo";
 import PhotoHero from "../components/PhotoHero";
 import Contact from "../components/Contact";
 import styled from "styled-components";
+import ContactBg from "../assets/images/testimonial-1.jpg";
 
 const ContactPage = () => (
   <Layout>
     <Seo title="Contact Us" />
-    <PhotoHero heading="Contact Us" />
+    <PhotoHero heading="Contact Us" headerBg={ContactBg} />
     <Contact
       title="Get in Touch"
       subtitle="Have a project idea? Provide us with a little information."

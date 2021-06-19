@@ -68,20 +68,45 @@
 exports.createPages = async ({ graphql, actions }) => {
   const { data } = await graphql(`
     query ProjectsQuery {
-      allProjectsJson {
+      allContentfulProject {
         edges {
           node {
             slug
             title
-            subtitle
-            name
+            description {
+              description
+            }
+            shortName
+            images {
+              title
+              img {
+                gatsbyImageData
+                file {
+                  url
+                }
+              }
+              altText {
+                altText
+              }
+            }
+            hero {
+              headerBg {
+                file {
+                  url
+                }
+              }
+            }
+            video {
+              videoUrl
+              title
+            }
           }
         }
       }
     }
   `);
 
-  data.allProjectsJson.edges.forEach((edge) => {
+  data.allContentfulProject.edges.forEach((edge) => {
     const node = edge.node;
     actions.createPage({
       path: node.slug,

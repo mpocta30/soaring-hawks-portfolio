@@ -1,84 +1,38 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
 
 import Layout from "../components/layout";
-import Gallery from "@browniebroke/gatsby-image-gallery";
+// import Gallery from "@browniebroke/gatsby-image-gallery";
 import styled from "styled-components";
-import { GatsbyImage } from "gatsby-plugin-image";
+import Lightbox from "../components/LightBox";
+import PhotoHero from "../components/PhotoHero";
+import DoubleColumn, { TextWrapper } from "../components/DoubleColumn";
+import Video from "../components/Video";
+import IconSection from "../components/IconSection";
+
+const projectDetails = (project) => {
+  return (
+    <TextWrapper>
+      <h3>{project.title}</h3>
+      <p>{project.description.description}</p>
+    </TextWrapper>
+  );
+};
 
 const PhotoGallery = ({ pageContext }) => {
   const project = pageContext.project;
-  const data = useStaticQuery(graphql`
-    query ImagesForGallery {
-      allProjectsJson {
-        edges {
-          node {
-            title
-            images {
-              alt
-              img {
-                childrenImageSharp {
-                  gatsbyImageData(layout: CONSTRAINED)
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  function getGallery(data, title) {
-    console.log(title, data.allProjectsJson.edges);
-    const reg = RegExp(title);
-    const edges = data.allProjectsJson.edges.filter((project) => title == project.node.title);
-
-    // const images = edges.map(({ node }) => node.img.childImageSharp);
-
-    const GalleryImg = styled(GatsbyImage)`
-      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
-
-      &:hover {
-        filter: blur(4px);
-        transition: all ease 0.5s;
-        cursor: pointer;
-      }
-
-      &:nth-child(6n + 3) {
-        grid-column: span 1;
-        grid-row: span 2;
-      }
-
-      &:nth-child(6n + 2),
-      &:nth-child(6n + 5),
-      &:nth-child(6n + 6) {
-        grid-column: span 2;
-        grid-row: span 2;
-      }
-    `
-
-    const galleryArray = []
-    edges[0].node.images.forEach((item, index) => {
-      galleryArray.push(
-        <GalleryImg
-          key={index}
-          image={item.img.childrenImageSharp[0].gatsbyImageData}
-          alt={item.alt}
-        />
-      )
-    })
-    
-    console.log(galleryArray);
-    return galleryArray;
-  }
 
   return (
     <Layout>
-      <h1>{project.title}</h1>
-      <p>{project.subtitle}</p>
-      <GalleryContainer>
-        {getGallery(data, project.title)}
-      </GalleryContainer>
+      <PhotoHero heading={project.title} headerBg={project.hero.headerBg.file.url} />
+      <IconSection />
+      <DoubleColumn
+        background="#efeff2"
+        columnOneContent={projectDetails(project)}
+        columnTwoContent={
+          <Video videoSrcURL={project.video.videoUrl} videoTitle={project.video.title} />
+        }
+      />
+      <Lightbox images={project.images} />
     </Layout>
   );
 };
@@ -102,4 +56,4 @@ const GalleryContainer = styled.div`
   @media screen and (max-width: 868px) {
     grid-template-columns: 1fr;
   }
-`
+`;

@@ -1,87 +1,84 @@
-import React from "react"
-import styled from "styled-components"
-import { useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
-import { Button } from "./Button"
-import { ImLocation } from "react-icons/im"
+import React from "react";
+import styled from "styled-components";
+import { useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { Button } from "./Button";
+import { ImLocation } from "react-icons/im";
 
-const Services = ({ heading }) => {
+const Services = ({ background }) => {
   const data = useStaticQuery(graphql`
     query ServicesQuery {
-      allServicesJson {
+      allContentfulService {
         edges {
           node {
-            alt
-            button
-            name
-            img {
-              childrenImageSharp {
-                gatsbyImageData(layout: CONSTRAINED)
+            slug
+            title
+            hero {
+              headerBg {
+                gatsbyImageData
               }
             }
           }
         }
       }
     }
-  `)
+  `);
 
   function getServices(data) {
-    const servicesArray = []
-    data.allServicesJson.edges.forEach((item, index) => {
+    const servicesArray = [];
+    data.allContentfulService.edges.forEach((item, index) => {
       servicesArray.push(
         <ProductCard key={index}>
-          <ProductImg
-            image={item.node.img.childrenImageSharp[0].gatsbyImageData}
-            alt={item.node.alt}
-          />
+          <ProductImg image={item.node.hero.headerBg.gatsbyImageData} alt={item.node.title} />
           <ProductInfo>
             <TextWrap>
               <ImLocation />
-              <ProductTitle>{item.node.name}</ProductTitle>
+              <ProductTitle>{item.node.title}</ProductTitle>
             </TextWrap>
             <Button
-              to="#"
+              to={item.node.slug}
               primary="true"
               round="true"
               css={`position: absolute; top: 420px; font-size=14px;`}
             >
-              {item.node.button}
+              View Service
             </Button>
           </ProductInfo>
-        </ProductCard>
-      )
-    })
-    return servicesArray
+        </ProductCard>,
+      );
+    });
+    return servicesArray;
   }
 
   return (
     <div>
-      <ProductsContainer id="services">
-        <ProductsHeading>{heading}</ProductsHeading>
+      <ProductsContainer id="services" background={background}>
+        <ProductsHeading>Services</ProductsHeading>
         <ProductsWrapper>{getServices(data)}</ProductsWrapper>
       </ProductsContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Services
+export default Services;
 
 const ProductsContainer = styled.div`
+  background-color: ${(props) => props.background};
   min-height: 100vh;
   padding: 5rem calc((100vw - 1600px) / 2);
   color: white;
-`
+`;
 
 const ProductsHeading = styled.div`
   font-size: clamp(1.2rem, 5vw, 3rem);
   text-align: center;
   margin-bottom: 5rem;
   color: #000;
-`
+`;
 
 const ProductsWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
   justify-items: center;
   padding: 0 2rem;
@@ -93,7 +90,7 @@ const ProductsWrapper = styled.div`
   @media screen and (max-width: 868px) {
     grid-template-columns: 1fr;
   }
-`
+`;
 
 const ProductCard = styled.div`
   line-height: 2;
@@ -102,7 +99,7 @@ const ProductCard = styled.div`
   position: relative;
   border-radius: 10px;
   transition: 0.2s ease;
-`
+`;
 
 const ProductImg = styled(GatsbyImage)`
   height: 100%;
@@ -115,7 +112,7 @@ const ProductImg = styled(GatsbyImage)`
   &:hover {
     filter: brightness(100%);
   }
-`
+`;
 
 const ProductInfo = styled.div`
   display: flex;
@@ -126,17 +123,17 @@ const ProductInfo = styled.div`
   @media screen and (max-width: 280px) {
     padding: 0 1rem;
   }
-`
+`;
 
 const TextWrap = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
   top: 375px;
-`
+`;
 
 const ProductTitle = styled.div`
   font-weight: 400;
   font-size: 1rem;
   margin-left: 0.5rem;
-`
+`;

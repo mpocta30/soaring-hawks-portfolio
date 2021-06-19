@@ -1,7 +1,7 @@
 import * as React from "react";
 import { animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
-import { FaBars, FaTimes, FaAngleUp } from "react-icons/fa";
+import { FaBars, FaTimes, FaArrowUp } from "react-icons/fa";
 import { menuData } from "../data/MenuData";
 import { PhoneButton } from "./Button";
 import NavImage from "../assets/images/logo.png";
@@ -57,7 +57,7 @@ const Header = () => {
         </PhoneButton>
       </NavBtn>
       <ToTopButon isscrolling={isScrolling ? 1 : 0} onClick={scrollToTop}>
-        <FaAngleUp />
+        <FaArrowUp />
       </ToTopButon>
     </Nav>
   );
@@ -193,9 +193,15 @@ const ToTopButon = styled.a`
   right: 30px;
   z-index: 99;
   border-radius: 50%;
-  font-size: 50px;
+  font-size: 35px;
   line-height: 50px;
   width: 50px;
+  height: 50px;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background: #345060;
+    transform: translateY(-2px);
+  }
 `;

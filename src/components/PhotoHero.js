@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import EmailBg from "../assets/images/email.jpg";
 
-const PhotoHero = ({ heading }) => {
+const PhotoHero = ({ heading, headerBg }) => {
   return (
-    <HeroContainer>
+    <HeroContainer headerBg={headerBg}>
       <HeroContent>
         <HeroH1>{heading}</HeroH1>
       </HeroContent>
@@ -21,7 +20,7 @@ const HeroContainer = styled.div`
       rgba(0, 0, 0, 0.5) 35%,
       rgba(0, 0, 0, 0.1) 100%
     ),
-    url(${EmailBg}) no-repeat center;
+    url(${(props) => props.headerBg}) no-repeat center;
   background-size: cover;
   height: 60vh;
   width: 100%;

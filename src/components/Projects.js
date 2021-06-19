@@ -1,42 +1,35 @@
-import React from "react"
-import styled from "styled-components"
-import { useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
-import { Button } from "./Button"
-import { ImLocation } from "react-icons/im"
+import React from "react";
+import styled from "styled-components";
+import { useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { Button } from "./Button";
+import { ImLocation } from "react-icons/im";
 
-const Projects = ({ heading }) => {
+const Projects = () => {
   const data = useStaticQuery(graphql`
     query ProjectsQuery {
-        allProjectsJson {
-            edges {
-              node {
-                title
-                button
-                slug
-                images {
-                  alt
-                  img {
-                    childrenImageSharp {
-                      gatsbyImageData(layout: CONSTRAINED)
-                    }
-                  }
-                }
+      allContentfulProject {
+        edges {
+          node {
+            slug
+            title
+            hero {
+              headerBg {
+                gatsbyImageData
               }
             }
+          }
         }
+      }
     }
-  `)
+  `);
 
   function getProjects(data) {
-    const ProjectsArray = []
-    data.allProjectsJson.edges.forEach((item, index) => {
+    const ProjectsArray = [];
+    data.allContentfulProject.edges.forEach((item, index) => {
       ProjectsArray.push(
         <ProductCard key={index}>
-          <ProductImg
-            image={item.node.images[0].img.childrenImageSharp[0].gatsbyImageData}
-            alt={item.node.images[0].alt}
-          />
+          <ProductImg image={item.node.hero.headerBg.gatsbyImageData} alt={item.node.title} />
           <ProductInfo>
             <TextWrap>
               <ImLocation />
@@ -48,39 +41,39 @@ const Projects = ({ heading }) => {
               round="true"
               css={`position: absolute; top: 420px; font-size=14px;`}
             >
-              {item.node.button}
+              View Project
             </Button>
           </ProductInfo>
         </ProductCard>
-      )
-    })
-    return ProjectsArray
+      );
+    });
+    return ProjectsArray;
   }
 
   return (
     <div>
       <ProductsContainer id="Projects">
-        <ProductsHeading>{heading}</ProductsHeading>
+        <ProductsHeading>Projects</ProductsHeading>
         <ProductsWrapper>{getProjects(data)}</ProductsWrapper>
       </ProductsContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;
 
 const ProductsContainer = styled.div`
   min-height: 100vh;
   padding: 5rem calc((100vw - 1600px) / 2);
   color: white;
-`
+`;
 
 const ProductsHeading = styled.div`
   font-size: clamp(1.2rem, 5vw, 3rem);
   text-align: center;
   margin-bottom: 5rem;
   color: #000;
-`
+`;
 
 const ProductsWrapper = styled.div`
   display: grid;
@@ -96,7 +89,7 @@ const ProductsWrapper = styled.div`
   @media screen and (max-width: 868px) {
     grid-template-columns: 1fr;
   }
-`
+`;
 
 const ProductCard = styled.div`
   line-height: 2;
@@ -105,7 +98,7 @@ const ProductCard = styled.div`
   position: relative;
   border-radius: 10px;
   transition: 0.2s ease;
-`
+`;
 
 const ProductImg = styled(GatsbyImage)`
   height: 100%;
@@ -118,7 +111,7 @@ const ProductImg = styled(GatsbyImage)`
   &:hover {
     filter: brightness(100%);
   }
-`
+`;
 
 const ProductInfo = styled.div`
   display: flex;
@@ -129,17 +122,17 @@ const ProductInfo = styled.div`
   @media screen and (max-width: 280px) {
     padding: 0 1rem;
   }
-`
+`;
 
 const TextWrap = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
   top: 375px;
-`
+`;
 
 const ProductTitle = styled.div`
   font-weight: 400;
   font-size: 1rem;
   margin-left: 0.5rem;
-`
+`;

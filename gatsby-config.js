@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Soaring Hawk`,
-    description: `The landing page for the Soaring Hawk drone company. Provide documentation and content as well as give customers the opportunity to
-    reach out for a new project.`,
+    description: `The landing page for the Soaring Hawk drone company. Provide documentation and 
+    content as well as give customers the opportunity to reach out for a new project.`,
     url: "https://mpocta30.github.io/soaring-hawks-portfolio",
     image: '/images/real-estate.jpg',
     author: 'michaelpocta30@gmail.com',
@@ -12,6 +12,13 @@ module.exports = {
     DEV_SSR: false,
   },
   plugins: [
+    {
+      resolve: 'gatsby-source-contentful',
+      options: {
+        spaceId: 'ozl916uy4jos',
+        accessToken: 'oOgH7wNA2gZDl8_ee64HEYqCQHnH3Ec29MBs61EQ9DU'
+      }
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
