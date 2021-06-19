@@ -15,19 +15,19 @@ const sectionInfo = (heading, description, icon) => {
 };
 
 const IconSection = () => {
-  const { allContentfulIconSection } = useStaticQuery(
+  const { allContentfulComponentSection } = useStaticQuery(
     graphql`
       query {
-        allContentfulIconSection {
+        allContentfulComponentSection {
           edges {
             node {
-              columnOneHeading
-              columnOneDescription {
-                columnOneDescription
-              }
-              columnTwoHeading
-              columnTwoDescription {
-                columnTwoDescription
+              heading
+              columns {
+                heading
+                title
+                text {
+                  text
+                }
               }
             }
           }
@@ -35,21 +35,19 @@ const IconSection = () => {
       }
     `,
   );
-  const node = allContentfulIconSection.edges[0].node;
+  const { node } = allContentfulComponentSection.edges.find(
+    ({ node }) => node.heading === "Camera/Video Icon Section",
+  );
+  console.log(node);
+
+  const camera = node.columns.find(({ title }) => title === "Camera Info");
+  const video = node.columns.find(({ title }) => title === "Video Info");
 
   return (
     <DoubleColumn
       background="white"
-      columnOneContent={sectionInfo(
-        node.columnOneHeading,
-        node.columnOneDescription.columnOneDescription,
-        <FaCamera />,
-      )}
-      columnTwoContent={sectionInfo(
-        node.columnTwoHeading,
-        node.columnTwoDescription.columnTwoDescription,
-        <FaVideo />,
-      )}
+      columnOneContent={sectionInfo(camera.heading, camera.text.text, <FaCamera />)}
+      columnTwoContent={sectionInfo(video.heading, video.text.text, <FaVideo />)}
     />
   );
 };
@@ -81,10 +79,11 @@ const IconWrapper = styled.div`
   color: white;
   cursor: pointer;
   border-radius: 50%;
-  font-size: 40px;
-  line-height: 75px;
-  width: 75px;
-  height: 75px;
+  border-radius: 50%;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: clamp(3.5rem, 6vw, 6rem);
+  width: clamp(3.5rem, 6vw, 6rem);
+  height: clamp(3.5rem, 6vw, 5rem);
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
