@@ -1,11 +1,13 @@
 module.exports = {
   siteMetadata: {
     title: `Soaring Hawk`,
-    description: `The landing page for the Soaring Hawk drone company. Provide documentation and 
-    content as well as give customers the opportunity to reach out for a new project.`,
+    description: `The Soaring Hawk Drone Company is an aerial video and photography business, based out of
+    Richmond, Virginia.  We specialize in beautiful custom videos and photographs for any commercial or 
+    residential property as well as construction sites and other land surveys.  Look through some past projects
+    and reach out with your project idea.`,
     url: "https://mpocta30.github.io/soaring-hawks-portfolio",
-    image: '/images/real-estate.jpg',
-    author: 'michaelpocta30@gmail.com',
+    image: "/images/real-estate.jpg",
+    author: "michaelpocta30@gmail.com",
   },
   pathPrefix: "/soaring-hawks-portfolio",
   flags: {
@@ -13,11 +15,11 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-source-contentful',
+      resolve: "gatsby-source-contentful",
       options: {
-        spaceId: 'ozl916uy4jos',
-        accessToken: 'oOgH7wNA2gZDl8_ee64HEYqCQHnH3Ec29MBs61EQ9DU'
-      }
+        spaceId: "ozl916uy4jos",
+        accessToken: "oOgH7wNA2gZDl8_ee64HEYqCQHnH3Ec29MBs61EQ9DU",
+      },
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
