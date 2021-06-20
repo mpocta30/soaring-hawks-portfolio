@@ -14,6 +14,11 @@ module.exports = {
     DEV_SSR: false,
   },
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-scroll-reveal`,
     {
       resolve: "gatsby-source-contentful",
       options: {
@@ -21,9 +26,6 @@ module.exports = {
         accessToken: "oOgH7wNA2gZDl8_ee64HEYqCQHnH3Ec29MBs61EQ9DU",
       },
     },
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-image`,
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -39,7 +41,6 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

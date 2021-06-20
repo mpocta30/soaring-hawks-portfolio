@@ -5,7 +5,7 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { FaRegLightbulb } from "react-icons/fa";
 import { graphql, useStaticQuery } from "gatsby";
 
-const Testimonials = ({ background }) => {
+const Testimonials = ({ background, animation }) => {
   const data = useStaticQuery(graphql`
     query MyQuery {
       allFile(filter: { name: { in: ["testimonial-1", "testimonial-2"] } }) {
@@ -22,11 +22,30 @@ const Testimonials = ({ background }) => {
 
   return (
     <TestimonialsContainer background={background}>
-      <TopLine>Testimonials</TopLine>
-      <Description>What People are Saying</Description>
+      <TopLine
+        data-sal={animation}
+        data-sal-duration="2000"
+        data-sal-delay="300"
+        data-sal-easing="ease"
+      >
+        Testimonials
+      </TopLine>
+      <Description
+        data-sal={animation}
+        data-sal-duration="2000"
+        data-sal-delay="300"
+        data-sal-easing="ease"
+      >
+        What People are Saying
+      </Description>
       <ContentWrapper>
         <ColumnOne>
-          <Testimonial>
+          <Testimonial
+            data-sal={animation}
+            data-sal-duration="2000"
+            data-sal-delay="900"
+            data-sal-easing="ease"
+          >
             <IoMdCheckmarkCircleOutline
               css={`
                 color: #3fffa8;
@@ -40,7 +59,12 @@ const Testimonials = ({ background }) => {
               they made it super easy to book my trip and accommodations."
             </p>
           </Testimonial>
-          <Testimonial>
+          <Testimonial
+            data-sal={animation}
+            data-sal-duration="2000"
+            data-sal-delay="900"
+            data-sal-easing="ease"
+          >
             <FaRegLightbulb
               css={`
                 color: #f9b19b;
@@ -57,7 +81,14 @@ const Testimonials = ({ background }) => {
         </ColumnOne>
         <ColumnTwo>
           {data.allFile.edges.map((image, key) => (
-            <Images key={key} image={image.node.childImageSharp.gatsbyImageData} alt="" />
+            <div
+              data-sal={animation}
+              data-sal-duration="2000"
+              data-sal-delay={(300 + 200 * key).toString()}
+              data-sal-easing="ease"
+            >
+              <Images key={key} image={image.node.childImageSharp.gatsbyImageData} alt="" />
+            </div>
           ))}
         </ColumnTwo>
       </ContentWrapper>

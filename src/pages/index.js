@@ -45,10 +45,13 @@ const IndexPage = () => {
         buttonText={node.buttonText}
         buttonSlug={node.buttonSlug}
       />
-      <Projects />
-      <Testimonials background="#efeff2" />
-      <Stats />
-      <Services background="#efeff2" />
+      <div>
+        <Projects animation="slide-left" />
+      </div>
+
+      <Testimonials background="#efeff2" animation="slide-right" />
+      <Stats animation="slide-left" />
+      <Services background="#efeff2" animation="slide-right" />
       <Contact
         sectionBg={ContactBg}
         title="Get a Quote"
