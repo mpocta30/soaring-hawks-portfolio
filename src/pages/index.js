@@ -46,11 +46,11 @@ const IndexPage = () => {
         buttonSlug={node.buttonSlug}
       />
       <div>
-        <Projects animation="slide-left" />
+        <Projects animation="slide-right" />
       </div>
 
       <Testimonials background="#efeff2" animation="slide-right" />
-      <Stats animation="slide-left" />
+      <Stats animation="slide-right" />
       <Services background="#efeff2" animation="slide-right" />
       <Contact
         sectionBg={ContactBg}

@@ -35,6 +35,9 @@ const Testimonials = ({ background, animation }) => {
         data-sal-duration="2000"
         data-sal-delay="300"
         data-sal-easing="ease"
+        css={`
+          overflow-x: hidden;
+        `}
       >
         What People are Saying
       </Description>
@@ -45,6 +48,9 @@ const Testimonials = ({ background, animation }) => {
             data-sal-duration="2000"
             data-sal-delay="900"
             data-sal-easing="ease"
+            css={`
+              overflow-x: hidden;
+            `}
           >
             <IoMdCheckmarkCircleOutline
               css={`
@@ -64,6 +70,9 @@ const Testimonials = ({ background, animation }) => {
             data-sal-duration="2000"
             data-sal-delay="900"
             data-sal-easing="ease"
+            css={`
+              overflow-x: hidden;
+            `}
           >
             <FaRegLightbulb
               css={`
@@ -86,6 +95,9 @@ const Testimonials = ({ background, animation }) => {
               data-sal-duration="2000"
               data-sal-delay={(300 + 200 * key).toString()}
               data-sal-easing="ease"
+              css={`
+                overflow-x: hidden;
+              `}
             >
               <Images key={key} image={image.node.childImageSharp.gatsbyImageData} alt="" />
             </div>
