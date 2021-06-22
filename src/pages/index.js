@@ -8,50 +8,68 @@ import Seo from "../components/seo";
 import Stats from "../components/Stats";
 import Testimonials from "../components/Testimonials";
 import ContactBg from "../assets/images/email.jpg";
-import Projects from "../components/Projects";
+import InformationSection from "../components/InformationSection";
 import { useStaticQuery, graphql } from "gatsby";
 
 const IndexPage = () => {
-  const { allContentfulVideoHero } = useStaticQuery(
+  const { allContentfulComponentPage } = useStaticQuery(
     graphql`
       query {
-        allContentfulVideoHero(filter: { title: { regex: "/Home Page/" } }) {
+        allContentfulComponentPage(filter: { title: { eq: "Index" } }) {
           edges {
             node {
-              headerBg {
-                file {
-                  url
+              sections {
+                ... on ContentfulVideoHero {
+                  subHeading
+                  heading
+                  headerBg {
+                    file {
+                      url
+                    }
+                  }
+                  buttonSlug
+                  buttonText
+                }
+                ... on ContentfulComponentSeo {
+                  title
+                }
+                ... on ContentfulComponentSection {
+                  columns {
+                    heading
+                    text {
+                      text
+                    }
+                  }
                 }
               }
-              buttonSlug
-              buttonText
-              heading
-              subHeading
             }
           }
         }
       }
     `,
   );
-  const node = allContentfulVideoHero.edges[0].node;
+  const node = allContentfulComponentPage.edges[0].node;
+  const videoHeroNode = node.sections[0];
+  const seo = node.sections[1];
+  const infoSection = node.sections[2].columns[0];
 
   return (
     <Layout>
-      <Seo title="Aerial Photography and Video" />
+      <Seo title={seo.title} />
       <VideoHero
-        videoBg={node.headerBg.file.url}
-        heading={node.heading}
-        subHeading={node.subHeading}
-        buttonText={node.buttonText}
-        buttonSlug={node.buttonSlug}
+        videoBg={videoHeroNode.headerBg.file.url}
+        heading={videoHeroNode.heading}
+        subHeading={videoHeroNode.subHeading}
+        buttonText={videoHeroNode.buttonText}
+        buttonSlug={videoHeroNode.buttonSlug}
       />
-      <div>
-        <Projects animation="slide-right" />
-      </div>
-
-      <Testimonials background="#efeff2" animation="slide-right" />
-      <Stats animation="slide-right" />
+      <InformationSection
+        heading={infoSection.heading}
+        text={infoSection.text.text}
+        animation="slide-right"
+      />
       <Services background="#efeff2" animation="slide-right" />
+      <Stats animation="slide-right" />
       <Contact
         sectionBg={ContactBg}
         title="Get a Quote"

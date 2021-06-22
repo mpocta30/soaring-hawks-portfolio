@@ -1,3 +1,9 @@
+// require("dotenv").config({
+//   path: `${__dirname}/.env.development`,
+// });
+
+// console.log(process.env.NODE_ENV);
+
 module.exports = {
   siteMetadata: {
     title: `Soaring Hawk`,

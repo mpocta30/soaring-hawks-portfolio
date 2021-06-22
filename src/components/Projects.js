@@ -10,6 +10,9 @@ const Projects = ({ background, animation }) => {
           node {
             slug
             title
+            shortDescription {
+              shortDescription
+            }
             hero {
               headerBg {
                 gatsbyImageData
@@ -25,7 +28,7 @@ const Projects = ({ background, animation }) => {
     <div>
       <Products
         background={background}
-        products={data.allContentfulProject.edges}
+        products={data.allContentfulProject.edges[0].node}
         name="projects"
         animation={animation}
       />

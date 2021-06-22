@@ -43,17 +43,17 @@ const StatsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem calc((100vw - 1500px) / 2);
+  padding: 5rem calc((100vw - 1500px) / 2);
 
   @media screen and (max-width: 768px) {
     text-align: center;
   }
 `;
 const Heading = styled.h1`
-  text-align: start;
   font-size: clamp(1.5rem, 6vw, 2rem);
   margin-bottom: 3rem;
   padding: 0 2rem;
+  text-align: center;
 
   @media screen and (max-width: 768px) {
     text-align: center;
@@ -62,8 +62,9 @@ const Heading = styled.h1`
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+  text-align: center;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;

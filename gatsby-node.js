@@ -1,3 +1,17 @@
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     resolve: {
+//       alias: {
+//         path: require.resolve("path-browserify"),
+//       },
+//       fallback: {
+//         fs: false,
+//         path: false,
+//       },
+//     },
+//   });
+// };
+
 // const path = require("path");
 // const getBaseUrl = require("./src/utils/getBaseUrl");
 // const { defaultLang, langTextMap = {} } = require("./config/site");
@@ -67,7 +81,7 @@
 //  */
 exports.createPages = async ({ graphql, actions }) => {
   const { data } = await graphql(`
-    query ProjectsQuery {
+    query multiQuery {
       allContentfulProject {
         edges {
           node {
@@ -103,15 +117,72 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allContentfulComponentPage(filter: { child: { eq: "Service" } }) {
+        edges {
+          node {
+            slug
+            sections {
+              ... on ContentfulService {
+                slug
+                hero {
+                  headerBg {
+                    file {
+                      url
+                    }
+                  }
+                }
+                title
+                projects {
+                  title
+                  slug
+                  shortDescription {
+                    shortDescription
+                  }
+                  hero {
+                    headerBg {
+                      gatsbyImageData
+                      file {
+                        url
+                      }
+                    }
+                  }
+                }
+              }
+              ... on ContentfulComponentSection {
+                columns {
+                  heading
+                  text {
+                    text
+                  }
+                }
+              }
+              ... on ContentfulComponentSeo {
+                title
+              }
+            }
+          }
+        }
+      }
     }
   `);
 
+  // Projects
   data.allContentfulProject.edges.forEach((edge) => {
-    const node = edge.node;
+    const projectNode = edge.node;
     actions.createPage({
-      path: node.slug,
-      component: require.resolve(`./src/templates/photo-gallery.js`),
-      context: { project: node },
+      path: projectNode.slug,
+      component: require.resolve(`./src/templates/project-page.js`),
+      context: { project: projectNode },
+    });
+  });
+
+  // Services
+  data.allContentfulComponentPage.edges.forEach((edge) => {
+    const serviceNode = edge.node;
+    actions.createPage({
+      path: serviceNode.slug,
+      component: require.resolve(`./src/templates/service-page.js`),
+      context: { service: serviceNode },
     });
   });
 };

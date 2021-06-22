@@ -5,35 +5,24 @@ import styled from "styled-components";
 const Footer = () => {
   return (
     <FooterContainer>
-      <FooterLinksWrapper>
-        <FooterDesc>
-          <h1>Soaring Hawk</h1>
-          <p>Aerial Photography and Video</p>
-        </FooterDesc>
-        <FooterLinkItems>
-          <FooterLinkTitle>Contact Us</FooterLinkTitle>
-          <FooterLink to="/about">Contact</FooterLink>
-          <FooterLink to="/">Support</FooterLink>
-          <FooterLink to="/">Destinations</FooterLink>
-          <FooterLink to="/">Sponsorships</FooterLink>
-        </FooterLinkItems>
-      </FooterLinksWrapper>
-      <FooterLinksWrapper>
-        <FooterLinkItems>
-          <FooterLinkTitle>Videos</FooterLinkTitle>
-          <FooterLink to="/">Submit Video</FooterLink>
-          <FooterLink to="/">Ambassadors</FooterLink>
-          <FooterLink to="/">Agency</FooterLink>
-          <FooterLink to="/">Influencer</FooterLink>
-        </FooterLinkItems>
-        <FooterLinkItems>
-          <FooterLinkTitle>Social Media</FooterLinkTitle>
-          <FooterLink to="/">Instagram</FooterLink>
-          <FooterLink to="/">Facebook</FooterLink>
-          <FooterLink to="/">Youtube</FooterLink>
-          <FooterLink to="/">Twitter</FooterLink>
-        </FooterLinkItems>
-      </FooterLinksWrapper>
+      <FooterDesc>
+        <h1>Soaring Hawk</h1>
+        <p>Aerial Photography and Video</p>
+      </FooterDesc>
+      <FooterLinkItems>
+        <FooterLinkTitle>Contact Us</FooterLinkTitle>
+        <FooterLink to="/contact">Contact</FooterLink>
+        <FooterEmailPhone to="mailto:soaringhawkdrones@gmail.com">
+          soaringhawkdrones@gmail.com
+        </FooterEmailPhone>
+        <FooterEmailPhone href="tel:12345678910">+1 (234) 567-8910</FooterEmailPhone>
+      </FooterLinkItems>
+      <FooterLinkItems>
+        <FooterLinkTitle>Social Media</FooterLinkTitle>
+        <FooterLink to="/">Instagram</FooterLink>
+        <FooterLink to="/">Facebook</FooterLink>
+        <FooterLink to="/">Youtube</FooterLink>
+      </FooterLinkItems>
     </FooterContainer>
   );
 };
@@ -43,9 +32,14 @@ export default Footer;
 const FooterContainer = styled.div`
   padding: 5rem calc((100vw - 1300px) / 2);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   color: #000;
   background: #ececef;
+
+  @media screen and (max-width: 400px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 `;
 
 const FooterDesc = styled.div`
@@ -54,19 +48,14 @@ const FooterDesc = styled.div`
   h1 {
     margin-bottom: 3rem;
     color: #263b46;
+
+    @media screen and (max-width: 820px) {
+      margin-bottom: 1rem;
+    }
   }
 
   @media screen and (max-width: 400px) {
     padding: 1rem;
-  }
-`;
-
-const FooterLinksWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-  @media screen and (max-width: 820px) {
-    grid-template-columns: 1fr;
   }
 `;
 
@@ -78,6 +67,7 @@ const FooterLinkItems = styled.div`
 
   @media screen and (max-width: 400px) {
     padding: 1rem;
+    align-items: center;
   }
 `;
 
@@ -87,6 +77,18 @@ const FooterLinkTitle = styled.h2`
 `;
 
 const FooterLink = styled(Link)`
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+  font: 14px;
+  color: #3d3d4e;
+
+  &:hover {
+    color: #3b5b6d;
+    transition: 0.3s ease-out;
+  }
+`;
+
+const FooterEmailPhone = styled.a`
   text-decoration: none;
   margin-bottom: 0.5rem;
   font: 14px;

@@ -1,7 +1,6 @@
 import React from "react";
 
 import Layout from "../components/layout";
-// import Gallery from "@browniebroke/gatsby-image-gallery";
 import styled from "styled-components";
 import Lightbox from "../components/LightBox";
 import PhotoHero from "../components/PhotoHero";

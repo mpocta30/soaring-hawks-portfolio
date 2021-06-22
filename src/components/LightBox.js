@@ -178,7 +178,7 @@ const CloseButton = styled(FaTimes)`
   position: absolute;
   top: 2rem;
   right: 2rem;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
   font-weight: bold;
 
   &:hover {
@@ -192,9 +192,9 @@ const NavRight = styled(FaAngleRight)`
   color: #cccccc;
   position: absolute;
   right: 0;
-  top: 45%;
+  top: 50%;
   width: auto;
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 5vw, 3rem);
   font-weight: bold;
   transition: 0.6s ease;
   border-radius: 3px 0 0 3px;
@@ -211,9 +211,9 @@ const NavLeft = styled(FaAngleLeft)`
   color: #cccccc;
   position: absolute;
   left: 0;
-  top: 45%;
+  top: 50%;
   width: auto;
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.5rem, 5vw, 3rem);
   font-weight: bold;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
