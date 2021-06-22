@@ -35,7 +35,7 @@ const PhotoGallery = ({ pageContext }) => {
           <Video videoSrcURL={projectInfo.video.videoUrl} videoTitle={projectInfo.video.title} />
         }
       />
-      <Lightbox images={projectInfo.images} />
+      <Lightbox images={projectInfo.photoGallery.photos} />
     </Layout>
   );
 };

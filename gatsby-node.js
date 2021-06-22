@@ -107,16 +107,13 @@ exports.createPages = async ({ graphql, actions }) => {
                   description
                 }
                 shortName
-                images {
-                  title
-                  img {
+                photoGallery {
+                  photos {
                     gatsbyImageData
                     file {
                       url
                     }
-                  }
-                  altText {
-                    altText
+                    title
                   }
                 }
                 hero {

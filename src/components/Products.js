@@ -14,7 +14,9 @@ function getProducts(products, animation) {
         data-sal-delay={(300 + 200 * index).toString()}
         data-sal-easing="ease"
       >
+        <a href={item.slug}>
         <ProductImg image={item.image} alt={item.title} />
+        </a>
         <ProductInfo>
           <TextWrap>
             <ProductTitle>{item.title}</ProductTitle>

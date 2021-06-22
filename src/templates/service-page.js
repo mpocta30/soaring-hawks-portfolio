@@ -21,7 +21,7 @@ function getProjects(products) {
   return productsArray;
 }
 
-const ServicePage = ({ pageContext }) => {
+const ServicePage = ({ pageContext, location }) => {
   const service = pageContext.service;
   const seo = service.sections[0];
   const infoSection = service.sections[1].columns[0];
