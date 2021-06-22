@@ -82,42 +82,60 @@
 exports.createPages = async ({ graphql, actions }) => {
   const { data } = await graphql(`
     query multiQuery {
-      allContentfulProject {
+      projects: allContentfulComponentPage(filter: {child: {eq: "Project"}}) {
         edges {
           node {
-            slug
             title
-            description {
-              description
-            }
-            shortName
-            images {
-              title
-              img {
-                gatsbyImageData
-                file {
-                  url
+            slug
+            sections {
+              ... on ContentfulComponentSection {
+                columns {
+                  text {
+                    text
+                  }
+                  heading
                 }
               }
-              altText {
-                altText
+              ... on ContentfulComponentSeo {
+                id
+                title
               }
-            }
-            hero {
-              headerBg {
-                file {
-                  url
+              ... on ContentfulProject {
+                slug
+                title
+                description {
+                  description
+                }
+                shortName
+                images {
+                  title
+                  img {
+                    gatsbyImageData
+                    file {
+                      url
+                    }
+                  }
+                  altText {
+                    altText
+                  }
+                }
+                hero {
+                  headerBg {
+                    file {
+                      url
+                    }
+                  }
+                }
+                video {
+                  videoUrl
+                  title
                 }
               }
-            }
-            video {
-              videoUrl
-              title
             }
           }
         }
       }
-      allContentfulComponentPage(filter: { child: { eq: "Service" } }) {
+      services: allContentfulComponentPage(filter: { child: { eq: "Service" } }) {
         edges {
           node {
             slug
@@ -167,7 +185,7 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   // Projects
-  data.allContentfulProject.edges.forEach((edge) => {
+  data.projects.edges.forEach((edge) => {
     const projectNode = edge.node;
     actions.createPage({
       path: projectNode.slug,
@@ -177,7 +195,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Services
-  data.allContentfulComponentPage.edges.forEach((edge) => {
+  data.services.edges.forEach((edge) => {
     const serviceNode = edge.node;
     actions.createPage({
       path: serviceNode.slug,

@@ -7,6 +7,7 @@ import PhotoHero from "../components/PhotoHero";
 import DoubleColumn, { TextWrapper } from "../components/DoubleColumn";
 import Video from "../components/Video";
 import IconSection from "../components/IconSection";
+import Seo from "../components/seo";
 
 const projectDetails = (project) => {
   return (
@@ -19,19 +20,22 @@ const projectDetails = (project) => {
 
 const PhotoGallery = ({ pageContext }) => {
   const project = pageContext.project;
+  const seo = project.sections[0];
+  const projectInfo = project.sections[1];
 
   return (
     <Layout>
-      <PhotoHero heading={project.title} headerBg={project.hero.headerBg.file.url} />
+      <Seo title={seo.title}></Seo>
+      <PhotoHero heading={projectInfo.title} headerBg={projectInfo.hero.headerBg.file.url} />
       <IconSection />
       <DoubleColumn
         background="#efeff2"
-        columnOneContent={projectDetails(project)}
+        columnOneContent={projectDetails(projectInfo)}
         columnTwoContent={
-          <Video videoSrcURL={project.video.videoUrl} videoTitle={project.video.title} />
+          <Video videoSrcURL={projectInfo.video.videoUrl} videoTitle={projectInfo.video.title} />
         }
       />
-      <Lightbox images={project.images} />
+      <Lightbox images={projectInfo.images} />
     </Layout>
   );
 };
