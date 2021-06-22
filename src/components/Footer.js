@@ -36,14 +36,14 @@ const FooterContainer = styled.div`
   color: #000;
   background: #ececef;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 767px) {
     grid-template-columns: 1fr;
     text-align: center;
   }
 `;
 
 const FooterDesc = styled.div`
-  padding: 0 2rem;
+  padding: 1rem 2rem;
 
   h1 {
     margin-bottom: 3rem;
@@ -65,7 +65,7 @@ const FooterLinkItems = styled.div`
   align-items: flex-start;
   padding: 1rem 2rem;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 767px) {
     padding: 1rem;
     align-items: center;
   }

@@ -6,13 +6,11 @@ import Layout from "../components/layout";
 import Services from "../components/Services";
 import Seo from "../components/seo";
 import Stats from "../components/Stats";
-import Testimonials from "../components/Testimonials";
-import ContactBg from "../assets/images/email.jpg";
 import InformationSection from "../components/InformationSection";
 import { useStaticQuery, graphql } from "gatsby";
 
 const IndexPage = () => {
-  const { allContentfulComponentPage } = useStaticQuery(
+  const { allContentfulComponentPage, allContentfulImageWithAiTags } = useStaticQuery(
     graphql`
       query {
         allContentfulComponentPage(filter: { title: { eq: "Index" } }) {
@@ -45,6 +43,17 @@ const IndexPage = () => {
             }
           }
         }
+        allContentfulImageWithAiTags(filter: { title: { nin: "Contact Form" } }) {
+          edges {
+            node {
+              image {
+                file {
+                  url
+                }
+              }
+            }
+          }
+        }
       }
     `,
   );
@@ -52,6 +61,7 @@ const IndexPage = () => {
   const videoHeroNode = node.sections[0];
   const seo = node.sections[1];
   const infoSection = node.sections[2].columns[0];
+  const contactBG = allContentfulImageWithAiTags.edges[0].node.image.file.url;
 
   return (
     <Layout>
@@ -71,7 +81,7 @@ const IndexPage = () => {
       <Services background="#efeff2" animation="slide-right" />
       <Stats animation="slide-right" />
       <Contact
-        sectionBg={ContactBg}
+        sectionBg={contactBG}
         title="Get a Quote"
         subtitle="Inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur."
       />

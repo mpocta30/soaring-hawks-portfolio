@@ -6,7 +6,7 @@ const InformationSection = ({ background, animation }) => {
     <InfoContainer
       background={background}
       data-sal={animation}
-      data-sal-duration="2000"
+      data-sal-duration="1000"
       data-sal-delay="300"
       data-sal-easing="ease"
     >
@@ -45,6 +45,6 @@ const Body = styled.p`
   color: #3b3b3b;
 
   @media screen and (max-width: 768px) {
-    margin: 0 4em;
+    margin: 0 1em;
   }
 `;

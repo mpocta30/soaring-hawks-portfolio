@@ -1,5 +1,34 @@
 import React from "react";
 import styled from "styled-components";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { Button } from "../components/Button";
+
+function getProducts(products, animation) {
+  const productsArray = [];
+  products.forEach((item, index) => {
+    productsArray.push(
+      <ProductCard
+        key={index}
+        data-sal={animation}
+        data-sal-duration="1000"
+        data-sal-delay={(300 + 200 * index).toString()}
+        data-sal-easing="ease"
+      >
+        <ProductImg image={item.image} alt={item.title} />
+        <ProductInfo>
+          <TextWrap>
+            <ProductTitle>{item.title}</ProductTitle>
+            <ProductDescription>{item.description}</ProductDescription>
+          </TextWrap>
+          <Button to={item.slug} primary="true" css={`font-size=14px;`}>
+            Learn More
+          </Button>
+        </ProductInfo>
+      </ProductCard>,
+    );
+  });
+  return productsArray;
+}
 
 const Products = ({ background, products, name, animation }) => {
   return (
@@ -8,13 +37,13 @@ const Products = ({ background, products, name, animation }) => {
         <ProductsHeading
           style={{ textTransform: "capitalize" }}
           data-sal={animation}
-          data-sal-duration="2000"
+          data-sal-duration="1000"
           data-sal-delay="300"
           data-sal-easing="ease"
         >
           {name}
         </ProductsHeading>
-        <ProductsWrapper>{products}</ProductsWrapper>
+        <ProductsWrapper>{getProducts(products, animation)}</ProductsWrapper>
       </ProductsContainer>
     </div>
   );
@@ -47,8 +76,64 @@ const ProductsWrapper = styled.div`
     grid-template-columns: 1fr 1fr;
   }
 
-  @media screen and (max-width: 868px) {
+  @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
-    grid-gap: 0.5rem;
+    grid-gap: 3.5rem;
   }
+`;
+
+const ProductCard = styled.div`
+  line-height: 2;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 10px;
+  transition: 0.2s ease;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 1rem;
+  }
+
+  @media screen and (max-width: 400px) {
+    min-height: 600px;
+  }
+`;
+
+const ProductImg = styled(GatsbyImage)`
+  height: 50%;
+  max-width: 100%;
+  position: relative;
+  border-radius: 10px;
+  filter: brightness(70%);
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  &:hover {
+    filter: brightness(100%);
+  }
+`;
+
+const ProductInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 1rem;
+    display: block;
+  }
+`;
+
+const TextWrap = styled.div``;
+
+const ProductTitle = styled.h2`
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 0.5rem 3rem;
+`;
+
+const ProductDescription = styled.p`
+  font-style: italic;
+  margin: 0.5rem 0 1rem 0;
 `;

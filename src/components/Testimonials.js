@@ -24,7 +24,7 @@ const Testimonials = ({ background, animation }) => {
     <TestimonialsContainer background={background}>
       <TopLine
         data-sal={animation}
-        data-sal-duration="2000"
+        data-sal-duration="1000"
         data-sal-delay="300"
         data-sal-easing="ease"
       >
@@ -32,7 +32,7 @@ const Testimonials = ({ background, animation }) => {
       </TopLine>
       <Description
         data-sal={animation}
-        data-sal-duration="2000"
+        data-sal-duration="1000"
         data-sal-delay="300"
         data-sal-easing="ease"
         css={`
@@ -45,7 +45,7 @@ const Testimonials = ({ background, animation }) => {
         <ColumnOne>
           <Testimonial
             data-sal={animation}
-            data-sal-duration="2000"
+            data-sal-duration="1000"
             data-sal-delay="900"
             data-sal-easing="ease"
             css={`
@@ -67,7 +67,7 @@ const Testimonials = ({ background, animation }) => {
           </Testimonial>
           <Testimonial
             data-sal={animation}
-            data-sal-duration="2000"
+            data-sal-duration="1000"
             data-sal-delay="900"
             data-sal-easing="ease"
             css={`
@@ -92,7 +92,7 @@ const Testimonials = ({ background, animation }) => {
           {data.allFile.edges.map((image, key) => (
             <div
               data-sal={animation}
-              data-sal-duration="2000"
+              data-sal-duration="1000"
               data-sal-delay={(300 + 200 * key).toString()}
               data-sal-easing="ease"
               css={`

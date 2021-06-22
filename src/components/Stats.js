@@ -7,7 +7,7 @@ const Stats = ({ animation }) => {
     <StatsContainer>
       <Heading
         data-sal={animation}
-        data-sal-duration="2000"
+        data-sal-duration="1000"
         data-sal-delay="300"
         data-sal-easing="ease"
       >
@@ -19,7 +19,7 @@ const Stats = ({ animation }) => {
             <StatsBox
               key={index}
               data-sal={animation}
-              data-sal-duration="2000"
+              data-sal-duration="1000"
               data-sal-delay={(300 + 200 * index).toString()}
               data-sal-easing="ease"
             >

@@ -1,8 +1,34 @@
+import { useStaticQuery, graphql } from "gatsby";
 import React from "react";
 import styled from "styled-components";
 import { Button } from "./Button";
 
 const Contact = ({ sectionBg, title, subtitle }) => {
+  const data = useStaticQuery(graphql`
+    query contactFormQuery {
+      allContentfulService {
+        edges {
+          node {
+            title
+          }
+        }
+      }
+    }
+  `);
+
+  function getServiceOptions() {
+    const serviceOptions = [];
+    data.allContentfulService.edges.forEach((item, index) => {
+      console.log(item);
+      serviceOptions.push(
+        <option key={index} value={item.node.title.replace(/\s+/g, "-").toLowerCase()}>
+          {item.node.title}
+        </option>,
+      );
+    });
+    return serviceOptions;
+  }
+
   return (
     <ContactContainer sectionbg={sectionBg}>
       <ContactContent>
@@ -29,13 +55,12 @@ const Contact = ({ sectionBg, title, subtitle }) => {
               />
             </FormName>
             <input type="email" placeholder="Enter your email" id="email" name="email" required />
-            <input
-              type="text"
-              placeholder="Enter the subject"
-              id="subject"
-              name="subject"
-              required
-            />
+            <select id="subject" name="subject" required>
+              <option disabled selected value="">
+                -- Select a Service --
+              </option>
+              {getServiceOptions()}
+            </select>
             <textarea id="message" placeholder="Enter Message" name="message" required />
             <FormButton as="button" primary="true" type="submit">
               Sign Up
@@ -102,7 +127,8 @@ const FormWrap = styled.div`
   width: 100%;
 
   input,
-  textarea {
+  textarea,
+  select {
     padding: 1rem 1.5rem;
     outline: none;
     width: 100%;
@@ -110,7 +136,8 @@ const FormWrap = styled.div`
     margin-bottom: 1rem;
   }
 
-  input {
+  input,
+  select {
     height: 48px;
   }
 
