@@ -66,15 +66,15 @@ const Header = () => {
             </div>
           ))}
           <SideButtonWrapper>
-            <SmallPhoneButton primary="true" href="tel:123-456-7890">
-              +1 (123) 456-7890
+            <SmallPhoneButton primary="true" href="tel:18043639816">
+              +1 (804) 363-9816
             </SmallPhoneButton>
           </SideButtonWrapper>
         </NavMenu>
       </NavContent>
       <NavBtn>
-        <PhoneButton primary="true" href="tel:123-456-7890">
-          +1 (123) 456-7890
+        <PhoneButton primary="true" href="tel:18043639816">
+          +1 (804) 363-9816
         </PhoneButton>
       </NavBtn>
       <ToTopButon isscrolling={isScrolling ? 1 : 0} onClick={scrollToTop}>

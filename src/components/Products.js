@@ -15,7 +15,7 @@ function getProducts(products, animation) {
         data-sal-easing="ease"
       >
         <a href={item.slug}>
-        <ProductImg image={item.image} alt={item.title} />
+          <ProductImg image={item.image} alt={item.title} />
         </a>
         <ProductInfo>
           <TextWrap>
@@ -61,7 +61,8 @@ const ProductsContainer = styled.div`
 `;
 
 const ProductsHeading = styled.div`
-  font-size: clamp(1.2rem, 6vw, 3rem);
+  font-size: clamp(1.5rem, 6vw, 3rem);
+  font-weight: bold;
   text-align: center;
   margin-bottom: 3rem;
   color: #000;
@@ -130,8 +131,8 @@ const ProductInfo = styled.div`
 const TextWrap = styled.div``;
 
 const ProductTitle = styled.h2`
-  font-weight: 600;
-  font-size: 1.5rem;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 5vw, 2rem);
   margin: 0.5rem 3rem;
 `;
 

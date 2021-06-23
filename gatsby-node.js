@@ -1,3 +1,5 @@
+const webpack = require("webpack");
+
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     node: {
@@ -9,6 +11,13 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         path: require.resolve("path-browserify"),
       },
     },
+    plugins: [
+      // fix "process is not defined" error:
+      // (do "npm install process" before running the build)
+      new webpack.ProvidePlugin({
+        process: "process/browser",
+      }),
+    ],
   });
 };
 

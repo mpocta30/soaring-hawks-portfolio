@@ -78,7 +78,7 @@ const IndexPage = () => {
         text={infoSection.text.text}
         animation="slide-right"
       />
-      <Services background="#efeff2" animation="slide-right" />
+      <Services heading="services" background="#efeff2" animation="slide-right" />
       <Stats animation="slide-right" />
       <Contact
         sectionBg={contactBG}
