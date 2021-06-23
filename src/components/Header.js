@@ -287,4 +287,8 @@ const DownArrow = styled.i`
   padding: 3px;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
