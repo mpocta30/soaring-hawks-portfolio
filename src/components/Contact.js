@@ -4,6 +4,30 @@ import styled from "styled-components";
 import { Button } from "./Button";
 
 const Contact = ({ sectionBg, title, subtitle }) => {
+  const data = useStaticQuery(graphql`
+    query contactFormQuery {
+      allContentfulService {
+        edges {
+          node {
+            title
+          }
+        }
+      }
+    }
+  `);
+
+  function getServiceOptions() {
+    const serviceOptions = [];
+    data.allContentfulService.edges.forEach((item, index) => {
+      serviceOptions.push(
+        <FormOption key={index} value={item.node.title.replace(/\s+/g, "-").toLowerCase()}>
+          {item.node.title}
+        </FormOption>,
+      );
+    });
+    return serviceOptions;
+  }
+
   return (
     <ContactContainer sectionbg={sectionBg}>
       <ContactContent>
@@ -30,7 +54,12 @@ const Contact = ({ sectionBg, title, subtitle }) => {
               />
             </FormName>
             <input type="email" placeholder="Enter your email" id="email" name="email" required />
-            <input id="service" name="service" placeholder="Enter the desired service" required />
+            <select id="subject" name="subject" required>
+              <FormOption disabled selected value="">
+                -- Select a Service --
+              </FormOption>
+              {getServiceOptions()}
+            </select>
             <textarea id="message" placeholder="Enter Message" name="message" required />
             <FormButton as="button" primary="true" type="submit">
               Sign Up
@@ -111,6 +140,20 @@ const FormWrap = styled.div`
     height: 48px;
   }
 
+  select {
+    -webkit-appearance: none
+    padding: 7px 40px 7px 12px
+    width: 100%
+    border: 1px solid #E8EAED
+    border-radius: 5px
+    background-color: white
+    box-shadow: 0 1px 3px -2px #9098A9
+    cursor: pointer
+    font-family: inherit
+    font-size: 16px
+    transition: all 150ms ease
+  }
+
   textarea {
     height: 100px;
   }
@@ -140,4 +183,9 @@ const FormButton = styled(Button)`
     width: 100%;
     min-width: 250px;
   }
+`;
+
+const FormOption = styled.option`
+  color: #223254
+  background-color: #263b46;
 `;
