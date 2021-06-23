@@ -141,17 +141,21 @@ const FormWrap = styled.div`
   }
 
   select {
-    -webkit-appearance: none
-    padding: 7px 40px 7px 12px
-    width: 100%
-    border: 1px solid #E8EAED
-    border-radius: 5px
-    background-color: white
-    box-shadow: 0 1px 3px -2px #9098A9
-    cursor: pointer
-    font-family: inherit
-    font-size: 16px
-    transition: all 150ms ease
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 7px 40px 7px 12px;
+    width: 100%;
+    border: 1px solid #e8eaed;
+    background-color: white;
+    box-shadow: 0 1px 3px -2px #9098a9;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 150ms ease;
+    text-indent: 10px;
+    color: -internal-light-dark(black, white);
   }
 
   textarea {
@@ -186,6 +190,5 @@ const FormButton = styled(Button)`
 `;
 
 const FormOption = styled.option`
-  color: #223254
-  background-color: #263b46;
+  color: #223254;
 `;
