@@ -155,7 +155,6 @@ const FormWrap = styled.div`
     font-family: inherit;
     transition: all 150ms ease;
     text-indent: 10px;
-    color: -internal-light-dark(black, white);
   }
 
   textarea {
