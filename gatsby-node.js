@@ -1,3 +1,17 @@
+// exports.onCreateWebpackConfig = ({ actions }) => {
+//   actions.setWebpackConfig({
+//     resolve: {
+//       alias: {
+//         path: require.resolve("path-browserify"),
+//       },
+//       fallback: {
+//         fs: false,
+//         path: false,
+//       },
+//     },
+//   });
+// };
+
 // const path = require("path");
 // const getBaseUrl = require("./src/utils/getBaseUrl");
 // const { defaultLang, langTextMap = {} } = require("./config/site");
@@ -67,38 +81,99 @@
 //  */
 exports.createPages = async ({ graphql, actions }) => {
   const { data } = await graphql(`
-    query ProjectsQuery {
-      allContentfulProject {
+    query multiQuery {
+      projects: allContentfulComponentPage(filter: {child: {eq: "Project"}}) {
+        edges {
+          node {
+            title
+            slug
+            sections {
+              ... on ContentfulComponentSection {
+                columns {
+                  text {
+                    text
+                  }
+                  heading
+                }
+              }
+              ... on ContentfulComponentSeo {
+                id
+                title
+              }
+              ... on ContentfulProject {
+                slug
+                title
+                description {
+                  description
+                }
+                shortName
+                photoGallery {
+                  photos {
+                    gatsbyImageData
+                    file {
+                      url
+                    }
+                    title
+                  }
+                }
+                hero {
+                  headerBg {
+                    file {
+                      url
+                    }
+                  }
+                }
+                video {
+                  videoUrl
+                  title
+                }
+              }
+            }
+          }
+        }
+      }
+      services: allContentfulComponentPage(filter: { child: { eq: "Service" } }) {
         edges {
           node {
             slug
-            title
-            description {
-              description
-            }
-            shortName
-            images {
-              title
-              img {
-                gatsbyImageData
-                file {
-                  url
+            sections {
+              ... on ContentfulService {
+                slug
+                hero {
+                  headerBg {
+                    file {
+                      url
+                    }
+                  }
+                }
+                title
+                projects {
+                  title
+                  slug
+                  shortDescription {
+                    shortDescription
+                  }
+                  hero {
+                    headerBg {
+                      gatsbyImageData
+                      file {
+                        url
+                      }
+                    }
+                  }
                 }
               }
-              altText {
-                altText
-              }
-            }
-            hero {
-              headerBg {
-                file {
-                  url
+              ... on ContentfulComponentSection {
+                columns {
+                  heading
+                  text {
+                    text
+                  }
                 }
               }
-            }
-            video {
-              videoUrl
-              title
+              ... on ContentfulComponentSeo {
+                title
+              }
             }
           }
         }
@@ -106,12 +181,23 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  data.allContentfulProject.edges.forEach((edge) => {
-    const node = edge.node;
+  // Projects
+  data.projects.edges.forEach((edge) => {
+    const projectNode = edge.node;
     actions.createPage({
-      path: node.slug,
-      component: require.resolve(`./src/templates/photo-gallery.js`),
-      context: { project: node },
+      path: projectNode.slug,
+      component: require.resolve(`./src/templates/project-page.js`),
+      context: { project: projectNode },
+    });
+  });
+
+  // Services
+  data.services.edges.forEach((edge) => {
+    const serviceNode = edge.node;
+    actions.createPage({
+      path: serviceNode.slug,
+      component: require.resolve(`./src/templates/service-page.js`),
+      context: { service: serviceNode },
     });
   });
 };

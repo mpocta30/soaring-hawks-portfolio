@@ -14,7 +14,7 @@ const sectionInfo = (heading, description, icon) => {
   );
 };
 
-const IconSection = () => {
+const IconSection = ({ background }) => {
   const { allContentfulComponentSection } = useStaticQuery(
     graphql`
       query {
@@ -45,7 +45,7 @@ const IconSection = () => {
 
   return (
     <DoubleColumn
-      background="white"
+      background={background}
       columnOneContent={sectionInfo(camera.heading, camera.text.text, <FaCamera />)}
       columnTwoContent={sectionInfo(video.heading, video.text.text, <FaVideo />)}
     />

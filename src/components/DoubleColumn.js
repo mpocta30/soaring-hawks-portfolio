@@ -24,7 +24,7 @@ const ContentWrapper = styled.div`
 `;
 
 const ColumnContainer = styled.div`
-  margin: 2rem 0;
+  margin: 2rem 6rem;
   position: relative;
   padding-top: 1rem;
   padding-right: 2rem;
@@ -32,9 +32,10 @@ const ColumnContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     text-align: center;
     padding: 0;
+    margin: 2rem 0rem;
   }
 `;
 

@@ -6,51 +6,82 @@ import Layout from "../components/layout";
 import Services from "../components/Services";
 import Seo from "../components/seo";
 import Stats from "../components/Stats";
-import Testimonials from "../components/Testimonials";
-import ContactBg from "../assets/images/email.jpg";
-import Projects from "../components/Projects";
+import InformationSection from "../components/InformationSection";
 import { useStaticQuery, graphql } from "gatsby";
 
 const IndexPage = () => {
-  const { allContentfulVideoHero } = useStaticQuery(
+  const { allContentfulComponentPage, allContentfulImageWithAiTags } = useStaticQuery(
     graphql`
       query {
-        allContentfulVideoHero(filter: { title: { regex: "/Home Page/" } }) {
+        allContentfulComponentPage(filter: { title: { eq: "Index" } }) {
           edges {
             node {
-              headerBg {
+              sections {
+                ... on ContentfulVideoHero {
+                  subHeading
+                  heading
+                  headerBg {
+                    file {
+                      url
+                    }
+                  }
+                  buttonSlug
+                  buttonText
+                }
+                ... on ContentfulComponentSeo {
+                  title
+                }
+                ... on ContentfulComponentSection {
+                  columns {
+                    heading
+                    text {
+                      text
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        allContentfulImageWithAiTags(filter: { title: { nin: "Contact Form" } }) {
+          edges {
+            node {
+              image {
                 file {
                   url
                 }
               }
-              buttonSlug
-              buttonText
-              heading
-              subHeading
             }
           }
         }
       }
     `,
   );
-  const node = allContentfulVideoHero.edges[0].node;
+  const node = allContentfulComponentPage.edges[0].node;
+  const videoHeroNode = node.sections[0];
+  const seo = node.sections[1];
+  const infoSection = node.sections[2].columns[0];
+  const contactBG = allContentfulImageWithAiTags.edges[0].node.image.file.url;
 
   return (
     <Layout>
-      <Seo title="Aerial Photography and Video" />
+      <Seo title={seo.title} />
       <VideoHero
-        videoBg={node.headerBg.file.url}
-        heading={node.heading}
-        subHeading={node.subHeading}
-        buttonText={node.buttonText}
-        buttonSlug={node.buttonSlug}
+        videoBg={videoHeroNode.headerBg.file.url}
+        heading={videoHeroNode.heading}
+        subHeading={videoHeroNode.subHeading}
+        buttonText={videoHeroNode.buttonText}
+        buttonSlug={videoHeroNode.buttonSlug}
       />
-      <Projects />
-      <Testimonials background="#efeff2" />
-      <Stats />
-      <Services background="#efeff2" />
+      <InformationSection
+        heading={infoSection.heading}
+        text={infoSection.text.text}
+        animation="slide-right"
+      />
+      <Services background="#efeff2" animation="slide-right" />
+      <Stats animation="slide-right" />
       <Contact
-        sectionBg={ContactBg}
+        sectionBg={contactBG}
         title="Get a Quote"
         subtitle="Inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur."
       />
