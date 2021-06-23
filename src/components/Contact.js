@@ -4,30 +4,6 @@ import styled from "styled-components";
 import { Button } from "./Button";
 
 const Contact = ({ sectionBg, title, subtitle }) => {
-  const data = useStaticQuery(graphql`
-    query contactFormQuery {
-      allContentfulService {
-        edges {
-          node {
-            title
-          }
-        }
-      }
-    }
-  `);
-
-  function getServiceOptions() {
-    const serviceOptions = [];
-    data.allContentfulService.edges.forEach((item, index) => {
-      serviceOptions.push(
-        <FormOption key={index} value={item.node.title.replace(/\s+/g, "-").toLowerCase()}>
-          {item.node.title}
-        </FormOption>,
-      );
-    });
-    return serviceOptions;
-  }
-
   return (
     <ContactContainer sectionbg={sectionBg}>
       <ContactContent>
@@ -54,12 +30,7 @@ const Contact = ({ sectionBg, title, subtitle }) => {
               />
             </FormName>
             <input type="email" placeholder="Enter your email" id="email" name="email" required />
-            <select id="subject" name="subject" required>
-              <FormOption disabled selected value="">
-                -- Select a Service --
-              </FormOption>
-              {getServiceOptions()}
-            </select>
+            <input id="service" name="service" placeholder="Enter the desired service" required />
             <textarea id="message" placeholder="Enter Message" name="message" required />
             <FormButton as="button" primary="true" type="submit">
               Sign Up
@@ -168,28 +139,5 @@ const FormButton = styled(Button)`
   @media screen and (max-width: 400px) {
     width: 100%;
     min-width: 250px;
-  }
-`;
-
-const FormOption = styled.option`
-  color: #263b46;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-  position: absolute;
-  background-color: white;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
-
-  &:hover {
-    color: #ffffff;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-    cursor: pointer;
-    background-color: #263b46;
   }
 `;

@@ -186,11 +186,13 @@ const NavSubMenu = styled.div`
   align-items: center;
   font-size: 15px;
 
-  ${HoverNavLink}:hover &,
+  @media screen and (min-width: 769px) {
+    ${HoverNavLink}:hover &,
   &:hover {
-    visibility: visible;
-    opacity: 1;
-    display: block;
+      visibility: visible;
+      opacity: 1;
+      display: block;
+    }
   }
 
   ${NavLink} {
