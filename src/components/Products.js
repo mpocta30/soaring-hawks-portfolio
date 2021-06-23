@@ -55,7 +55,6 @@ export default Products;
 
 const ProductsContainer = styled.div`
   background-color: ${(props) => props.background};
-  min-height: 100vh;
   padding: 5rem calc((100vw - 1600px) / 2);
   color: black;
 `;
@@ -81,7 +80,7 @@ const ProductsWrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
-    grid-gap: 3.5rem;
+    grid-gap: 1rem;
   }
 `;
 
@@ -98,7 +97,7 @@ const ProductCard = styled.div`
   }
 
   @media screen and (max-width: 400px) {
-    min-height: 600px;
+    min-height: 450px;
   }
 `;
 
