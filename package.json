@@ -19,6 +19,7 @@
     "gatsby-source-filesystem": "^3.6.0",
     "gatsby-transformer-json": "^3.7.0",
     "gatsby-transformer-sharp": "^3.7.1",
+    "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
@@ -39,7 +40,7 @@
   "scripts": {
     "clean": "gatsby clean",
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "cross-env ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",

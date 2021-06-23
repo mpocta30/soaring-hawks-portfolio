@@ -1,16 +1,16 @@
-// exports.onCreateWebpackConfig = ({ actions }) => {
-//   actions.setWebpackConfig({
-//     resolve: {
-//       alias: {
-//         path: require.resolve("path-browserify"),
-//       },
-//       fallback: {
-//         fs: false,
-//         path: false,
-//       },
-//     },
-//   });
-// };
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: "empty",
+    },
+    resolve: {
+      fallback: {
+        fs: false,
+        path: require.resolve("path-browserify"),
+      },
+    },
+  });
+};
 
 // const path = require("path");
 // const getBaseUrl = require("./src/utils/getBaseUrl");
@@ -82,7 +82,7 @@
 exports.createPages = async ({ graphql, actions }) => {
   const { data } = await graphql(`
     query multiQuery {
-      projects: allContentfulComponentPage(filter: {child: {eq: "Project"}}) {
+      projects: allContentfulComponentPage(filter: { child: { eq: "Project" } }) {
         edges {
           node {
             title
