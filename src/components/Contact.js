@@ -19,11 +19,10 @@ const Contact = ({ sectionBg, title, subtitle }) => {
   function getServiceOptions() {
     const serviceOptions = [];
     data.allContentfulService.edges.forEach((item, index) => {
-      console.log(item);
       serviceOptions.push(
-        <option key={index} value={item.node.title.replace(/\s+/g, "-").toLowerCase()}>
+        <FormOption key={index} value={item.node.title.replace(/\s+/g, "-").toLowerCase()}>
           {item.node.title}
-        </option>,
+        </FormOption>,
       );
     });
     return serviceOptions;
@@ -56,9 +55,9 @@ const Contact = ({ sectionBg, title, subtitle }) => {
             </FormName>
             <input type="email" placeholder="Enter your email" id="email" name="email" required />
             <select id="subject" name="subject" required>
-              <option disabled selected value="">
+              <FormOption disabled selected value="">
                 -- Select a Service --
-              </option>
+              </FormOption>
               {getServiceOptions()}
             </select>
             <textarea id="message" placeholder="Enter Message" name="message" required />
@@ -169,5 +168,28 @@ const FormButton = styled(Button)`
   @media screen and (max-width: 400px) {
     width: 100%;
     min-width: 250px;
+  }
+`;
+
+const FormOption = styled.option`
+  color: #263b46;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  position: absolute;
+  background-color: white;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+
+  &:hover {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    background-color: #263b46;
   }
 `;

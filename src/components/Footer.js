@@ -11,11 +11,11 @@ const Footer = () => {
       </FooterDesc>
       <FooterLinkItems>
         <FooterLinkTitle>Contact Us</FooterLinkTitle>
-        <FooterLink to="/contact">Contact</FooterLink>
-        <FooterEmailPhone to="mailto:soaringhawkdrones@gmail.com">
+        <FooterLink to="/contact-us">Contact</FooterLink>
+        <FooterEmailPhone href="tel:12345678910">+1 (234) 567-8910</FooterEmailPhone>
+        <FooterEmailPhone href="mailto: soaringhawkdrones@gmail.com">
           soaringhawkdrones@gmail.com
         </FooterEmailPhone>
-        <FooterEmailPhone href="tel:12345678910">+1 (234) 567-8910</FooterEmailPhone>
       </FooterLinkItems>
       <FooterLinkItems>
         <FooterLinkTitle>Social Media</FooterLinkTitle>
@@ -46,12 +46,8 @@ const FooterDesc = styled.div`
   padding: 1rem 2rem;
 
   h1 {
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     color: #263b46;
-
-    @media screen and (max-width: 820px) {
-      margin-bottom: 1rem;
-    }
   }
 
   @media screen and (max-width: 400px) {

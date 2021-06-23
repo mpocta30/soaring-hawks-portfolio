@@ -44,10 +44,26 @@ const Header = () => {
       <NavContent expanded={expanded}>
         <NavCloseBtn onClick={toggleExpanded} />
         <NavMenu>
-          {menuData.map((item, index) => (
-            <NavLink key={index} to={item.link}>
-              {item.title}
-            </NavLink>
+          {menuData().map((item, index) => (
+            <div>
+              {Array.isArray(item.children) ? (
+                <HoverNavLink key={index} to={item.link}>
+                  {item.title}
+                  <NavSubMenu>
+                    {item.children.map((serviceItem, serviceIndex) => (
+                      <NavLink key={serviceIndex} to={serviceItem.node.slug}>
+                        {serviceItem.node.title}
+                      </NavLink>
+                    ))}
+                  </NavSubMenu>
+                  <DownArrow />
+                </HoverNavLink>
+              ) : (
+                <NavLink key={index} to={item.link}>
+                  {item.title}
+                </NavLink>
+              )}
+            </div>
           ))}
           <SideButtonWrapper>
             <SmallPhoneButton primary="true" href="tel:123-456-7890">
@@ -155,6 +171,39 @@ const NavLink = styled(Link)`
   }
 `;
 
+const HoverNavLink = styled(NavLink)`
+  display: block;
+`;
+
+const NavSubMenu = styled.div`
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+  display: none;
+  background-color: #3b5b6d;
+  text-align: center;
+  align-items: center;
+  font-size: 15px;
+
+  ${HoverNavLink}:hover &,
+  &:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+  }
+
+  ${NavLink} {
+    text-align: center;
+    padding: 0.5em 0.5em;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #263b46;
+    }
+  }
+`;
+
 const NavImg = styled.img`
   height: clamp(2.5rem, 4vw, 3.5rem);
   border-style: none;
@@ -226,4 +275,16 @@ const ToTopButon = styled.a`
     background: #345060;
     transform: translateY(-2px);
   }
+`;
+
+const DownArrow = styled.i`
+  margin-left: 5px;
+  margin-top: 3px;
+  position: absolute;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 `;
