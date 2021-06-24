@@ -127,7 +127,12 @@ const ProductInfo = styled.div`
   }
 `;
 
-const TextWrap = styled.div``;
+const TextWrap = styled.div`
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+`;
 
 const ProductTitle = styled.h2`
   font-weight: 500;
