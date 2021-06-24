@@ -13,6 +13,7 @@ function getProducts(products, animation) {
         data-sal-duration="1000"
         data-sal-delay={(300 + 200 * index).toString()}
         data-sal-easing="ease"
+        numColumns={products.length == 1 ? "max-width: 75%" : ""}
       >
         <a href={item.slug}>
           <ProductImg image={item.image} alt={item.title} />
@@ -45,7 +46,9 @@ const Products = ({ background, products, name, animation }) => {
         >
           {name}
         </ProductsHeading>
-        <ProductsWrapper>{getProducts(products, animation)}</ProductsWrapper>
+        <ProductsWrapper numColumns={products.length >= 4 ? 4 : products.length % 4}>
+          {getProducts(products, animation)}
+        </ProductsWrapper>
       </ProductsContainer>
     </div>
   );
@@ -69,7 +72,7 @@ const ProductsHeading = styled.div`
 
 const ProductsWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(${(props) => props.numColumns}, 1fr);
   grid-gap: 3rem;
   justify-items: center;
   padding: 0 2rem;
@@ -86,6 +89,7 @@ const ProductsWrapper = styled.div`
 
 const ProductCard = styled.div`
   line-height: 2;
+  ${(props) => props.numColumns};
   width: 100%;
   height: 100%;
   position: relative;
