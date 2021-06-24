@@ -28,8 +28,8 @@ const companyImage = () => {
 const about = () => {
   return (
     <Layout>
-      <Seo title="About" />
-      <PhotoHero heading="About" headerBg={ContactBg} />
+      <Seo title="About Us" />
+      <PhotoHero heading="About Us" headerBg={ContactBg} />
       <DoubleColumn
         background="white"
         columnOneContent={companyInfo()}
@@ -40,6 +40,7 @@ const about = () => {
         sectionBg={ContactBg}
         title="Get Access to Exclusive Offers"
         subtitle="Sign up for your newsletter below to get $100 off your first trip!"
+        pageName="About Us"
       />
     </Layout>
   );

@@ -13,9 +13,10 @@ function getProducts(products, animation) {
         data-sal-duration="1000"
         data-sal-delay={(300 + 200 * index).toString()}
         data-sal-easing="ease"
+        numColumns={products.length == 1 ? "max-width: 75%" : ""}
       >
         <a href={item.slug}>
-        <ProductImg image={item.image} alt={item.title} />
+          <ProductImg image={item.image} alt={item.title} />
         </a>
         <ProductInfo>
           <TextWrap>
@@ -45,7 +46,9 @@ const Products = ({ background, products, name, animation }) => {
         >
           {name}
         </ProductsHeading>
-        <ProductsWrapper>{getProducts(products, animation)}</ProductsWrapper>
+        <ProductsWrapper numColumns={products.length >= 4 ? 4 : products.length % 4}>
+          {getProducts(products, animation)}
+        </ProductsWrapper>
       </ProductsContainer>
     </div>
   );
@@ -55,13 +58,13 @@ export default Products;
 
 const ProductsContainer = styled.div`
   background-color: ${(props) => props.background};
-  min-height: 100vh;
   padding: 5rem calc((100vw - 1600px) / 2);
   color: black;
 `;
 
 const ProductsHeading = styled.div`
-  font-size: clamp(1.2rem, 6vw, 3rem);
+  font-size: clamp(1.5rem, 6vw, 3rem);
+  font-weight: bold;
   text-align: center;
   margin-bottom: 3rem;
   color: #000;
@@ -69,7 +72,7 @@ const ProductsHeading = styled.div`
 
 const ProductsWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(${(props) => props.numColumns}, 1fr);
   grid-gap: 3rem;
   justify-items: center;
   padding: 0 2rem;
@@ -80,12 +83,13 @@ const ProductsWrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
-    grid-gap: 3.5rem;
+    grid-gap: 1rem;
   }
 `;
 
 const ProductCard = styled.div`
   line-height: 2;
+  ${(props) => props.numColumns};
   width: 100%;
   height: 100%;
   position: relative;
@@ -97,7 +101,7 @@ const ProductCard = styled.div`
   }
 
   @media screen and (max-width: 400px) {
-    min-height: 600px;
+    min-height: 450px;
   }
 `;
 
@@ -127,11 +131,16 @@ const ProductInfo = styled.div`
   }
 `;
 
-const TextWrap = styled.div``;
+const TextWrap = styled.div`
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+`;
 
 const ProductTitle = styled.h2`
-  font-weight: 600;
-  font-size: 1.5rem;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 5vw, 2rem);
   margin: 0.5rem 3rem;
 `;
 

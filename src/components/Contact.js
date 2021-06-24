@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "./Button";
 
-const Contact = ({ sectionBg, title, subtitle }) => {
+const Contact = ({ sectionBg, title, subtitle, pageName }) => {
   const data = useStaticQuery(graphql`
     query contactFormQuery {
       allContentfulService {
@@ -38,6 +38,7 @@ const Contact = ({ sectionBg, title, subtitle }) => {
             <FormName>
               <input type="hidden" name="bot-field" />
               <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="page-name" value={pageName} />
               <input
                 type="text"
                 placeholder="Enter your first name"

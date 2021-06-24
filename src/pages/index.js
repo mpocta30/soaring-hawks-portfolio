@@ -78,12 +78,13 @@ const IndexPage = () => {
         text={infoSection.text.text}
         animation="slide-right"
       />
-      <Services background="#efeff2" animation="slide-right" />
+      <Services heading="services" background="#efeff2" animation="slide-right" />
       <Stats animation="slide-right" />
       <Contact
         sectionBg={contactBG}
         title="Get a Quote"
-        subtitle="Inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur."
+        subtitle="Have a project idea? Provide us with a little information."
+        pageName="Home Page"
       />
     </Layout>
   );

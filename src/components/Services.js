@@ -16,7 +16,7 @@ function getServices(products) {
   return productsArray;
 }
 
-const Services = ({ background, animation }) => {
+const Services = ({ heading, background, animation }) => {
   const data = useStaticQuery(graphql`
     query ServicesQuery {
       allContentfulService {
@@ -43,7 +43,7 @@ const Services = ({ background, animation }) => {
       <Products
         background={background}
         products={getServices(data.allContentfulService.edges)}
-        name="services"
+        name={heading}
         animation={animation}
       />
     </div>

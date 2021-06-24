@@ -24,7 +24,7 @@ const ContentWrapper = styled.div`
 `;
 
 const ColumnContainer = styled.div`
-  margin: 2rem 6rem;
+  margin: 2rem 4rem;
   position: relative;
   padding-top: 1rem;
   padding-right: 2rem;

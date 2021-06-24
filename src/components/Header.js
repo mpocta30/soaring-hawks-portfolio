@@ -45,7 +45,7 @@ const Header = () => {
         <NavCloseBtn onClick={toggleExpanded} />
         <NavMenu>
           {menuData().map((item, index) => (
-            <div>
+            <DropDown>
               {Array.isArray(item.children) ? (
                 <HoverNavLink key={index} to={item.link}>
                   {item.title}
@@ -63,18 +63,18 @@ const Header = () => {
                   {item.title}
                 </NavLink>
               )}
-            </div>
+            </DropDown>
           ))}
           <SideButtonWrapper>
-            <SmallPhoneButton primary="true" href="tel:123-456-7890">
-              +1 (123) 456-7890
+            <SmallPhoneButton primary="true" href="tel:18043639816">
+              +1 (804) 363-9816
             </SmallPhoneButton>
           </SideButtonWrapper>
         </NavMenu>
       </NavContent>
       <NavBtn>
-        <PhoneButton primary="true" href="tel:123-456-7890">
-          +1 (123) 456-7890
+        <PhoneButton primary="true" href="tel:18043639816">
+          +1 (804) 363-9816
         </PhoneButton>
       </NavBtn>
       <ToTopButon isscrolling={isScrolling ? 1 : 0} onClick={scrollToTop}>
@@ -171,41 +171,6 @@ const NavLink = styled(Link)`
   }
 `;
 
-const HoverNavLink = styled(NavLink)`
-  display: block;
-`;
-
-const NavSubMenu = styled.div`
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  transition: all 0.5s ease;
-  display: none;
-  background-color: #3b5b6d;
-  text-align: center;
-  align-items: center;
-  font-size: 15px;
-
-  @media screen and (min-width: 769px) {
-    ${HoverNavLink}:hover &,
-  &:hover {
-      visibility: visible;
-      opacity: 1;
-      display: block;
-    }
-  }
-
-  ${NavLink} {
-    text-align: center;
-    padding: 0.5em 0.5em;
-    text-decoration: none;
-
-    &:hover {
-      background-color: #263b46;
-    }
-  }
-`;
-
 const NavImg = styled.img`
   height: clamp(2.5rem, 4vw, 3.5rem);
   border-style: none;
@@ -292,5 +257,47 @@ const DownArrow = styled.i`
 
   @media screen and (max-width: 768px) {
     display: none;
+  }
+`;
+
+const DropDown = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const HoverNavLink = styled(NavLink)`
+  display: block;
+  padding: 16px;
+`;
+
+const NavSubMenu = styled.div`
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+  display: none;
+  background-color: #3b5b6d;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-size: 15px;
+
+  @media screen and (min-width: 769px) {
+    ${HoverNavLink}:hover &,
+  &:hover {
+      visibility: visible;
+      opacity: 1;
+      display: block;
+    }
+  }
+
+  ${NavLink} {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+      background-color: #263b46;
+    }
   }
 `;

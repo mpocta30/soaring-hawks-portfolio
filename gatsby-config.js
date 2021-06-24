@@ -1,8 +1,6 @@
-// require("dotenv").config({
-//   path: `${__dirname}/.env.development`,
-// });
-
-// console.log(process.env.NODE_ENV);
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
 
 module.exports = {
   siteMetadata: {
@@ -20,18 +18,31 @@ module.exports = {
     DEV_SSR: false,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          "G-YFPD9KQ2MQ", // Google Analytics / GA
+        ],
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: true,
+        },
+      },
+    },
     `gatsby-plugin-sharp`,
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-scroll-reveal`,
-    {
-      resolve: "gatsby-source-contentful",
-      options: {
-        spaceId: "ozl916uy4jos",
-        accessToken: "oOgH7wNA2gZDl8_ee64HEYqCQHnH3Ec29MBs61EQ9DU",
-      },
-    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
