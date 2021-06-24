@@ -9,12 +9,11 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
-import { siteMetadata } from "../../gatsby-config";
 
 function Seo({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+  const { site, allContentfulComponentPhoto } = useStaticQuery(
     graphql`
-      query {
+      query seoQuery {
         site {
           siteMetadata {
             defaultTitle: title
@@ -24,6 +23,17 @@ function Seo({ description, lang, meta, title }) {
             author
           }
         }
+        allContentfulComponentPhoto(filter: { title: { eq: "OG Image" } }) {
+          edges {
+            node {
+              img {
+                file {
+                  url
+                }
+              }
+            }
+          }
+        }
       }
     `,
   );
@@ -31,7 +41,7 @@ function Seo({ description, lang, meta, title }) {
   const metaTitle = title || site.siteMetadata.title;
   const metaDescription = description || site.siteMetadata.description;
   const defaultTitle = site.siteMetadata?.title;
-  const defaultImage = `${site.siteMetadata.siteUrl}${site.siteMetadata.defaultImage}`;
+  const defaultImage = `${allContentfulComponentPhoto.edges[0].node.img.file.url}`;
 
   return (
     <Helmet
