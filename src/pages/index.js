@@ -83,7 +83,8 @@ const IndexPage = () => {
       <Contact
         sectionBg={contactBG}
         title="Get a Quote"
-        subtitle="Inasfa reprehenderit in voluptate velit esse cillum reeut cupidatatfug nulla pariatur."
+        subtitle="Have a project idea? Provide us with a little information."
+        pageName="Home Page"
       />
     </Layout>
   );

@@ -14,6 +14,7 @@ const ContactPage = () => (
     <Contact
       title="Get in Touch"
       subtitle="Have a project idea? Provide us with a little information."
+      pageName="Contact Us"
     />
     {/* <h1>Hi from the second page</h1>
     <p>Welcome to page 2</p>
