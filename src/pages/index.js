@@ -30,12 +30,23 @@ const IndexPage = () => {
                 }
                 ... on ContentfulComponentSeo {
                   title
+                  ogImage {
+                    file {
+                      url
+                    }
+                  }
+                  description {
+                    description
+                  }
+                  keywords
                 }
                 ... on ContentfulComponentSection {
                   columns {
-                    heading
-                    text {
-                      text
+                    ... on ContentfulComponentText {
+                      heading
+                      text {
+                        text
+                      }
                     }
                   }
                 }
@@ -65,7 +76,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <Seo title={seo.title} />
+      <Seo seo={seo} />
       <VideoHero
         videoBg={videoHeroNode.headerBg.file.url}
         heading={videoHeroNode.heading}

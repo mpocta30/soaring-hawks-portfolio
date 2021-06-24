@@ -18,15 +18,16 @@ const IconSection = ({ background }) => {
   const { allContentfulComponentSection } = useStaticQuery(
     graphql`
       query {
-        allContentfulComponentSection {
+        allContentfulComponentSection(filter: { heading: { eq: "Camera & Video Icon" } }) {
           edges {
             node {
               heading
               columns {
-                heading
-                title
-                text {
-                  text
+                ... on ContentfulComponentText {
+                  text {
+                    text
+                  }
+                  heading
                 }
               }
             }
@@ -35,13 +36,9 @@ const IconSection = ({ background }) => {
       }
     `,
   );
-  const { node } = allContentfulComponentSection.edges.find(
-    ({ node }) => node.heading === "Camera/Video Icon Section",
-  );
-  console.log(node);
-
-  const camera = node.columns.find(({ title }) => title === "Camera Info");
-  const video = node.columns.find(({ title }) => title === "Video Info");
+  const node = allContentfulComponentSection.edges[0].node;
+  const camera = node.columns[0];
+  const video = node.columns[1];
 
   return (
     <DoubleColumn

@@ -6,41 +6,103 @@ import PhotoHero from "../components/PhotoHero";
 import DoubleColumn, { ColumnImage, TextWrapper } from "../components/DoubleColumn";
 import Services from "../components/Services";
 import Contact from "../components/Contact";
-import TeamImage from "../assets/images/testimonial-2.jpg";
-import ContactBg from "../assets/images/email.jpg";
+import { useStaticQuery, graphql } from "gatsby";
 
-const companyInfo = () => {
+const companyInfo = (columnInfo) => {
   return (
     <TextWrapper>
-      <h3>Lorem Ipsum</h3>
-      <p>
-        Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing
-        industries for previewing layouts and visual mockups.
-      </p>
+      <h3>{columnInfo.heading}</h3>
+      <p>{columnInfo.text.text}</p>
     </TextWrapper>
   );
 };
 
-const companyImage = () => {
-  return <ColumnImage src={TeamImage} alt={"The Soaring Hawk Team"} />;
+const companyImage = (columnInfo) => {
+  console.log(columnInfo.img.gatsbyImageData);
+  return <ColumnImage image={columnInfo.img.gatsbyImageData} alt={columnInfo.altText.altText} />;
 };
 
 const about = () => {
+  const { allContentfulComponentPage } = useStaticQuery(
+    graphql`
+      query {
+        allContentfulComponentPage(filter: { title: { eq: "About Us" } }) {
+          edges {
+            node {
+              slug
+              sections {
+                ... on ContentfulComponentSeo {
+                  title
+                  ogImage {
+                    file {
+                      url
+                    }
+                  }
+                  description {
+                    description
+                  }
+                  keywords
+                }
+                ... on ContentfulPhotoHero {
+                  title
+                  headerBg {
+                    file {
+                      url
+                    }
+                  }
+                }
+                ... on ContentfulContactForm {
+                  id
+                  title
+                  subTitle
+                  pageName
+                }
+                ... on ContentfulComponentSection {
+                  columns {
+                    ... on ContentfulComponentText {
+                      heading
+                      text {
+                        text
+                      }
+                    }
+                    ... on ContentfulComponentPhoto {
+                      id
+                      altText {
+                        altText
+                      }
+                      img {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+  );
+  const node = allContentfulComponentPage.edges[0].node;
+  const seo = node.sections[0];
+  const photoHero = node.sections[1];
+  const companySection = node.sections[2];
+  const contactForm = node.sections[3];
+
   return (
     <Layout>
-      <Seo title="About Us" />
-      <PhotoHero heading="About Us" headerBg={ContactBg} />
+      <Seo seo={seo} />
+      <PhotoHero heading={photoHero.title} headerBg={photoHero.headerBg.file.url} />
       <DoubleColumn
         background="white"
-        columnOneContent={companyInfo()}
-        columnTwoContent={companyImage()}
+        columnOneContent={companyInfo(companySection.columns[0])}
+        columnTwoContent={companyImage(companySection.columns[1])}
       />
       <Services heading="Services" />
       <Contact
-        sectionBg={ContactBg}
-        title="Get Access to Exclusive Offers"
-        subtitle="Sign up for your newsletter below to get $100 off your first trip!"
-        pageName="About Us"
+        title={contactForm.title}
+        subtitle={contactForm.subTitle}
+        pageName={contactForm.pageName}
       />
     </Layout>
   );

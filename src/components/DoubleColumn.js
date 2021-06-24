@@ -1,3 +1,4 @@
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
 
@@ -54,10 +55,10 @@ export const TextWrapper = styled.div`
   }
 `;
 
-export const ColumnImage = styled.img`
+export const ColumnImage = styled(GatsbyImage)`
   display: flex;
   border-radius: 10px;
   width: 100%;
-  max-width: 350px;
+  max-width: 450px;
   height: auto;
 `;

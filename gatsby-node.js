@@ -97,17 +97,17 @@ exports.createPages = async ({ graphql, actions }) => {
             title
             slug
             sections {
-              ... on ContentfulComponentSection {
-                columns {
-                  text {
-                    text
-                  }
-                  heading
-                }
-              }
               ... on ContentfulComponentSeo {
-                id
-                title
+                ogImage {
+                  file {
+                    url
+                  }
+                  title
+                }
+                description {
+                  description
+                }
+                keywords
               }
               ... on ContentfulProject {
                 slug
@@ -119,9 +119,6 @@ exports.createPages = async ({ graphql, actions }) => {
                 photoGallery {
                   photos {
                     gatsbyImageData
-                    file {
-                      url
-                    }
                     title
                   }
                 }
@@ -137,6 +134,23 @@ exports.createPages = async ({ graphql, actions }) => {
                   title
                 }
               }
+              ... on ContentfulComponentSection {
+                columns {
+                  ... on ContentfulComponentText {
+                    heading
+                    text {
+                      text
+                    }
+                  }
+                }
+              }
+              ... on ContentfulPhotoHero {
+                headerBg {
+                  file {
+                    url
+                  }
+                }
+              }
             }
           }
         }
@@ -144,10 +158,33 @@ exports.createPages = async ({ graphql, actions }) => {
       services: allContentfulComponentPage(filter: { child: { eq: "Service" } }) {
         edges {
           node {
+            title
             slug
             sections {
+              ... on ContentfulComponentSeo {
+                title
+                ogImage {
+                  file {
+                    url
+                  }
+                }
+                description {
+                  description
+                }
+                keywords
+              }
+              ... on ContentfulComponentSection {
+                columns {
+                  ... on ContentfulComponentText {
+                    heading
+                    text {
+                      text
+                    }
+                  }
+                }
+              }
               ... on ContentfulService {
-                slug
+                title
                 hero {
                   headerBg {
                     file {
@@ -155,33 +192,18 @@ exports.createPages = async ({ graphql, actions }) => {
                     }
                   }
                 }
-                title
                 projects {
+                  hero {
+                    headerBg {
+                      gatsbyImageData
+                    }
+                  }
                   title
                   slug
                   shortDescription {
                     shortDescription
                   }
-                  hero {
-                    headerBg {
-                      gatsbyImageData
-                      file {
-                        url
-                      }
-                    }
-                  }
                 }
-              }
-              ... on ContentfulComponentSection {
-                columns {
-                  heading
-                  text {
-                    text
-                  }
-                }
-              }
-              ... on ContentfulComponentSeo {
-                title
               }
             }
           }

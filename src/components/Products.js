@@ -23,12 +23,26 @@ function getProducts(products, animation) {
             <ProductTitle>{item.title}</ProductTitle>
             <ProductDescription>{item.description}</ProductDescription>
           </TextWrap>
-          <Button to={item.slug} primary="true" css={`font-size=14px;`}>
+          <ProductButton to={item.slug} primary="true">
             Learn More
-          </Button>
+          </ProductButton>
         </ProductInfo>
       </ProductCard>,
     );
+  });
+  return productsArray;
+}
+
+function createProductObj(products) {
+  const productsArray = [];
+  products.forEach((item, index) => {
+    const productObj = {};
+    productObj["image"] = item.node.hero.headerBg.gatsbyImageData;
+    productObj["title"] = item.node.title;
+    productObj["description"] = item.node.shortDescription.shortDescription;
+    productObj["slug"] = item.node.slug;
+
+    productsArray.push(productObj);
   });
   return productsArray;
 }
@@ -47,7 +61,7 @@ const Products = ({ background, products, name, animation }) => {
           {name}
         </ProductsHeading>
         <ProductsWrapper numColumns={products.length >= 4 ? 4 : products.length % 4}>
-          {getProducts(products, animation)}
+          {getProducts(createProductObj(products), animation)}
         </ProductsWrapper>
       </ProductsContainer>
     </div>
@@ -147,4 +161,10 @@ const ProductTitle = styled.h2`
 const ProductDescription = styled.p`
   font-style: italic;
   margin: 0.5rem 0 1rem 0;
+`;
+
+const ProductButton = styled(Button)`
+  display: inline-block;
+  margin-top: 1rem;
+  font-size=14px;
 `;

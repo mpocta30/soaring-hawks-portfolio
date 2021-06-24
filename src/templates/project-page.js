@@ -1,7 +1,6 @@
 import React from "react";
 
 import Layout from "../components/layout";
-import styled from "styled-components";
 import Lightbox from "../components/LightBox";
 import PhotoHero from "../components/PhotoHero";
 import DoubleColumn, { TextWrapper } from "../components/DoubleColumn";
@@ -25,7 +24,7 @@ const PhotoGallery = ({ pageContext }) => {
 
   return (
     <Layout>
-      <Seo title={seo.title}></Seo>
+      <Seo title={seo}></Seo>
       <PhotoHero heading={projectInfo.title} headerBg={projectInfo.hero.headerBg.file.url} />
       <IconSection />
       <DoubleColumn

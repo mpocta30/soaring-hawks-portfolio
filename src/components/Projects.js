@@ -28,7 +28,7 @@ const Projects = ({ background, animation }) => {
     <div>
       <Products
         background={background}
-        products={data.allContentfulProject.edges[0].node}
+        products={data.allContentfulProject.edges}
         name="projects"
         animation={animation}
       />
