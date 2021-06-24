@@ -1,24 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import Video from "../assets/videos/drone-bg.mp4";
 import { Link } from "react-scroll";
 
-const VideoHero = () => {
+const VideoHero = ({ videoBg, heading, subHeading, buttonText, buttonSlug }) => {
   return (
     <HeroContainer>
       <HeroBg>
-        <VideoBg src={Video} type="video/mp4" autoPlay loop muted playsInline />
+        <VideoBg src={videoBg} type="video/mp4" autoPlay loop muted playsInline />
       </HeroBg>
       <HeroContent>
         <HeroItems>
-          <HeroH1>Soaring Hawk</HeroH1>
-          <HeroP>Aerial Photography and Video</HeroP>
-          <HeroButton to="services" smooth={true} spy={true} offset={-80} duration={1000}>
-            Learn More
+          <HeroH1>{heading}</HeroH1>
+          <HeroP>{subHeading}</HeroP>
+          <HeroButton to={buttonSlug} smooth={true} spy={true} offset={-80} duration={1000}>
+            {buttonText}
           </HeroButton>
-          {/* <Button big="true" to="/#services">
-            Learn More
-          </Button> */}
         </HeroItems>
       </HeroContent>
     </HeroContainer>

@@ -2,14 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import { statsData } from "../data/StatsData";
 
-const Stats = () => {
+const Stats = ({ animation }) => {
   return (
     <StatsContainer>
-      <Heading>Why Choose Us?</Heading>
+      <Heading
+        data-sal={animation}
+        data-sal-duration="1000"
+        data-sal-delay="300"
+        data-sal-easing="ease"
+      >
+        Why Choose Us?
+      </Heading>
       <Wrapper>
         {statsData.map((item, index) => {
           return (
-            <StatsBox key={index}>
+            <StatsBox
+              key={index}
+              data-sal={animation}
+              data-sal-duration="1000"
+              data-sal-delay={(300 + 200 * index).toString()}
+              data-sal-easing="ease"
+            >
               <Icon>{item.icon}</Icon>
               <Title>{item.title}</Title>
               <Description>{item.desc}</Description>
@@ -30,19 +43,28 @@ const StatsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem calc((100vw - 1500px) / 2);
+  padding: 5rem calc((100vw - 1500px) / 2);
+
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
 `;
 const Heading = styled.h1`
-  text-align: start;
-  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-size: clamp(1.5rem, 6vw, 2rem);
   margin-bottom: 3rem;
   padding: 0 2rem;
+  text-align: center;
+
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+  text-align: center;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
