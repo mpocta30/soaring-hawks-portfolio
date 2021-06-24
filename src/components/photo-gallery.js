@@ -38,22 +38,3 @@ const PhotoGallery = ({ pageContext }) => {
 };
 
 export default PhotoGallery;
-
-const GalleryContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 16vw;
-  grid-gap: 0.5em;
-  min-height: 100vh;
-  padding: 5rem calc((100vw - 1600px) / 2);
-  margin: 0 2rem;
-  color: white;
-
-  @media screen and (max-width: 1200px) {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media screen and (max-width: 868px) {
-    grid-template-columns: 1fr;
-  }
-`;
