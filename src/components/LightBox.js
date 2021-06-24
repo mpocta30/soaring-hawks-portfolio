@@ -71,11 +71,7 @@ class Lightbox extends Component {
         <Gallery>
           {images.map((img, i) => (
             <GalleryItem key={img.file.url}>
-              <a
-                href={img.file.url}
-                alt={img.title}
-                onClick={(e) => this.handleClick(e, i)}
-              >
+              <a href={img.file.url} alt={img.title} onClick={(e) => this.handleClick(e, i)}>
                 <StyledImg image={getImage(img)} alt={img.title} />
               </a>
             </GalleryItem>
@@ -85,10 +81,7 @@ class Lightbox extends Component {
         <LightboxModal visible={showLightbox} onKeyUp={(e) => this.handleKeyDown(e)}>
           <CloseButton onClick={this.closeModal} />
           <LightboxContent>
-            <StyledImg
-              image={getImage(images[selectedImage])}
-              alt={images[selectedImage].title}
-            />
+            <StyledImg image={getImage(images[selectedImage])} alt={images[selectedImage].title} />
             <NavLeft onClick={this.goBack} disabled={selectedImage === 0} />
             <NavRight onClick={this.goForward} disabled={selectedImage === images.length - 1} />
           </LightboxContent>
@@ -136,7 +129,6 @@ const Gallery = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 16vw;
   grid-gap: 0.5em;
-  min-height: 100vh;
   padding: 5rem calc((100vw - 1600px) / 2);
   margin: 0 2rem;
   color: white;

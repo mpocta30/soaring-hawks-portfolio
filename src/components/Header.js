@@ -262,12 +262,17 @@ const DownArrow = styled.i`
 
 const DropDown = styled.div`
   position: relative;
-  display: inline-block;
+
+  @media screen and (min-width: 769px) {
+    display: inline-block;
+  }
 `;
 
 const HoverNavLink = styled(NavLink)`
-  display: block;
-  padding: 16px;
+  @media screen and (min-width: 769px) {
+    display: block;
+    padding: 16px;
+  }
 `;
 
 const NavSubMenu = styled.div`
