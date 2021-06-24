@@ -1,0 +1,39 @@
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import Products from "./Products";
+
+const Projects = ({ background, animation }) => {
+  const data = useStaticQuery(graphql`
+    query ProjectsQuery {
+      allContentfulProject {
+        edges {
+          node {
+            slug
+            title
+            shortDescription {
+              shortDescription
+            }
+            hero {
+              headerBg {
+                gatsbyImageData
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  return (
+    <div>
+      <Products
+        background={background}
+        products={data.allContentfulProject.edges[0].node}
+        name="projects"
+        animation={animation}
+      />
+    </div>
+  );
+};
+
+export default Projects;

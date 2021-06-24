@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
-import { FaBars, FaTimes, FaAngleUp } from "react-icons/fa";
+import { FaBars, FaTimes, FaArrowUp } from "react-icons/fa";
 import { menuData } from "../data/MenuData";
 import { PhoneButton } from "./Button";
 import NavImage from "../assets/images/logo.png";
+import { Link } from "gatsby";
 
 const Header = () => {
   const [isScrolling, setScrolling] = React.useState(false);
@@ -35,36 +36,49 @@ const Header = () => {
   };
 
   return (
-    <Nav isScrolling={isScrolling}>
-      <NavLogo href="#">
+    <Nav isscrolling={isScrolling ? 1 : 0}>
+      <NavLink to="/">
         <NavImg src={NavImage} alt="logo" />
-      </NavLogo>
+      </NavLink>
       <Bars onClick={toggleExpanded} />
       <NavContent expanded={expanded}>
         <NavCloseBtn onClick={toggleExpanded} />
         <NavMenu>
-          {menuData.map((item, index) => (
-            <NavLink
-              key={index}
-              to={item.link}
-              smooth={true}
-              spy={true}
-              offset={-80}
-              duration={1000}
-              onClick={toggleExpanded}
-            >
-              {item.title}
-            </NavLink>
+          {menuData().map((item, index) => (
+            <DropDown>
+              {Array.isArray(item.children) ? (
+                <HoverNavLink key={index} to={item.link}>
+                  {item.title}
+                  <NavSubMenu>
+                    {item.children.map((serviceItem, serviceIndex) => (
+                      <NavLink key={serviceIndex} to={serviceItem.node.slug}>
+                        {serviceItem.node.title}
+                      </NavLink>
+                    ))}
+                  </NavSubMenu>
+                  <DownArrow />
+                </HoverNavLink>
+              ) : (
+                <NavLink key={index} to={item.link}>
+                  {item.title}
+                </NavLink>
+              )}
+            </DropDown>
           ))}
+          <SideButtonWrapper>
+            <SmallPhoneButton primary="true" href="tel:18043639816">
+              +1 (804) 363-9816
+            </SmallPhoneButton>
+          </SideButtonWrapper>
         </NavMenu>
       </NavContent>
       <NavBtn>
-        <PhoneButton primary="true" href="tel:123-456-7890">
-          +1 (123) 456-7890
+        <PhoneButton primary="true" href="tel:18043639816">
+          +1 (804) 363-9816
         </PhoneButton>
       </NavBtn>
-      <ToTopButon isScrolling={isScrolling} onClick={scrollToTop}>
-        <FaAngleUp />
+      <ToTopButon isscrolling={isScrolling ? 1 : 0} onClick={scrollToTop}>
+        <FaArrowUp />
       </ToTopButon>
     </Nav>
   );
@@ -73,7 +87,7 @@ const Header = () => {
 export default Header;
 
 const Nav = styled.nav`
-  background: ${({ isScrolling }) => (isScrolling ? "#3b5b6d" : "transparent")};
+  background: ${(props) => (props.isscrolling ? "#3b5b6d" : "transparent")};
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -96,7 +110,7 @@ const NavContent = styled.div`
     z-index: 1;
     top: 0;
     left: auto;
-    right: ${({ expanded }) => (expanded ? "0" : "-100%")};
+    right: ${(props) => (props.expanded ? "0" : "-100%")};
     background-color: #3b5b6d;
     overflow-x: hidden;
     transition: 0.5s;
@@ -116,13 +130,21 @@ const NavCloseBtn = styled(FaTimes)`
   }
 `;
 
-const NavLogo = styled.a`
+const SideButtonWrapper = styled.div`
+  position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
-  text-decoration: none;
-  padding: 0 1rem;
-  cursor: pointer;
-  height: 100%;
+  top: 4rem;
+`;
+
+const SmallPhoneButton = styled(PhoneButton)`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    position: absolute;
+  }
 `;
 
 const NavLink = styled(Link)`
@@ -197,8 +219,8 @@ const NavBtn = styled.div`
   }
 `;
 
-const ToTopButon = styled(Link)`
-  display: ${({ isScrolling }) => (isScrolling ? "flex" : "none")};
+const ToTopButon = styled.a`
+  display: ${(props) => (props.isscrolling ? "flex" : "none")};
   background-color: #263b46;
   border: none;
   border-radius: 50%;
@@ -209,9 +231,73 @@ const ToTopButon = styled(Link)`
   right: 30px;
   z-index: 99;
   border-radius: 50%;
-  font-size: 50px;
-  line-height: 50px;
-  width: 50px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: clamp(2.5rem, 6vw, 3rem);
+  width: clamp(2.5rem, 6vw, 3rem);
+  height: clamp(2.5rem, 6vw, 3rem);
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    background: #345060;
+    transform: translateY(-2px);
+  }
+`;
+
+const DownArrow = styled.i`
+  margin-left: 5px;
+  margin-top: 3px;
+  position: absolute;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const DropDown = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const HoverNavLink = styled(NavLink)`
+  display: block;
+  padding: 16px;
+`;
+
+const NavSubMenu = styled.div`
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+  display: none;
+  background-color: #3b5b6d;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  font-size: 15px;
+
+  @media screen and (min-width: 769px) {
+    ${HoverNavLink}:hover &,
+  &:hover {
+      visibility: visible;
+      opacity: 1;
+      display: block;
+    }
+  }
+
+  ${NavLink} {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+      background-color: #263b46;
+    }
+  }
 `;

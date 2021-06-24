@@ -1,51 +1,41 @@
-import React from "react"
-import { GiEarthAmerica } from "react-icons/gi"
-import { MdAirplanemodeActive, MdTimer } from "react-icons/md"
-import { FaMoneyCheck } from "react-icons/fa"
+import React from "react";
+import { GiEarthAmerica } from "react-icons/gi";
+import { MdTouchApp } from "react-icons/md";
+import { BiTimer } from "react-icons/bi";
+import { AiOutlineIdcard } from "react-icons/ai";
 
 export const statsData = [
   {
     icon: (
-      <GiEarthAmerica
+      <AiOutlineIdcard
         css={`
           color: #047bf1;
         `}
       />
     ),
-    title: "Over 100 Destinations",
-    desc: "Travel to over 100 unique places",
+    title: "Certified",
+    desc: "Part 107 certified pilot",
   },
   {
     icon: (
-      <MdAirplanemodeActive
+      <MdTouchApp
         css={`
           color: #f3a82e;
         `}
       />
     ),
-    title: "1 Million Trips Made",
-    desc: "Over 1 million trips completed last year",
+    title: "Personal Touch",
+    desc: "Located locally, available onsite",
   },
   {
     icon: (
-      <MdTimer
+      <BiTimer
         css={`
           color: #f34f2e;
         `}
       />
     ),
-    title: "Fastest Support",
-    desc: "Access our support team 24/7",
+    title: "Fast Turnaround",
+    desc: "Quick response and time to production",
   },
-  {
-    icon: (
-      <FaMoneyCheck
-        css={`
-          color: #3af576;
-        `}
-      />
-    ),
-    title: "Best Deals",
-    desc: "We offer the best prices",
-  },
-]
+];

@@ -1,0 +1,61 @@
+[
+  {
+    "title": "Project 1",
+    "subtitle": "This is the first project from Soaring Hawk Videography",
+    "name": "project1",
+    "slug": "/projects/project-1",
+    "button": "View Project",
+    "images": [
+      {
+        "img": "../assets/images/project1/photo1.jpg",
+        "alt": "Aerial Imaging"
+      },
+      {
+        "img": "../assets/images/project1/photo2.jpg",
+        "alt": "Aerial Imaging"
+      },
+      {
+        "img": "../assets/images/project1/photo3.jpg",
+        "alt": "Aerial Imaging"
+      },
+      {
+        "img": "../assets/images/project1/photo4.jpg",
+        "alt": "Aerial Imaging"
+      },
+      {
+        "img": "../assets/images/project1/photo5.jpg",
+        "alt": "Aerial Imaging"
+      },
+      {
+        "img": "../assets/images/project1/photo6.jpg",
+        "alt": "Aerial Imaging"
+      }
+    ]
+  },
+  {
+    "title": "Project 2",
+    "subtitle": "This is the second project from Soaring Hawk Videography",
+    "name": "project2",
+    "slug": "/projects/project-2",
+    "button": "View Project",
+    "images": [
+      {
+        "img": "../assets/images/project1/photo4.jpg",
+        "alt": "Aerial Imaging"
+      }
+    ]
+  },
+  {
+    "title": "Project 3",
+    "subtitle": "This is the third project from Soaring Hawk Videography",
+    "name": "project3",
+    "slug": "/projects/project-3",
+    "button": "View Project",
+    "images": [
+      {
+        "img": "../assets/images/project1/photo2.jpg",
+        "alt": "Aerial Imaging"
+      }
+    ]
+  }
+]

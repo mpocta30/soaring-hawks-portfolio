@@ -1,15 +1,48 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
-    title: `Soaring Hawk | Aerial Photography and Video`,
-    description: `The landing page for the Soaring Hawk drone company. Provide documentation and content as well as give customers the opportunity to
-    reach out for a new project.`,
-    author: `michaelpocta30@gmail.com`,
+    title: `Soaring Hawk`,
+    description: `The Soaring Hawk Drone Company is an aerial video and photography business, based out of
+    Richmond, Virginia.  We specialize in beautiful custom videos and photographs for any commercial or 
+    residential property as well as construction sites and other land surveys.  Look through some past projects
+    and reach out with your project idea.`,
+    url: "https://mpocta30.github.io/soaring-hawks-portfolio",
+    image: "/images/real-estate.jpg",
+    author: "michaelpocta30@gmail.com",
   },
   pathPrefix: "/soaring-hawks-portfolio",
+  flags: {
+    DEV_SSR: false,
+  },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          "G-YFPD9KQ2MQ", // Google Analytics / GA
+        ],
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: true,
+        },
+      },
+    },
+    `gatsby-plugin-sharp`,
+    {
+      resolve: "gatsby-source-contentful",
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-scroll-reveal`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -25,7 +58,6 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
