@@ -77,7 +77,7 @@ const ProductsContainer = styled.div`
 `;
 
 const ProductsHeading = styled.div`
-  font-size: clamp(1.5rem, 6vw, 3rem);
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
   font-weight: bold;
   text-align: center;
   margin-bottom: 3rem;
@@ -126,7 +126,7 @@ const ProductCard = styled.div`
 
 const ProductImg = styled(GatsbyImage)`
   height: 55%;
-  max-width: 80%;
+  max-width: 100%;
   position: relative;
   border-radius: 10px;
   filter: brightness(70%);
@@ -134,6 +134,10 @@ const ProductImg = styled(GatsbyImage)`
 
   &:hover {
     filter: brightness(100%);
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 80%;
   }
 `;
 
