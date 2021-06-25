@@ -1,3 +1,4 @@
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
 
@@ -32,7 +33,7 @@ const ColumnContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     text-align: center;
     padding: 0;
     margin: 2rem 0rem;
@@ -54,10 +55,10 @@ export const TextWrapper = styled.div`
   }
 `;
 
-export const ColumnImage = styled.img`
+export const ColumnImage = styled(GatsbyImage)`
   display: flex;
   border-radius: 10px;
   width: 100%;
-  max-width: 350px;
+  max-width: 550px;
   height: auto;
 `;

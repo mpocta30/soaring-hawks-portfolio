@@ -5,22 +5,67 @@ import Seo from "../components/seo";
 import PhotoHero from "../components/PhotoHero";
 import Contact from "../components/Contact";
 import styled from "styled-components";
-import ContactBg from "../assets/images/testimonial-1.jpg";
+import { useStaticQuery, graphql } from "gatsby";
 
-const ContactPage = () => (
-  <Layout>
-    <Seo title="Contact Us" />
-    <PhotoHero heading="Contact Us" headerBg={ContactBg} />
-    <Contact
-      title="Get in Touch"
-      subtitle="Have a project idea? Provide us with a little information."
-      pageName="Contact Us"
-    />
-    {/* <h1>Hi from the second page</h1>
-    <p>Welcome to page 2</p>
-    <Link to="/">Go back to the homepage</Link> */}
-  </Layout>
-);
+const ContactPage = () => {
+  const { allContentfulComponentPage } = useStaticQuery(
+    graphql`
+      query {
+        allContentfulComponentPage(filter: { title: { eq: "Contact Us" } }) {
+          edges {
+            node {
+              slug
+              sections {
+                ... on ContentfulComponentSeo {
+                  title
+                  ogImage {
+                    file {
+                      url
+                    }
+                  }
+                  description {
+                    description
+                  }
+                  keywords
+                }
+                ... on ContentfulPhotoHero {
+                  title
+                  headerBg {
+                    file {
+                      url
+                    }
+                  }
+                }
+                ... on ContentfulContactForm {
+                  id
+                  title
+                  subTitle
+                  pageName
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+  );
+  const node = allContentfulComponentPage.edges[0].node;
+  const seo = node.sections[0];
+  const photoHero = node.sections[1];
+  const contactForm = node.sections[2];
+
+  return (
+    <Layout>
+      <Seo seo={seo} />
+      <PhotoHero heading={photoHero.title} headerBg={photoHero.headerBg.file.url} />
+      <Contact
+        title={contactForm.title}
+        subtitle={contactForm.subTitle}
+        pageName={contactForm.pageName}
+      />
+    </Layout>
+  );
+};
 
 export default ContactPage;
 

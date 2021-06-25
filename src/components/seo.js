@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-function Seo({ description, lang, meta, title }) {
+function Seo({ title, description, lang, meta, seo }) {
   const { site, allContentfulComponentPhoto } = useStaticQuery(
     graphql`
       query seoQuery {
@@ -38,10 +38,13 @@ function Seo({ description, lang, meta, title }) {
     `,
   );
 
-  const metaTitle = title || site.siteMetadata.title;
-  const metaDescription = description || site.siteMetadata.description;
+  const metaTitle = seo?.title || title || site.siteMetadata.title;
+  const metaDescription =
+    seo?.description.description || description || site.siteMetadata.description;
   const defaultTitle = site.siteMetadata?.title;
-  const defaultImage = `${allContentfulComponentPhoto.edges[0].node.img.file.url}`;
+  const defaultImage =
+    seo?.ogImage.file.url || `${allContentfulComponentPhoto.edges[0].node.img.file.url}`;
+  const defaultKeyWords = seo?.keywords || "";
 
   return (
     <Helmet
@@ -54,6 +57,10 @@ function Seo({ description, lang, meta, title }) {
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: `keywords`,
+          content: defaultKeyWords,
         },
         {
           property: `og:image`,

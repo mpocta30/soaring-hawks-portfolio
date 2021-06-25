@@ -30,25 +30,35 @@ const IndexPage = () => {
                 }
                 ... on ContentfulComponentSeo {
                   title
+                  ogImage {
+                    file {
+                      url
+                    }
+                  }
+                  description {
+                    description
+                  }
+                  keywords
                 }
                 ... on ContentfulComponentSection {
                   columns {
-                    heading
-                    text {
-                      text
+                    ... on ContentfulComponentText {
+                      heading
+                      text {
+                        text
+                      }
                     }
                   }
                 }
-              }
-            }
-          }
-        }
-        allContentfulImageWithAiTags(filter: { title: { nin: "Contact Form" } }) {
-          edges {
-            node {
-              image {
-                file {
-                  url
+                ... on ContentfulContactForm {
+                  title
+                  subTitle
+                  pageName
+                  background {
+                    file {
+                      url
+                    }
+                  }
                 }
               }
             }
@@ -61,11 +71,11 @@ const IndexPage = () => {
   const videoHeroNode = node.sections[0];
   const seo = node.sections[1];
   const infoSection = node.sections[2].columns[0];
-  const contactBG = allContentfulImageWithAiTags.edges[0].node.image.file.url;
+  const contactForm = node.sections[3];
 
   return (
     <Layout>
-      <Seo title={seo.title} />
+      <Seo seo={seo} />
       <VideoHero
         videoBg={videoHeroNode.headerBg.file.url}
         heading={videoHeroNode.heading}
@@ -81,10 +91,10 @@ const IndexPage = () => {
       <Services heading="services" background="#efeff2" animation="slide-right" />
       <Stats animation="slide-right" />
       <Contact
-        sectionBg={contactBG}
-        title="Get a Quote"
-        subtitle="Have a project idea? Provide us with a little information."
-        pageName="Home Page"
+        title={contactForm.title}
+        subtitle={contactForm.subTitle}
+        pageName={contactForm.pageName}
+        sectionBg={contactForm.background.file.url}
       />
     </Layout>
   );

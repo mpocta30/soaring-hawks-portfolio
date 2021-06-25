@@ -7,21 +7,15 @@ import InformationSection from "../components/InformationSection";
 import Seo from "../components/seo";
 import Products from "../components/Products";
 
-function getProjects(products) {
-  const productsArray = [];
-  products.forEach((item, index) => {
-    const productObj = {};
-    productObj["image"] = item.hero.headerBg.gatsbyImageData;
-    productObj["title"] = item.title;
-    productObj["description"] = item.shortDescription.shortDescription;
-    productObj["slug"] = item.slug;
-
-    productsArray.push(productObj);
+function createNode(projects) {
+  const newProjects = [];
+  projects.forEach((item, index) => {
+    newProjects.push({ node: item });
   });
-  return productsArray;
+  return newProjects;
 }
 
-const ServicePage = ({ pageContext, location }) => {
+const ServicePage = ({ pageContext }) => {
   const service = pageContext.service;
   const seo = service.sections[0];
   const infoSection = service.sections[1].columns[0];
@@ -30,11 +24,11 @@ const ServicePage = ({ pageContext, location }) => {
 
   return (
     <Layout>
-      <Seo title={seo.title}></Seo>
+      <Seo seo={seo} />
       <PhotoHero heading={serviceInfo.title} headerBg={serviceInfo.hero.headerBg.file.url} />
       <InformationSection heading={infoSection.heading} text={infoSection.text.text} />
       <IconSection background="#efeff2" />
-      <Products background="white" products={getProjects(projects)} name="projects" />
+      <Products background="white" products={createNode(projects)} name="projects" />
     </Layout>
   );
 };

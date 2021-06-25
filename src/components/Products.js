@@ -23,12 +23,26 @@ function getProducts(products, animation) {
             <ProductTitle>{item.title}</ProductTitle>
             <ProductDescription>{item.description}</ProductDescription>
           </TextWrap>
-          <Button to={item.slug} primary="true" css={`font-size=14px;`}>
+          <ProductButton to={item.slug} primary="true">
             Learn More
-          </Button>
+          </ProductButton>
         </ProductInfo>
       </ProductCard>,
     );
+  });
+  return productsArray;
+}
+
+function createProductObj(products) {
+  const productsArray = [];
+  products.forEach((item, index) => {
+    const productObj = {};
+    productObj["image"] = item.node.hero.headerBg.gatsbyImageData;
+    productObj["title"] = item.node.title;
+    productObj["description"] = item.node.shortDescription.shortDescription;
+    productObj["slug"] = item.node.slug;
+
+    productsArray.push(productObj);
   });
   return productsArray;
 }
@@ -47,7 +61,7 @@ const Products = ({ background, products, name, animation }) => {
           {name}
         </ProductsHeading>
         <ProductsWrapper numColumns={products.length >= 4 ? 4 : products.length % 4}>
-          {getProducts(products, animation)}
+          {getProducts(createProductObj(products), animation)}
         </ProductsWrapper>
       </ProductsContainer>
     </div>
@@ -63,7 +77,7 @@ const ProductsContainer = styled.div`
 `;
 
 const ProductsHeading = styled.div`
-  font-size: clamp(1.5rem, 6vw, 3rem);
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
   font-weight: bold;
   text-align: center;
   margin-bottom: 3rem;
@@ -85,6 +99,10 @@ const ProductsWrapper = styled.div`
     grid-template-columns: 1fr;
     grid-gap: 1rem;
   }
+
+  @media screen and (max-width: 767px) {
+    padding: 0;
+  }
 `;
 
 const ProductCard = styled.div`
@@ -98,6 +116,7 @@ const ProductCard = styled.div`
 
   @media screen and (max-width: 768px) {
     padding-top: 1rem;
+    text-align: center;
   }
 
   @media screen and (max-width: 400px) {
@@ -106,7 +125,7 @@ const ProductCard = styled.div`
 `;
 
 const ProductImg = styled(GatsbyImage)`
-  height: 50%;
+  height: 55%;
   max-width: 100%;
   position: relative;
   border-radius: 10px;
@@ -115,6 +134,10 @@ const ProductImg = styled(GatsbyImage)`
 
   &:hover {
     filter: brightness(100%);
+  }
+
+  @media screen and (max-width: 768px) {
+    max-width: 80%;
   }
 `;
 
@@ -147,4 +170,10 @@ const ProductTitle = styled.h2`
 const ProductDescription = styled.p`
   font-style: italic;
   margin: 0.5rem 0 1rem 0;
+`;
+
+const ProductButton = styled(Button)`
+  display: inline-block;
+  margin-top: 1rem;
+  font-size=14px;
 `;

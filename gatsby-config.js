@@ -9,7 +9,7 @@ module.exports = {
     Richmond, Virginia.  We specialize in beautiful custom videos and photographs for any commercial or 
     residential property as well as construction sites and other land surveys.  Look through some past projects
     and reach out with your project idea.`,
-    url: "https://mpocta30.github.io/soaring-hawks-portfolio",
+    url: "https://soaringhawkdrones.netlify.com",
     image: "/images/real-estate.jpg",
     author: "michaelpocta30@gmail.com",
   },
