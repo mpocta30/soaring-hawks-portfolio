@@ -33,7 +33,7 @@ const ColumnContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 768px) {
     text-align: center;
     padding: 0;
     margin: 2rem 0rem;
@@ -59,6 +59,6 @@ export const ColumnImage = styled(GatsbyImage)`
   display: flex;
   border-radius: 10px;
   width: 100%;
-  max-width: 450px;
+  max-width: 550px;
   height: auto;
 `;

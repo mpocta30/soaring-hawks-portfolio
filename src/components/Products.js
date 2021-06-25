@@ -99,6 +99,10 @@ const ProductsWrapper = styled.div`
     grid-template-columns: 1fr;
     grid-gap: 1rem;
   }
+
+  @media screen and (max-width: 767px) {
+    padding: 0;
+  }
 `;
 
 const ProductCard = styled.div`
@@ -112,6 +116,7 @@ const ProductCard = styled.div`
 
   @media screen and (max-width: 768px) {
     padding-top: 1rem;
+    text-align: center;
   }
 
   @media screen and (max-width: 400px) {
@@ -120,8 +125,8 @@ const ProductCard = styled.div`
 `;
 
 const ProductImg = styled(GatsbyImage)`
-  height: 50%;
-  max-width: 100%;
+  height: 55%;
+  max-width: 80%;
   position: relative;
   border-radius: 10px;
   filter: brightness(70%);

@@ -98,11 +98,11 @@ exports.createPages = async ({ graphql, actions }) => {
             slug
             sections {
               ... on ContentfulComponentSeo {
+                title
                 ogImage {
                   file {
                     url
                   }
-                  title
                 }
                 description {
                   description

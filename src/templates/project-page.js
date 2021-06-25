@@ -24,7 +24,7 @@ const PhotoGallery = ({ pageContext }) => {
 
   return (
     <Layout>
-      <Seo title={seo}></Seo>
+      <Seo seo={seo}></Seo>
       <PhotoHero heading={projectInfo.title} headerBg={projectInfo.hero.headerBg.file.url} />
       <IconSection />
       <DoubleColumn

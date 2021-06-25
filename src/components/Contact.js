@@ -86,7 +86,7 @@ const ContactContainer = styled.div`
     url(${props.sectionbg}) no-repeat center;`
       : "none"};
   background-size: cover;
-  height: 550px;
+  height: 600px;
   width: 100%;
   padding: 5rem calc((100vw - 1300px) / 2);
   color: ${(props) => (props.sectionbg ? "white" : "#263b46")};

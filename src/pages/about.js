@@ -52,10 +52,14 @@ const about = () => {
                   }
                 }
                 ... on ContentfulContactForm {
-                  id
                   title
                   subTitle
                   pageName
+                  background {
+                    file {
+                      url
+                    }
+                  }
                 }
                 ... on ContentfulComponentSection {
                   columns {
@@ -103,6 +107,7 @@ const about = () => {
         title={contactForm.title}
         subtitle={contactForm.subTitle}
         pageName={contactForm.pageName}
+        sectionBg={contactForm.background.file.url}
       />
     </Layout>
   );
