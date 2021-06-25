@@ -12,7 +12,7 @@ const Footer = () => {
       <FooterLinkItems>
         <FooterLinkTitle>Contact Us</FooterLinkTitle>
         <FooterLink to="/contact-us">Contact</FooterLink>
-        <FooterEmailPhone href="tel:18043639816">+1 (804) 363-9816</FooterEmailPhone>
+        <FooterEmailPhone href="tel:18044208561">+1 (804) 420-8561</FooterEmailPhone>
         <FooterEmailPhone href="mailto: soaringhawkdrones@gmail.com">
           soaringhawkdrones@gmail.com
         </FooterEmailPhone>
