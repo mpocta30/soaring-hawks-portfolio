@@ -56,7 +56,7 @@ const Contact = ({ sectionBg, title, subtitle, pageName }) => {
             </FormName>
             <input type="email" placeholder="Enter your email" id="email" name="email" required />
             <select id="subject" name="subject" required>
-              <FormOption disabled selected value="">
+              <FormOption disabled value="">
                 -- Select a Service --
               </FormOption>
               {getServiceOptions()}

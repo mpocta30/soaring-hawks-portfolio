@@ -97,7 +97,7 @@ const ProductsWrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
-    grid-gap: 1rem;
+    grid-gap: 2rem;
   }
 
   @media screen and (max-width: 767px) {
@@ -107,12 +107,15 @@ const ProductsWrapper = styled.div`
 
 const ProductCard = styled.div`
   line-height: 2;
-  ${(props) => props.numColumns};
   width: 100%;
   height: 100%;
   position: relative;
   border-radius: 10px;
   transition: 0.2s ease;
+
+  @media screen and (min-width: 769px) {
+    ${(props) => props.numColumns};
+  }
 
   @media screen and (max-width: 768px) {
     padding-top: 1rem;
