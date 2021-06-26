@@ -5,12 +5,12 @@ import styled from "styled-components";
 const DoubleColumn = ({ background, flipped, columnOneContent, columnTwoContent }) => {
   return flipped ? (
     <ContentWrapper background={background}>
-      <FlippedColumnContainer>{columnOneContent}</FlippedColumnContainer>
+      <FlippedColumnOneContainer>{columnOneContent}</FlippedColumnOneContainer>
       <ColumnContainer>{columnTwoContent}</ColumnContainer>
     </ContentWrapper>
   ) : (
     <ContentWrapper background={background}>
-      <ColumnContainer>{columnOneContent}</ColumnContainer>
+      <ColumnOneContainer>{columnOneContent}</ColumnOneContainer>
       <ColumnContainer>{columnTwoContent}</ColumnContainer>
     </ContentWrapper>
   );
@@ -22,7 +22,7 @@ const ContentWrapper = styled.div`
   background-color: ${(props) => props.background};
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 0 2rem;
+  padding: 5rem 2rem;
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -45,10 +45,14 @@ const ColumnContainer = styled.div`
   }
 `;
 
-const FlippedColumnContainer = styled(ColumnContainer)`
-  @media screen and (min-width: 769px) {
+const ColumnOneContainer = styled(ColumnContainer)`
+  @media screen and (max-width: 768px) {
     order: 2;
   }
+`;
+
+const FlippedColumnOneContainer = styled(ColumnContainer)`
+  order: 2;
 `;
 
 export const TextWrapper = styled.div`
