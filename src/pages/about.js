@@ -11,7 +11,7 @@ import { useStaticQuery, graphql } from "gatsby";
 const companyInfo = (columnInfo) => {
   return (
     <TextWrapper>
-      <h3>{columnInfo.heading}</h3>
+      <h2>{columnInfo.heading}</h2>
       <p>{columnInfo.text.text}</p>
     </TextWrapper>
   );
@@ -102,7 +102,7 @@ const about = () => {
         columnOneContent={companyInfo(companySection.columns[0])}
         columnTwoContent={companyImage(companySection.columns[1])}
       />
-      <Services heading="Services" />
+      <Services background="#efeff2" heading="Services" />
       <Contact
         title={contactForm.title}
         subtitle={contactForm.subTitle}

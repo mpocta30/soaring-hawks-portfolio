@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
+import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -19,9 +20,20 @@ const Footer = () => {
       </FooterLinkItems>
       <FooterLinkItems>
         <FooterLinkTitle>Social Media</FooterLinkTitle>
-        <FooterLink to="/">Instagram</FooterLink>
-        <FooterLink to="/">Facebook</FooterLink>
-        <FooterLink to="/">Youtube</FooterLink>
+        <SocialWrapper>
+          <FooterLink to="https://www.facebook.com/">
+            <FaFacebook />
+          </FooterLink>
+          <FooterLink to="https://www.instagram.com/">
+            <FaInstagram />
+          </FooterLink>
+          <FooterLink to="https://www.youtube.com/">
+            <FaYoutube />
+          </FooterLink>
+          <FooterLink to="https://www.twitter.com/">
+            <FaTwitter />
+          </FooterLink>
+        </SocialWrapper>
       </FooterLinkItems>
     </FooterContainer>
   );
@@ -93,5 +105,16 @@ const FooterEmailPhone = styled.a`
   &:hover {
     color: #3b5b6d;
     transition: 0.3s ease-out;
+  }
+`;
+
+const SocialWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  ${FooterLink} {
+    font-size: 1.25rem;
+    padding-right: 10px;
   }
 `;

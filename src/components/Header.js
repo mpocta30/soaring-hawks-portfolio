@@ -2,6 +2,7 @@ import * as React from "react";
 import { animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
 import { FaBars, FaTimes, FaArrowUp } from "react-icons/fa";
+import { FiChevronDown } from "react-icons/fi";
 import { menuData } from "../data/MenuData";
 import { PhoneButton } from "./Button";
 import NavImage from "../assets/images/logo.png";
@@ -45,25 +46,24 @@ const Header = () => {
         <NavCloseBtn onClick={toggleExpanded} />
         <NavMenu>
           {menuData().map((item, index) => (
-            <DropDown>
+            <SubNav key={index}>
               {Array.isArray(item.children) ? (
-                <HoverNavLink key={index} to={item.link}>
-                  {item.title}
-                  <NavSubMenu>
+                <div>
+                  <SubnavBtn to={item.link}>
+                    {item.title} <FiChevronDown />
+                  </SubnavBtn>
+                  <SubnavContent>
                     {item.children.map((serviceItem, serviceIndex) => (
                       <NavLink key={serviceIndex} to={serviceItem.node.slug}>
                         {serviceItem.node.title}
                       </NavLink>
                     ))}
-                  </NavSubMenu>
-                  <DownArrow />
-                </HoverNavLink>
+                  </SubnavContent>
+                </div>
               ) : (
-                <NavLink key={index} to={item.link}>
-                  {item.title}
-                </NavLink>
+                <NavLink to={item.link}>{item.title}</NavLink>
               )}
-            </DropDown>
+            </SubNav>
           ))}
           <SideButtonWrapper>
             <SmallPhoneButton primary="true" href="tel:18044208561">
@@ -244,38 +244,20 @@ const ToTopButon = styled.a`
   }
 `;
 
-const DownArrow = styled.i`
-  margin-left: 5px;
-  margin-top: 3px;
-  position: absolute;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  padding: 3px;
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const DropDown = styled.div`
-  position: relative;
-
-  @media screen and (min-width: 769px) {
-    display: inline-block;
-  }
-`;
-
-const HoverNavLink = styled(NavLink)`
+const SubnavBtn = styled(NavLink)`
   @media screen and (min-width: 769px) {
     display: block;
     padding: 16px;
   }
+
+  @media screen and (max-width: 768px) {
+    > svg {
+      display: none;
+    }
+  }
 `;
 
-const NavSubMenu = styled.div`
+const SubnavContent = styled.div`
   visibility: hidden;
   opacity: 0;
   position: absolute;
@@ -287,15 +269,6 @@ const NavSubMenu = styled.div`
   z-index: 1;
   font-size: 15px;
 
-  @media screen and (min-width: 769px) {
-    ${HoverNavLink}:hover &,
-  &:hover {
-      visibility: visible;
-      opacity: 1;
-      display: block;
-    }
-  }
-
   ${NavLink} {
     padding: 12px 16px;
     text-decoration: none;
@@ -303,6 +276,16 @@ const NavSubMenu = styled.div`
 
     &:hover {
       background-color: #263b46;
+    }
+  }
+`;
+
+const SubNav = styled.div`
+  @media screen and (min-width: 769px) {
+    &:hover ${SubnavContent} {
+      visibility: visible;
+      opacity: 1;
+      display: block;
     }
   }
 `;

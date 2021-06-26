@@ -2,8 +2,13 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
 
-const DoubleColumn = ({ background, columnOneContent, columnTwoContent }) => {
-  return (
+const DoubleColumn = ({ background, flipped, columnOneContent, columnTwoContent }) => {
+  return flipped ? (
+    <ContentWrapper background={background}>
+      <FlippedColumnContainer>{columnOneContent}</FlippedColumnContainer>
+      <ColumnContainer>{columnTwoContent}</ColumnContainer>
+    </ContentWrapper>
+  ) : (
     <ContentWrapper background={background}>
       <ColumnContainer>{columnOneContent}</ColumnContainer>
       <ColumnContainer>{columnTwoContent}</ColumnContainer>
@@ -40,18 +45,25 @@ const ColumnContainer = styled.div`
   }
 `;
 
+const FlippedColumnContainer = styled(ColumnContainer)`
+  @media screen and (min-width: 769px) {
+    order: 2;
+  }
+`;
+
 export const TextWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  h3 {
+  h2 {
     margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-style: italic;
+    font-size: clamp(1rem, 5vw, 2rem);
   }
 
   p {
     color: #3b3b3b;
+    margin-bottom: 2rem;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
   }
 `;
 

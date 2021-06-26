@@ -11,7 +11,7 @@ import Seo from "../components/seo";
 const projectDetails = (project) => {
   return (
     <TextWrapper>
-      <h3>{project.title}</h3>
+      <h2>{project.title}</h2>
       <p>{project.description.description}</p>
     </TextWrapper>
   );
