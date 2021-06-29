@@ -132,11 +132,11 @@ const ProductImg = styled(GatsbyImage)`
   max-width: 100%;
   position: relative;
   border-radius: 10px;
-  filter: brightness(70%);
+  filter: brightness(100%);
   transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
 
   &:hover {
-    filter: brightness(100%);
+    filter: brightness(130%);
   }
 
   @media screen and (max-width: 768px) {
