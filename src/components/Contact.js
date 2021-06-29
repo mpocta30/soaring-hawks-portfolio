@@ -80,8 +80,8 @@ const ContactContainer = styled.div`
       ? `linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.5) 0%,
-      rgba(0, 0, 0, 0.5) 35%,
-      rgba(0, 0, 0, 0.1) 100%
+      rgba(0, 0, 0, 0.2) 35%,
+      rgba(0, 0, 0, 0.01) 100%
     ),
     url(${props.sectionbg}) no-repeat center;`
       : "none"};
