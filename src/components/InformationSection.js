@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const InformationSection = ({ background, animation }) => {
+const InformationSection = ({ heading, text, background, animation }) => {
   return (
     <InfoContainer
       background={background}
@@ -10,12 +10,8 @@ const InformationSection = ({ background, animation }) => {
       data-sal-delay="300"
       data-sal-easing="ease"
     >
-      <Heading>Aerial Photography and Video</Heading>
-      <Body>
-        Our professional drone services ensure the highest quality output for whatever project you
-        have in mind. Aerial views help to increase visibility, separate your property from the rest
-        of the pack. Contact us today to see how we can accomplish your mission together.
-      </Body>
+      <Heading>{heading}</Heading>
+      <Body>{text}</Body>
     </InfoContainer>
   );
 };

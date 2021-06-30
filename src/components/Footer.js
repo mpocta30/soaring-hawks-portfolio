@@ -27,7 +27,7 @@ const Footer = () => {
           <FooterLink to="https://www.instagram.com/">
             <FaInstagram />
           </FooterLink>
-          <FooterLink to="https://www.youtube.com/">
+          <FooterLink to="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
             <FaYoutube />
           </FooterLink>
           <FooterLink to="https://www.twitter.com/">
