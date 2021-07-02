@@ -14,7 +14,6 @@ module.exports = {
     image: "/images/real-estate.jpg",
     author: "michaelpocta30@gmail.com",
   },
-  pathPrefix: "/soaring-hawks-portfolio",
   flags: {
     DEV_SSR: false,
   },
