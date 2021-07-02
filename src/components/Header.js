@@ -2,6 +2,7 @@ import * as React from "react";
 import { animateScroll as scroll } from "react-scroll";
 import styled from "styled-components";
 import { FaBars, FaTimes, FaArrowUp } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 import { menuData } from "../data/MenuData";
 import { PhoneButton } from "./Button";
@@ -70,6 +71,17 @@ const Header = () => {
               +1 (804) 420-8561
             </SmallPhoneButton>
           </SideButtonWrapper>
+          <SideSocialWrapper>
+            <NavLink to="https://www.facebook.com/soaringhawkaerial/" target="_blank">
+              <FaFacebook />
+            </NavLink>
+            <NavLink to="https://www.instagram.com/soaringhawkaerial/" target="_blank">
+              <FaInstagram />
+            </NavLink>
+            <NavLink to="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
+              <FaYoutube />
+            </NavLink>
+          </SideSocialWrapper>
         </NavMenu>
       </NavContent>
       <NavBtn>
@@ -287,5 +299,25 @@ const SubNav = styled.div`
       opacity: 1;
       display: block;
     }
+  }
+`;
+
+const SideSocialWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 6rem;
+  justify-content: center;
+
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
+
+  ${NavLink} {
+    font-size: 24px;
+  }
+
+  ${NavLink}:not(:last-child) {
+    padding-right: 16px;
   }
 `;

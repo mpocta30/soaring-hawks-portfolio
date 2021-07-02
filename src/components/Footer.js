@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -21,17 +21,14 @@ const Footer = () => {
       <FooterLinkItems>
         <FooterLinkTitle>Social Media</FooterLinkTitle>
         <SocialWrapper>
-          <FooterLink to="https://www.facebook.com/">
+          <FooterLink to="https://www.facebook.com/soaringhawkaerial/" target="_blank">
             <FaFacebook />
           </FooterLink>
-          <FooterLink to="https://www.instagram.com/">
+          <FooterLink to="https://www.instagram.com/soaringhawkaerial/" target="_blank">
             <FaInstagram />
           </FooterLink>
           <FooterLink to="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
             <FaYoutube />
-          </FooterLink>
-          <FooterLink to="https://www.twitter.com/">
-            <FaTwitter />
           </FooterLink>
         </SocialWrapper>
       </FooterLinkItems>
@@ -114,7 +111,10 @@ const SocialWrapper = styled.div`
   justify-content: space-between;
 
   ${FooterLink} {
-    font-size: 1.25rem;
-    padding-right: 10px;
+    font-size: 24px;
+  }
+
+  ${FooterLink}:not(:last-child) {
+    padding-right: 16px;
   }
 `;
