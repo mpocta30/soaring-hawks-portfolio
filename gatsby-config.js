@@ -14,6 +14,7 @@ module.exports = {
     image: "/images/real-estate.jpg",
     author: "michaelpocta30@gmail.com",
   },
+  pathPrefix: "/",
   flags: {
     DEV_SSR: false,
   },
@@ -39,6 +40,7 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    `gatsby-plugin-advanced-sitemap`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
@@ -68,32 +70,6 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `./src/data/`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-advanced-sitemap`,
-      options: {
-        // 1 query for each data type
-        query: `
-      {
-        allContentfulComponentPage {
-          edges {
-            node {
-              id
-              slug
-              updatedAt
-            }
-          }
-        }
-      }`,
-        mapping: {
-          allGhostPage: {
-            sitemap: `pages`,
-          },
-        },
-        exclude: [`/dev-404-page`, `/404`, `/404.html`],
-        createLinkInHead: true, // optional: create a link in the `<head>` of your site
-        addUncaughtPages: true, // optional: will fill up pages that are not caught by queries and mapping and list them under `sitemap-pages.xml`
       },
     },
   ],

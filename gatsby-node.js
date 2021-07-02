@@ -118,7 +118,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 shortName
                 photoGallery {
                   photos {
-                    gatsbyImageData
+                    gatsbyImageData(width: 1200)
                     title
                   }
                 }
@@ -195,7 +195,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 projects {
                   hero {
                     headerBg {
-                      gatsbyImageData
+                      gatsbyImageData(width: 800)
                     }
                   }
                   title
