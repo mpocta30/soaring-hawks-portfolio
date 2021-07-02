@@ -9,11 +9,11 @@ module.exports = {
     Richmond, Virginia.  We specialize in beautiful custom videos and photographs for any commercial or 
     residential property as well as construction sites and other land surveys.  Look through some past projects
     and reach out with your project idea.`,
-    url: "https://soaringhawkdrones.netlify.app",
+    url: "https://www.soaringhawkaerial.com",
+    siteUrl: "https://www.soaringhawkaerial.com",
     image: "/images/real-estate.jpg",
     author: "michaelpocta30@gmail.com",
   },
-  pathPrefix: "/soaring-hawks-portfolio",
   flags: {
     DEV_SSR: false,
   },
@@ -50,13 +50,6 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `videos`,
-        path: `${__dirname}/src/assets/videos`,
-      },
-    },
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -75,6 +68,32 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `./src/data/`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-advanced-sitemap`,
+      options: {
+        // 1 query for each data type
+        query: `
+      {
+        allContentfulComponentPage {
+          edges {
+            node {
+              id
+              slug
+              updatedAt
+            }
+          }
+        }
+      }`,
+        mapping: {
+          allGhostPage: {
+            sitemap: `pages`,
+          },
+        },
+        exclude: [`/dev-404-page`, `/404`, `/404.html`],
+        createLinkInHead: true, // optional: create a link in the `<head>` of your site
+        addUncaughtPages: true, // optional: will fill up pages that are not caught by queries and mapping and list them under `sitemap-pages.xml`
       },
     },
   ],
