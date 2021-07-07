@@ -95,6 +95,7 @@ const services = () => {
     services.forEach((item, index) => {
       sections.push(
         <DoubleColumn
+          key={index}
           background={index % 2 ? "#efeff2" : "white"}
           flipped={index % 2}
           columnOneContent={serviceInfo(item)}

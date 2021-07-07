@@ -70,7 +70,7 @@ class Lightbox extends Component {
       <Fragment>
         <Gallery>
           {images.map((img, i) => (
-            <GalleryItem key={img.gatsbyImageData}>
+            <GalleryItem key={i}>
               <a href={img.gatsbyImageData} alt={img.title} onClick={(e) => this.handleClick(e, i)}>
                 <StyledImg image={getImage(img)} alt={img.title} />
               </a>
@@ -81,7 +81,11 @@ class Lightbox extends Component {
         <LightboxModal visible={showLightbox} onKeyUp={(e) => this.handleKeyDown(e)}>
           <CloseButton onClick={this.closeModal} />
           <LightboxContent>
-            <StyledImg image={getImage(images[selectedImage])} alt={images[selectedImage].title} />
+            <StyledImg
+              image={getImage(images[selectedImage])}
+              alt={images[selectedImage].title}
+              objectFit="contain"
+            />
             <NavLeft onClick={this.goBack} disabled={selectedImage === 0} />
             <NavRight onClick={this.goForward} disabled={selectedImage === images.length - 1} />
           </LightboxContent>
@@ -99,6 +103,7 @@ const StyledImg = styled(GatsbyImage)`
   height: 100%; // or whatever
   & > img {
     object-position: 0% 0% !important; // or whatever
+    object-fit: contain;
   }
 `;
 
@@ -219,7 +224,7 @@ const NavLeft = styled(FaAngleLeft)`
 `;
 
 const LightboxModal = styled.div`
-  display: flex;
+  display: ${(props) => (props.visible ? "block" : "none")};
   position: fixed;
   z-index: 200;
   padding-top: 100px;
@@ -235,11 +240,13 @@ const LightboxModal = styled.div`
 
 const LightboxContent = styled.div`
   position: relative;
-  background-color: #fefefe;
+  display: block;
+  background-color: #000;
   margin: auto;
   padding: 0;
   width: 90%;
   max-width: 1200px;
+  height: 85vh;
 `;
 
 Lightbox.propTypes = {

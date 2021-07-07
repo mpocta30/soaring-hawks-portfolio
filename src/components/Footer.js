@@ -21,15 +21,15 @@ const Footer = () => {
       <FooterLinkItems>
         <FooterLinkTitle>Social Media</FooterLinkTitle>
         <SocialWrapper>
-          <FooterLink to="https://www.facebook.com/soaringhawkaerial/" target="_blank">
+          <a to="https://www.facebook.com/soaringhawkaerial/" target="_blank">
             <FaFacebook />
-          </FooterLink>
-          <FooterLink to="https://www.instagram.com/soaringhawkaerial/" target="_blank">
+          </a>
+          <a to="https://www.instagram.com/soaringhawkaerial/" target="_blank">
             <FaInstagram />
-          </FooterLink>
-          <FooterLink to="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
+          </a>
+          <a to="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
             <FaYoutube />
-          </FooterLink>
+          </a>
         </SocialWrapper>
       </FooterLinkItems>
     </FooterContainer>
@@ -110,11 +110,20 @@ const SocialWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  ${FooterLink} {
+  a {
     font-size: 24px;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    color: #3d3d4e;
+    cursor: pointer;
+
+    &:hover {
+      color: #3b5b6d;
+      transition: 0.3s ease-out;
+    }
   }
 
-  ${FooterLink}:not(:last-child) {
+  a:not(:last-child) {
     padding-right: 16px;
   }
 `;
