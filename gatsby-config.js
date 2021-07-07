@@ -9,7 +9,7 @@ module.exports = {
     Richmond, Virginia.  We specialize in beautiful custom videos and photographs for any commercial or 
     residential property as well as construction sites and other land surveys.  Look through some past projects
     and reach out with your project idea.`,
-    siteUrl: "https://www.soaringhawkaerial.com",
+    siteUrl: process.env.SITE_URL,
     image: "/images/soaring_hawk.png",
     author: "michaelpocta30@gmail.com",
   },

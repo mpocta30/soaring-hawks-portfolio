@@ -18,7 +18,6 @@ function Seo({ title, description, lang, meta, seo }) {
           siteMetadata {
             defaultTitle: title
             defaultDescription: description
-            siteUrl: url
             defaultImage: image
             author
           }
