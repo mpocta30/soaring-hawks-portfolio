@@ -61,11 +61,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `soaring-hawk-portfolio`,
+        short_name: `portfolio`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#263b46`,
+        theme_color: `#263b46`,
         display: `minimal-ui`,
         icon: `src/assets/images/drone-icon.png`, // This path is relative to the root of the site.
       },
