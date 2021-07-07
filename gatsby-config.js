@@ -9,11 +9,12 @@ module.exports = {
     Richmond, Virginia.  We specialize in beautiful custom videos and photographs for any commercial or 
     residential property as well as construction sites and other land surveys.  Look through some past projects
     and reach out with your project idea.`,
-    url: "https://soaringhawkdrones.netlify.app",
+    url: "https://www.soaringhawkaerial.com",
+    siteUrl: "https://www.soaringhawkaerial.com",
     image: "/images/real-estate.jpg",
     author: "michaelpocta30@gmail.com",
   },
-  pathPrefix: "/soaring-hawks-portfolio",
+  pathPrefix: "/",
   flags: {
     DEV_SSR: false,
   },
@@ -39,6 +40,7 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    `gatsby-plugin-advanced-sitemap`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
@@ -48,13 +50,6 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/assets/images`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `videos`,
-        path: `${__dirname}/src/assets/videos`,
       },
     },
     `gatsby-transformer-sharp`,
