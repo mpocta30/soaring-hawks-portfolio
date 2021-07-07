@@ -72,15 +72,15 @@ const Header = () => {
             </SmallPhoneButton>
           </SideButtonWrapper>
           <SideSocialWrapper>
-            <NavLink to="https://www.facebook.com/soaringhawkaerial/" target="_blank">
+            <a to="https://www.facebook.com/soaringhawkaerial/" target="_blank">
               <FaFacebook />
-            </NavLink>
-            <NavLink to="https://www.instagram.com/soaringhawkaerial/" target="_blank">
+            </a>
+            <a to="https://www.instagram.com/soaringhawkaerial/" target="_blank">
               <FaInstagram />
-            </NavLink>
-            <NavLink to="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
+            </a>
+            <a to="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
               <FaYoutube />
-            </NavLink>
+            </a>
           </SideSocialWrapper>
         </NavMenu>
       </NavContent>
@@ -313,11 +313,31 @@ const SideSocialWrapper = styled.div`
     display: none;
   }
 
-  ${NavLink} {
+  a {
     font-size: 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    cursor: pointer;
+    height: 100%;
+
+    &:hover,
+    &:focus {
+      color: #f1f1f1;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 8px;
+      text-decoration: none;
+      font-size: 25px;
+      display: block;
+      transition: 0.3s;
+    }
   }
 
-  ${NavLink}:not(:last-child) {
+  a:not(:last-child) {
     padding-right: 16px;
   }
 `;

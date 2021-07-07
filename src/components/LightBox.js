@@ -70,7 +70,7 @@ class Lightbox extends Component {
       <Fragment>
         <Gallery>
           {images.map((img, i) => (
-            <GalleryItem key={img.gatsbyImageData}>
+            <GalleryItem key={i}>
               <a href={img.gatsbyImageData} alt={img.title} onClick={(e) => this.handleClick(e, i)}>
                 <StyledImg image={getImage(img)} alt={img.title} />
               </a>
