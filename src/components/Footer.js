@@ -21,13 +21,13 @@ const Footer = () => {
       <FooterLinkItems>
         <FooterLinkTitle>Social Media</FooterLinkTitle>
         <SocialWrapper>
-          <a to="https://www.facebook.com/soaringhawkaerial/" target="_blank">
+          <a href="https://www.facebook.com/soaringhawkaerial/" target="_blank">
             <FaFacebook />
           </a>
-          <a to="https://www.instagram.com/soaringhawkaerial/" target="_blank">
+          <a href="https://www.instagram.com/soaringhawkaerial/" target="_blank">
             <FaInstagram />
           </a>
-          <a to="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
+          <a href="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
             <FaYoutube />
           </a>
         </SocialWrapper>
