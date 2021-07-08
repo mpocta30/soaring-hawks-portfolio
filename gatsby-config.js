@@ -14,7 +14,7 @@ module.exports = {
     image: "/images/soaring_hawk.png",
     author: "michaelpocta30@gmail.com",
   },
-  pathPrefix: "/",
+  pathPrefix: process.env.PATH_PREFIX,
   flags: {
     DEV_SSR: false,
   },
