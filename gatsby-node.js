@@ -195,7 +195,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 projects {
                   hero {
                     headerBg {
-                      gatsbyImageData(width: 800)
+                      gatsbyImageData(width: 2500)
                     }
                   }
                   title
