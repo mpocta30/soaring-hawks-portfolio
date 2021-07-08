@@ -18,7 +18,6 @@ const companyInfo = (columnInfo) => {
 };
 
 const companyImage = (columnInfo) => {
-  console.log(columnInfo.img.gatsbyImageData);
   return <ColumnImage image={columnInfo.img.gatsbyImageData} alt={columnInfo.altText.altText} />;
 };
 

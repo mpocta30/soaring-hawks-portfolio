@@ -9,9 +9,9 @@ module.exports = {
     Richmond, Virginia.  We specialize in beautiful custom videos and photographs for any commercial or 
     residential property as well as construction sites and other land surveys.  Look through some past projects
     and reach out with your project idea.`,
-    url: "https://www.soaringhawkaerial.com",
-    siteUrl: "https://www.soaringhawkaerial.com",
-    image: "/images/real-estate.jpg",
+    url: process.env.SITE_URL,
+    siteUrl: process.env.SITE_URL,
+    image: "/images/soaring_hawk.png",
     author: "michaelpocta30@gmail.com",
   },
   pathPrefix: "/",
@@ -56,11 +56,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `soaring-hawk-portfolio`,
+        short_name: `portfolio`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#263b46`,
+        theme_color: `#263b46`,
         display: `minimal-ui`,
         icon: `src/assets/images/drone-icon.png`, // This path is relative to the root of the site.
       },
