@@ -19,6 +19,7 @@ module.exports = {
     DEV_SSR: false,
   },
   plugins: [
+    `gatsby-plugin-advanced-sitemap`,
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -40,7 +41,6 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
-    `gatsby-plugin-advanced-sitemap`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
@@ -57,12 +57,12 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `soaring-hawk-portfolio`,
-        short_name: `portfolio`,
+        short_name: `soaring-hawk`,
         start_url: `/`,
         background_color: `#263b46`,
         theme_color: `#263b46`,
-        display: `minimal-ui`,
-        icon: `src/assets/images/drone-icon.png`, // This path is relative to the root of the site.
+        display: `browser`,
+        icon: `src/assets/images/favicon.ico`, // This path is relative to the root of the site.
       },
     },
     `gatsby-transformer-json`,
