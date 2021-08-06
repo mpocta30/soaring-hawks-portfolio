@@ -35,32 +35,41 @@ const Contact = ({ sectionBg, title, subtitle, pageName }) => {
         <p>{subtitle}</p>
         <form method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact">
           <FormWrap>
+            <input type="hidden" name="bot-field" />
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="page-name" value={pageName} />
             <FormName>
-              <input type="hidden" name="bot-field" />
-              <input type="hidden" name="form-name" value="contact" />
-              <input type="hidden" name="page-name" value={pageName} />
-              <input
-                type="text"
-                placeholder="Enter your first name"
-                id="firstname"
-                name="firstname"
-                required
-              />
-              <input
-                type="text"
-                placeholder="Enter your last name"
-                id="lastname"
-                name="lastname"
-                required
-              />
+              <NameInput>
+                <label for="firstname">First Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter your first name"
+                  id="firstname"
+                  name="firstname"
+                  required
+                />
+              </NameInput>
+              <NameInput>
+                <label for="lastname">Last Name</label>
+                <input
+                  type="text"
+                  placeholder="Enter your last name"
+                  id="lastname"
+                  name="lastname"
+                  required
+                />
+              </NameInput>
             </FormName>
+            <label for="email">Email</label>
             <input type="email" placeholder="Enter your email" id="email" name="email" required />
+            <label for="subject">Subject</label>
             <select id="subject" name="subject" required>
               <FormOption disabled value="">
                 -- Select a Service --
               </FormOption>
               {getServiceOptions()}
             </select>
+            <label for="message">Message</label>
             <textarea id="message" placeholder="Enter Message" name="message" required />
             <FormButton as="button" primary="true" type="submit">
               Submit
@@ -86,7 +95,7 @@ const ContactContainer = styled.div`
     url(${props.sectionbg}) no-repeat center;`
       : "none"};
   background-size: cover;
-  height: 600px;
+  height: 650px;
   width: 100%;
   padding: 5rem calc((100vw - 1300px) / 2);
   color: ${(props) => (props.sectionbg ? "white" : "#263b46")};
@@ -109,7 +118,7 @@ const ContactContent = styled.div`
 
   p {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     font-size: clamp(1rem, 2.5vw, 1.5rem);
     padding: 0 1rem;
   }
@@ -129,10 +138,11 @@ const FormWrap = styled.div`
   input,
   textarea,
   select {
+    font-size: 14px;
     padding: 1rem 1.5rem;
     outline: none;
     width: 100%;
-    border: ${(props) => (props.sectionbg ? "none" : "1px solid #e5e6e9")};
+    border: ${(props) => (props.sectionbg ? "none" : "1px solid lightgray")};
     margin-bottom: 1rem;
   }
 
@@ -161,6 +171,12 @@ const FormWrap = styled.div`
   textarea {
     height: 100px;
   }
+
+  label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const FormName = styled.div`
@@ -174,6 +190,8 @@ const FormName = styled.div`
     grid-gap: 0;
   }
 `;
+
+const NameInput = styled.div``;
 
 const FormButton = styled(Button)`
   height: 48px;
