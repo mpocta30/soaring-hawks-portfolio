@@ -63,7 +63,7 @@ const Contact = ({ sectionBg, title, subtitle, pageName }) => {
             </select>
             <textarea id="message" placeholder="Enter Message" name="message" required />
             <FormButton as="button" primary="true" type="submit">
-              Sign Up
+              Submit
             </FormButton>
           </FormWrap>
         </form>
