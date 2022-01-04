@@ -3,7 +3,7 @@ import React from "react";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import PhotoHero from "../components/PhotoHero";
-import DoubleColumn, { ColumnImage, TextWrapper } from "../components/DoubleColumn";
+import DoubleColumn, { ColumnImageVertical, TextWrapper } from "../components/DoubleColumn";
 import Services from "../components/Services";
 import Contact from "../components/Contact";
 import { useStaticQuery, graphql } from "gatsby";
