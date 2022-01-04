@@ -78,3 +78,11 @@ export const ColumnImage = styled(GatsbyImage)`
   max-width: 550px;
   height: auto;
 `;
+
+export const ColumnImageVertical = styled(GatsbyImage)`
+  display: flex;
+  border-radius: 10px;
+  height: 100%;
+  max-height: 550px;
+  width: auto;
+`;
