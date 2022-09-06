@@ -27,6 +27,8 @@ const Header = () => {
     }
   };
 
+  const rootElement = typeof document !== `undefined` ? document.getElementById("___gatsby") : null;
+
   React.useEffect(() => {
     changeBackground();
     // adding the event when scroll change background
@@ -75,7 +77,7 @@ const Header = () => {
                 * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
                 */
                 primary="true"
-                rootElement={document.getElementById("___gatsby")}
+                rootElement={rootElement}
                 text="Click here to schedule!"
               />
               {/* <SmallPhoneButton primary="true" href="tel:18044208561">
@@ -103,7 +105,7 @@ const Header = () => {
             * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
             * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
             */
-            rootElement={document.getElementById("___gatsby")}
+            rootElement={rootElement}
             text="Click here to schedule!"
           />
           {/* <PhoneButton primary="true" href="tel:18044208561">
