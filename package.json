@@ -14,7 +14,7 @@
     "gatsby-plugin-manifest": "^3.7.1",
     "gatsby-plugin-offline": "^4.7.1",
     "gatsby-plugin-react-helmet": "^4.6.0",
-    "gatsby-plugin-scroll-reveal": "0.0.7",
+    "gatsby-plugin-scroll-reveal": "^0.0.7",
     "gatsby-plugin-sharp": "^3.7.1",
     "gatsby-plugin-sitemap": "^4.6.0",
     "gatsby-plugin-styled-components": "^4.7.0",

@@ -28,6 +28,10 @@ const Header = () => {
   };
 
   React.useEffect(() => {
+    if (typeof window === "undefined" || !window.document) {
+      console.log(`bailing out of the useeffect. Going to continue to render??`)
+      return
+    }
     changeBackground();
     // adding the event when scroll change background
     window.addEventListener("scroll", changeBackground);
