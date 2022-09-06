@@ -5,9 +5,10 @@ import { FaBars, FaTimes, FaArrowUp } from "react-icons/fa";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 import { menuData } from "../data/MenuData";
-import { PhoneButton, ScheduleButton } from "./Button";
+import { PhoneButton } from "./Button";
 import NavImage from "../assets/images/logo.png";
-import { Link } from "gatsby";
+import {Link} from "gatsby";
+import {PopupButton} from "react-calendly";
 
 const Header = () => {
   const [isScrolling, setScrolling] = React.useState(false);
@@ -28,6 +29,10 @@ const Header = () => {
   };
 
   React.useEffect(() => {
+    if (typeof window === "undefined" || !window.document) {
+      console.log(`bailing out of the useeffect. Going to continue to render??`)
+      return
+    }
     changeBackground();
     // adding the event when scroll change background
     window.addEventListener("scroll", changeBackground);
@@ -95,7 +100,7 @@ const Header = () => {
         </NavMenu>
       </NavContent>
       <NavBtn>
-        <ScheduleButton
+        <PopupButton
           url="https://calendly.com/d/dzj-8fk-dv7"
           primary="true"
           /*
@@ -117,6 +122,26 @@ const Header = () => {
 };
 
 export default Header;
+
+// const ScheduleButton = styled(PopupButton)`
+//   background: ${({ primary }) => (primary ? "#263b46" : "#077BF1")};
+//   white-space: nowrap;
+//   padding: ${({ big }) => (big ? "16px 40px" : "10px 32px")};
+//   color: white;
+//   font-size: ${({ big }) => (big ? "20px" : "16px")};
+//   outline: none;
+//   border: none;
+//   min-width: 100px;
+//   cursor: pointer;
+//   text-decoration: none;
+//   transition: 0.3s !important;
+//   border-radius: ${({ round }) => (round ? "50px" : "none")};
+
+//   &:hover {
+//     background: ${({ primary }) => (primary ? "#345060" : "#263b46")};
+//     transform: translateY(-2px);
+//   }
+// `;
 
 const Nav = styled.nav`
   background: ${(props) => (props.isscrolling ? "#3b5b6d" : "transparent")};
@@ -179,7 +204,7 @@ const SmallPhoneButton = styled(PhoneButton)`
   }
 `;
 
-const SmallScheduleButton = styled(ScheduleButton)`
+const SmallScheduleButton = styled(PopupButton)`
   display: none;
 
   @media screen and (max-width: 768px) {
