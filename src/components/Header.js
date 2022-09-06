@@ -5,7 +5,7 @@ import { FaBars, FaTimes, FaArrowUp } from "react-icons/fa";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 import { menuData } from "../data/MenuData";
-import { PhoneButton } from "./Button";
+import { PhoneButton, ScheduleButton } from "./Button";
 import NavImage from "../assets/images/logo.png";
 import { Link } from "gatsby";
 
@@ -67,9 +67,19 @@ const Header = () => {
             </SubNav>
           ))}
           <SideButtonWrapper>
-            <SmallPhoneButton primary="true" href="tel:18044208561">
+            <SmallScheduleButton
+              url="https://calendly.com/d/dzj-8fk-dv7"
+              /*
+              * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
+              * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
+              */
+              primary="true"
+              rootElement={document.getElementById("___gatsby")}
+              text="Click here to schedule!"
+            />
+            {/* <SmallPhoneButton primary="true" href="tel:18044208561">
               +1 (804) 420-8561
-            </SmallPhoneButton>
+            </SmallPhoneButton> */}
           </SideButtonWrapper>
           <SideSocialWrapper>
             <a href="https://www.facebook.com/soaringhawkaerial/" target="_blank">
@@ -85,9 +95,19 @@ const Header = () => {
         </NavMenu>
       </NavContent>
       <NavBtn>
-        <PhoneButton primary="true" href="tel:18044208561">
+        <ScheduleButton
+          url="https://calendly.com/d/dzj-8fk-dv7"
+          primary="true"
+          /*
+          * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
+          * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
+          */
+          rootElement={document.getElementById("___gatsby")}
+          text="Click here to schedule!"
+        />
+        {/* <PhoneButton primary="true" href="tel:18044208561">
           +1 (804) 420-8561
-        </PhoneButton>
+        </PhoneButton> */}
       </NavBtn>
       <ToTopButon isscrolling={isScrolling ? 1 : 0} onClick={scrollToTop}>
         <FaArrowUp />
@@ -158,6 +178,15 @@ const SmallPhoneButton = styled(PhoneButton)`
     position: absolute;
   }
 `;
+
+const SmallScheduleButton = styled(ScheduleButton)`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    position: absolute;
+  }
+`
 
 const NavLink = styled(Link)`
   color: white;
@@ -239,8 +268,8 @@ const ToTopButon = styled.a`
   color: white;
   cursor: pointer;
   position: fixed;
-  bottom: 20px;
-  right: 30px;
+  bottom: 15px;
+  right: 20px;
   z-index: 99;
   border-radius: 50%;
   font-size: clamp(1.5rem, 4vw, 2rem);
