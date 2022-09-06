@@ -28,10 +28,6 @@ const Header = () => {
   };
 
   React.useEffect(() => {
-    if (typeof window === "undefined" || !window.document) {
-      console.log(`bailing out of the useeffect. Going to continue to render??`)
-      return
-    }
     changeBackground();
     // adding the event when scroll change background
     window.addEventListener("scroll", changeBackground);
@@ -41,83 +37,85 @@ const Header = () => {
     scroll.scrollToTop();
   };
 
-  return (
-    <Nav isscrolling={isScrolling ? 1 : 0}>
-      <NavLink to="/">
-        <NavImg src={NavImage} alt="logo" />
-      </NavLink>
-      <Bars onClick={toggleExpanded} />
-      <NavContent expanded={expanded}>
-        <NavCloseBtn onClick={toggleExpanded} />
-        <NavMenu>
-          {menuData().map((item, index) => (
-            <SubNav key={index}>
-              {Array.isArray(item.children) ? (
-                <div>
-                  <SubnavBtn to={item.link}>
-                    {item.title} <FiChevronDown />
-                  </SubnavBtn>
-                  <SubnavContent>
-                    {item.children.map((serviceItem, serviceIndex) => (
-                      <NavLink key={serviceIndex} to={serviceItem.node.slug}>
-                        {serviceItem.node.title}
-                      </NavLink>
-                    ))}
-                  </SubnavContent>
-                </div>
-              ) : (
-                <NavLink to={item.link}>{item.title}</NavLink>
-              )}
-            </SubNav>
-          ))}
-          <SideButtonWrapper>
-            <SmallScheduleButton
-              url="https://calendly.com/d/dzj-8fk-dv7"
-              /*
-              * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
-              * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
-              */
-              primary="true"
-              rootElement={document.getElementById("___gatsby")}
-              text="Click here to schedule!"
-            />
-            {/* <SmallPhoneButton primary="true" href="tel:18044208561">
-              +1 (804) 420-8561
-            </SmallPhoneButton> */}
-          </SideButtonWrapper>
-          <SideSocialWrapper>
-            <a href="https://www.facebook.com/soaringhawkaerial/" target="_blank">
-              <FaFacebook />
-            </a>
-            <a href="https://www.instagram.com/soaringhawkaerial/" target="_blank">
-              <FaInstagram />
-            </a>
-            <a href="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
-              <FaYoutube />
-            </a>
-          </SideSocialWrapper>
-        </NavMenu>
-      </NavContent>
-      <NavBtn>
-        <ScheduleButton
-          url="https://calendly.com/d/dzj-8fk-dv7"
-          primary="true"
-          /*
-          * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
-          * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
-          */
-          rootElement={document.getElementById("___gatsby")}
-          text="Click here to schedule!"
-        />
-        {/* <PhoneButton primary="true" href="tel:18044208561">
-          +1 (804) 420-8561
-        </PhoneButton> */}
-      </NavBtn>
-      <ToTopButon isscrolling={isScrolling ? 1 : 0} onClick={scrollToTop}>
-        <FaArrowUp />
-      </ToTopButon>
-    </Nav>
-  );
+  if(typeof window !== 'undefined') {
+    return (
+      <Nav isscrolling={isScrolling ? 1 : 0}>
+        <NavLink to="/">
+          <NavImg src={NavImage} alt="logo" />
+        </NavLink>
+        <Bars onClick={toggleExpanded} />
+        <NavContent expanded={expanded}>
+          <NavCloseBtn onClick={toggleExpanded} />
+          <NavMenu>
+            {menuData().map((item, index) => (
+              <SubNav key={index}>
+                {Array.isArray(item.children) ? (
+                  <div>
+                    <SubnavBtn to={item.link}>
+                      {item.title} <FiChevronDown />
+                    </SubnavBtn>
+                    <SubnavContent>
+                      {item.children.map((serviceItem, serviceIndex) => (
+                        <NavLink key={serviceIndex} to={serviceItem.node.slug}>
+                          {serviceItem.node.title}
+                        </NavLink>
+                      ))}
+                    </SubnavContent>
+                  </div>
+                ) : (
+                  <NavLink to={item.link}>{item.title}</NavLink>
+                )}
+              </SubNav>
+            ))}
+            <SideButtonWrapper>
+              <SmallScheduleButton
+                url="https://calendly.com/d/dzj-8fk-dv7"
+                /*
+                * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
+                * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
+                */
+                primary="true"
+                rootElement={document.getElementById("___gatsby")}
+                text="Click here to schedule!"
+              />
+              {/* <SmallPhoneButton primary="true" href="tel:18044208561">
+                +1 (804) 420-8561
+              </SmallPhoneButton> */}
+            </SideButtonWrapper>
+            <SideSocialWrapper>
+              <a href="https://www.facebook.com/soaringhawkaerial/" target="_blank">
+                <FaFacebook />
+              </a>
+              <a href="https://www.instagram.com/soaringhawkaerial/" target="_blank">
+                <FaInstagram />
+              </a>
+              <a href="https://www.youtube.com/channel/UCZiryQRFLSbo9qes3KlE_Tg" target="_blank">
+                <FaYoutube />
+              </a>
+            </SideSocialWrapper>
+          </NavMenu>
+        </NavContent>
+        <NavBtn>
+          <ScheduleButton
+            url="https://calendly.com/d/dzj-8fk-dv7"
+            primary="true"
+            /*
+            * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
+            * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
+            */
+            rootElement={document.getElementById("___gatsby")}
+            text="Click here to schedule!"
+          />
+          {/* <PhoneButton primary="true" href="tel:18044208561">
+            +1 (804) 420-8561
+          </PhoneButton> */}
+        </NavBtn>
+        <ToTopButon isscrolling={isScrolling ? 1 : 0} onClick={scrollToTop}>
+          <FaArrowUp />
+        </ToTopButon>
+      </Nav>
+    );
+  }
 };
 
 export default Header;
