@@ -8,7 +8,7 @@ gatsby version of Soaring Hawk Company portfolio with i18n supported.
 
 ## Preview
 
-![soaring-hawks-portfolio](https://raw.githubusercontent.com/mpocta30/soaring-hawks-portfolio/refs/heads/master/src/assets/images/screenshots/soaring-hawk-preview.png)
+![soaring-hawks-portfolio](/src/assets/images/screenshots/soaring-hawk-preview.png)
 
 ## Sample page
 
